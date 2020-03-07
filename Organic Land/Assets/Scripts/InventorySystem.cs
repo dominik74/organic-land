@@ -37,6 +37,19 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
+    public void RemoveItem(string name)
+    {
+        for (int i = 0; i < slotsParent.childCount; i++)
+        {
+            if(slotsParent.GetChild(i).name == name)
+            {
+                Destroy(slotsParent.GetChild(i).gameObject);
+
+                Debug.Log("Removed item");
+            }
+        }
+    }
+
     void InitializeItem(GameObject newItem, ItemData itemData)
     {
         newItem.GetComponent<Image>().sprite = itemData.icon;
