@@ -42,6 +42,9 @@ public class InventorySystem : MonoBehaviour {
                 InitializeItem(newItem, items[i]);
                 SortItem(newItem.transform);
 
+                // Update Text Display
+                UpdateNameText();
+
                 // Output log
                 Debug.Log("> Added item");
             }
@@ -57,6 +60,7 @@ public class InventorySystem : MonoBehaviour {
                 if (slotsParent.GetChild(i).GetChild(0).name == name)
                 {
                     Destroy(slotsParent.GetChild(i).GetChild(0).gameObject);
+                    selectedItemNameText.text = "";
 
                     Debug.Log("> Removed item");
                     return;
@@ -69,6 +73,8 @@ public class InventorySystem : MonoBehaviour {
     {
         if (selectedSlot.childCount != 0)
             Destroy(selectedSlot.GetChild(0).gameObject);
+
+        selectedItemNameText.text = "";
         Debug.Log("> Removed item");
     }
 
