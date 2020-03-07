@@ -7,8 +7,11 @@ public class InventorySystem : MonoBehaviour {
 
     public GameObject itemTeplate;
     public Transform slotsParent;
+    public Transform slotSelector;
 
     public ItemData[] items;
+
+    private Transform selectedSlot;
 
     #region SINGLETON
     public static InventorySystem instance;
@@ -17,6 +20,12 @@ public class InventorySystem : MonoBehaviour {
         instance = this;
     }
     #endregion
+
+    private void Start()
+    {
+        selectedSlot = slotsParent.GetChild(0);
+        UpdateSlotSelectorPosition();
+    }
 
     public void AddItem(string name)
     {
@@ -32,7 +41,7 @@ public class InventorySystem : MonoBehaviour {
                 SortItem(newItem.transform);
 
                 // Output log
-                Debug.Log("Added item");
+                Debug.Log("> Added item");
             }
         }
     }
@@ -41,17 +50,38 @@ public class InventorySystem : MonoBehaviour {
     {
         for (int i = 0; i < slotsParent.childCount; i++)
         {
-            if(slotsParent.GetChild(i).name == name)
+            if(slotsParent.GetChild(i).childCount != 0)
             {
-                Destroy(slotsParent.GetChild(i).gameObject);
+                if (slotsParent.GetChild(i).GetChild(0).name == name)
+                {
+                    Destroy(slotsParent.GetChild(i).GetChild(0).gameObject);
 
-                Debug.Log("Removed item");
+                    Debug.Log("> Removed item");
+                    return;
+                }
             }
+        }
+    }
+
+    public void RemoveSelectedItem()
+    {
+        if (selectedSlot.childCount != 0)
+            Destroy(selectedSlot.GetChild(0).gameObject);
+        Debug.Log("> Removed item");
+    }
+
+    public void SelectSlot(int index)
+    {
+        if (index >= 0 && index < slotsParent.childCount)
+        { 
+            selectedSlot = slotsParent.GetChild(index);
+            UpdateSlotSelectorPosition();
         }
     }
 
     void InitializeItem(GameObject newItem, ItemData itemData)
     {
+        newItem.name = itemData.name;
         newItem.GetComponent<Image>().sprite = itemData.icon;
     }
 
@@ -66,5 +96,10 @@ public class InventorySystem : MonoBehaviour {
                 return;
             }
         }
+    }
+
+    void UpdateSlotSelectorPosition()
+    {
+        slotSelector.position = selectedSlot.position;
     }
 }
