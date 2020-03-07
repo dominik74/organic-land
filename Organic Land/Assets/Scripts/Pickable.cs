@@ -15,7 +15,7 @@ public class Pickable : MonoBehaviour {
 
     private void Pickup()
     {
-        // TODO: implement
+        InventorySystem.instance.AddItem(name.Replace(" (entity)", ""));
         Destroy(gameObject);
     }
 }
