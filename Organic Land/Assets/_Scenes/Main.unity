@@ -200,7 +200,7 @@ RectTransform:
   m_Children:
   - {fileID: 1365956203}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 307901107}
   - component: {fileID: 307901106}
   - component: {fileID: 307901105}
+  - component: {fileID: 307901109}
   m_Layer: 0
   m_Name: Rock (entity)
   m_TagString: Untagged
@@ -389,8 +390,19 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &307901109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 307901104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbde52743d2b834bad8bfcf24e1a959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &470053608
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +474,7 @@ GameObject:
   - component: {fileID: 616491787}
   - component: {fileID: 616491786}
   - component: {fileID: 616491785}
+  - component: {fileID: 616491788}
   m_Layer: 0
   m_Name: PlayerUnit
   m_TagString: Player
@@ -522,10 +535,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.1, y: 2.9, z: 3.3}
   m_LocalScale: {x: 20, y: 20, z: 1}
-  m_Children:
-  - {fileID: 1065549056}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &616491785
 MonoBehaviour:
@@ -566,6 +578,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &616491788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 616491782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbde52743d2b834bad8bfcf24e1a959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &672767613
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +866,7 @@ GameObject:
   - component: {fileID: 1035582151}
   - component: {fileID: 1035582150}
   - component: {fileID: 1035582149}
+  - component: {fileID: 1035582153}
   m_Layer: 0
   m_Name: Rock (entity)
   m_TagString: Untagged
@@ -928,8 +952,19 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1035582153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1035582148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbde52743d2b834bad8bfcf24e1a959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1065549052
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,8 +976,10 @@ GameObject:
   - component: {fileID: 1065549055}
   - component: {fileID: 1065549054}
   - component: {fileID: 1065549053}
+  - component: {fileID: 1065549057}
+  - component: {fileID: 1065549058}
   m_Layer: 0
-  m_Name: main camera
+  m_Name: PlayerCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1005,12 +1042,36 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1065549052}
   m_LocalRotation: {x: 0.15050375, y: -0, z: -0, w: 0.9886095}
-  m_LocalPosition: {x: 0, y: 0.45, z: -20}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalPosition: {x: 31.1, y: 11.9, z: -16.7}
+  m_LocalScale: {x: 1, y: 0.91587454, z: 2.6825104}
   m_Children: []
-  m_Father: {fileID: 616491784}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 17.312, y: 0, z: 0}
+--- !u!114 &1065549057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1065549052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4829747489b06b3448e95d0db1ae85c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 616491784}
+  offset: {x: 0, y: 7.5, z: -18}
+--- !u!114 &1065549058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1065549052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9130c55919f2e9448ad351744fb716f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1067289766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1222,7 @@ GameObject:
   - component: {fileID: 1414448849}
   - component: {fileID: 1414448848}
   - component: {fileID: 1414448847}
+  - component: {fileID: 1414448851}
   m_Layer: 0
   m_Name: Rock (entity)
   m_TagString: Untagged
@@ -1246,8 +1308,19 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1414448851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1414448846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbde52743d2b834bad8bfcf24e1a959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1796992560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1464,7 @@ GameObject:
   - component: {fileID: 1928678122}
   - component: {fileID: 1928678121}
   - component: {fileID: 1928678120}
+  - component: {fileID: 1928678123}
   m_Layer: 0
   m_Name: Tree (0)
   m_TagString: Untagged
@@ -1465,8 +1539,19 @@ Transform:
   m_LocalScale: {x: 20, y: 50, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1928678123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1928678119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbde52743d2b834bad8bfcf24e1a959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2008348975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1612,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2016706005
 GameObject:

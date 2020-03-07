@@ -11,9 +11,9 @@ public class Billboard : MonoBehaviour {
         cam = Camera.main.transform;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        transform.LookAt(cam);    
+        transform.rotation = cam.rotation;
     }
 
 }
