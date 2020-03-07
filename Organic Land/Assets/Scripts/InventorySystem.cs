@@ -8,6 +8,7 @@ public class InventorySystem : MonoBehaviour {
     public GameObject itemTeplate;
     public Transform slotsParent;
     public Transform slotSelector;
+    public Text selectedItemNameText;
 
     public ItemData[] items;
 
@@ -25,6 +26,7 @@ public class InventorySystem : MonoBehaviour {
     {
         selectedSlot = slotsParent.GetChild(0);
         UpdateSlotSelectorPosition();
+        UpdateNameText();
     }
 
     public void AddItem(string name)
@@ -76,6 +78,7 @@ public class InventorySystem : MonoBehaviour {
         { 
             selectedSlot = slotsParent.GetChild(index);
             UpdateSlotSelectorPosition();
+            UpdateNameText();
         }
     }
 
@@ -101,5 +104,13 @@ public class InventorySystem : MonoBehaviour {
     void UpdateSlotSelectorPosition()
     {
         slotSelector.position = selectedSlot.position;
+    }
+
+    void UpdateNameText()
+    {
+        if (selectedSlot.childCount != 0)
+            selectedItemNameText.text = selectedSlot.GetChild(0).name;
+        else
+            selectedItemNameText.text = "";
     }
 }
