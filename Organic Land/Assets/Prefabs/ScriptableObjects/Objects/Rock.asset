@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b6f769e5f42094da813239f8a68806, type: 3}
   m_Name: Rock
   m_EditorClassIdentifier: 
-  sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  sprite: {fileID: 21300000, guid: 712d3d138df5c9a4d8fb31aeb818ff1d, type: 3}
   spawnChance: 25
   color: {r: 0.39705884, g: 0.39705884, b: 0.39705884, a: 1}
