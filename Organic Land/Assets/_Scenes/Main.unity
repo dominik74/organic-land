@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainSize: 256
-  maxObjectCount: 65
+  maxObjectCount: 270
   objectTemplate: {fileID: 1902158370817034, guid: 0833b3824375d02498a000d02e149fa9,
     type: 2}
   objectData:
@@ -1240,6 +1240,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 212557371535968798, guid: 0833b3824375d02498a000d02e149fa9,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0833b3824375d02498a000d02e149fa9, type: 2}
   m_IsPrefabParent: 0
