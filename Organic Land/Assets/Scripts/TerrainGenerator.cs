@@ -38,7 +38,7 @@ public class TerrainGenerator : MonoBehaviour {
                 {
                     GameObject obj = Instantiate(objectTemplate);
                     InitializeObject(obj, objectData[i]);
-                    obj.transform.position = new Vector3(Random.Range(-terrainSize, terrainSize), 1, Random.Range(-terrainSize, terrainSize));
+                    obj.transform.position = new Vector3(Random.Range(-terrainSize, terrainSize), 0, Random.Range(-terrainSize, terrainSize));
 
                     objectsSpawned++;
                     break;
