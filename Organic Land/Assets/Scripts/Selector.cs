@@ -25,11 +25,13 @@ public class Selector : MonoBehaviour {
     {
         Debug.Log("Selected");
         spriteRenderer.color = darkerColor;
+        HUDController.instance.DisplayObjectName(transform.parent.name);
     }
 
     public void Deselect()
     {
         spriteRenderer.color = defaultColor;
+        HUDController.instance.DisplayObjectName("");
     }
 
 }
