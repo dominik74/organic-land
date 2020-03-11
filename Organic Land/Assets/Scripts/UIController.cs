@@ -46,6 +46,8 @@ public class UIController : MonoBehaviour {
             inventorySystem.RemoveSelectedItem();
         else if (Input.GetKeyDown(KeyCode.Escape))
             SetScreen("pnlPause", true);
+        else if (Input.GetKeyDown(KeyCode.T))
+            SetScreen("pnlConsole", true);
     }
 
     public void SetScreenString(string input)
