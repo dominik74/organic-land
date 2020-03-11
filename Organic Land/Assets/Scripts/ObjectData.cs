@@ -9,4 +9,7 @@ public class ObjectData : ScriptableObject {
     public int spawnChance = 100;
     public Color color = Color.white;
 
+    [Space]
+    public bool pickable;
+
 }

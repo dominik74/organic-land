@@ -46,6 +46,20 @@ public class SelectController : MonoBehaviour {
                 selector.Select();
             }
         }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(lastSelected != null)
+            {
+                Debug.Log(lastSelected.transform, lastSelected.transform);
+                Pickable pickable = lastSelected.transform.parent.GetComponent<Pickable>();
+                if (pickable)
+                {
+                    pickable.Pickup();
+                }
+            }
+
+        }
     }
 
 }

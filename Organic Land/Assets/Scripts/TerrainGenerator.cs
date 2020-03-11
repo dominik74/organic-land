@@ -56,6 +56,9 @@ public class TerrainGenerator : MonoBehaviour {
         obj.name = data.name;
         obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
         obj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.color;
+
+        if (data.pickable)
+            obj.AddComponent<Pickable>();
     }
 
 }

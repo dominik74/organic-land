@@ -795,6 +795,7 @@ MonoBehaviour:
   selectedItemNameText: {fileID: 2115377711}
   items:
   - {fileID: 11400000, guid: 2c683d55c3e9e4a4ea8df986fbc927be, type: 2}
+  - {fileID: 11400000, guid: 7c6118ffc346a7349b2c2240609aa5d4, type: 2}
 --- !u!4 &470053610
 Transform:
   m_ObjectHideFlags: 0
