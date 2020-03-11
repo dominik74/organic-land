@@ -14,9 +14,9 @@ public class CameraController : MonoBehaviour {
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
-            Rotate(45f);
-        else if (Input.GetKeyDown(KeyCode.E))
             Rotate(-45f);
+        else if (Input.GetKeyDown(KeyCode.E))
+            Rotate(45f);
     }
 
     void Rotate(float amount)

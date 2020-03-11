@@ -25,9 +25,9 @@ public class PlayerMovement : MonoBehaviour {
         transform.position += new Vector3(movement.x, 0, movement.z) * movementSpeed * Time.fixedDeltaTime;
 
         if (Input.GetKeyDown(KeyCode.Q))
-            Rotate(45f);
-        else if (Input.GetKeyDown(KeyCode.E))
             Rotate(-45f);
+        else if (Input.GetKeyDown(KeyCode.E))
+            Rotate(45f);
     }
 
     void Rotate(float amount)
