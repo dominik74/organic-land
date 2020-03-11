@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Selector : MonoBehaviour {
 
-    public BoxCollider boxCollider;
-
     private SpriteRenderer spriteRenderer;
 
     private Color darkerColor;
+    private Color defaultColor;
 
     private void Start()
     {
-        spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-        Vector2 size = spriteRenderer.sprite.bounds.size;
-        boxCollider.size = size;
-        boxCollider.center = new Vector3(0, size.x, 0);
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
+        BoxCollider collider = gameObject.AddComponent<BoxCollider>();
+        collider.isTrigger = true;
+
+        defaultColor = spriteRenderer.color;
         darkerColor = spriteRenderer.color * 0.5f;
         darkerColor.a = 1;
     }
@@ -25,6 +25,11 @@ public class Selector : MonoBehaviour {
     {
         Debug.Log("Selected");
         spriteRenderer.color = darkerColor;
+    }
+
+    public void Deselect()
+    {
+        spriteRenderer.color = defaultColor;
     }
 
 }

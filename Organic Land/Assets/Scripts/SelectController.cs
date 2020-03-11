@@ -6,6 +6,8 @@ public class SelectController : MonoBehaviour {
 
     private Camera cam;
 
+    private Selector lastSelected;
+
     private void Start()
     {
         cam = Camera.main;
@@ -20,8 +22,29 @@ public class SelectController : MonoBehaviour {
         {
             Selector selector = hit.transform.GetComponent<Selector>();
 
-            if (selector != null)
+            if (lastSelected != null)
+            {
+                if(selector != null)
+                {
+                    if (lastSelected != selector)
+                    {
+                        lastSelected.Deselect();
+                        lastSelected = selector;
+                        lastSelected.Select();
+                    }
+                }
+                else
+                {
+                    lastSelected.Deselect();
+                    lastSelected = null;
+                }
+
+            }
+            else if (selector != null)
+            {
+                lastSelected = selector;
                 selector.Select();
+            }
         }
     }
 

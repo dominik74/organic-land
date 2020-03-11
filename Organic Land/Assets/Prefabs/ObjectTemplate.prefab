@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4983552526129922}
   - component: {fileID: 212557371535968798}
   - component: {fileID: 114184592005641736}
+  - component: {fileID: 114619610895341854}
   m_Layer: 0
   m_Name: graphics
   m_TagString: Untagged
@@ -36,9 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4190495130607170}
-  - component: {fileID: 65952274976503684}
-  - component: {fileID: 65328022479960570}
-  - component: {fileID: 114676776494235708}
+  - component: {fileID: 65873866124624760}
   m_Layer: 0
   m_Name: ObjectTemplate
   m_TagString: Untagged
@@ -73,19 +72,7 @@ Transform:
   m_Father: {fileID: 4190495130607170}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65328022479960570
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902158370817034}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65952274976503684
+--- !u!65 &65873866124624760
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -95,8 +82,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 1}
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Size: {x: 0.7, y: 1, z: 0.7}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &114184592005641736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,18 +95,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbde52743d2b834bad8bfcf24e1a959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114676776494235708
+--- !u!114 &114619610895341854
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1902158370817034}
+  m_GameObject: {fileID: 1058116469463004}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53a5ad03f6ff6f048a1e0c74daee4073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider: {fileID: 65328022479960570}
 --- !u!212 &212557371535968798
 SpriteRenderer:
   m_ObjectHideFlags: 1
