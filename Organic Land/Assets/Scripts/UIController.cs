@@ -9,6 +9,12 @@ public class UIController : MonoBehaviour {
 
     private InventorySystem inventorySystem;
 
+    public static UIController instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         inventorySystem = InventorySystem.instance;
@@ -45,7 +51,7 @@ public class UIController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.X))
             inventorySystem.RemoveSelectedItem();
         else if (Input.GetKeyDown(KeyCode.Escape))
-            SetScreen("pnlPause", true);
+            Escape();
         else if (Input.GetKeyDown(KeyCode.T))
             SetScreen("pnlConsole", true);
     }
@@ -71,6 +77,50 @@ public class UIController : MonoBehaviour {
             if (screens[i].name == screenName)
                 screens[i].SetActive(state);
         }
+
+        UpdateTimeScale();
+    }
+
+    bool DetectActiveScreen()
+    {
+        for (int i = 0; i < screens.Length; i++)
+        {
+            if (screens[i].activeSelf)
+                return true;
+        }
+        return false;
+    }
+
+    GameObject GetActiveScreen()
+    {
+        for (int i = 0; i < screens.Length; i++)
+        {
+            if (screens[i].activeSelf)
+                return screens[i];
+        }
+        return null;
+    }
+
+    void Escape()
+    {
+        GameObject activeScreen = GetActiveScreen();
+
+        if (activeScreen != null)
+        {
+            activeScreen.SetActive(false);
+            UpdateTimeScale();
+        }
+        else
+            SetScreen("pnlPause", true);
+
+    }
+
+    void UpdateTimeScale()
+    {
+        if (DetectActiveScreen())
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 
 }

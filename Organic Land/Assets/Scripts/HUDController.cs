@@ -28,7 +28,13 @@ public class HUDController : MonoBehaviour {
 
     public void DisplayObjectName(string objName)
     {
-        selectedObjectNameText.text = objName;
+        if (objName == "")
+            selectedObjectName.SetActive(false);
+        else
+        {
+            selectedObjectNameText.text = objName;
+            selectedObjectName.SetActive(true);
+        }
     }
 
 }

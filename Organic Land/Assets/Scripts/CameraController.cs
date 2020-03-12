@@ -13,6 +13,9 @@ public class CameraController : MonoBehaviour {
 
     private void Update()
     {
+        if (Time.timeScale == 0)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Q))
             Rotate(-45f);
         else if (Input.GetKeyDown(KeyCode.E))

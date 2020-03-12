@@ -8,5 +8,6 @@ public class Pickable : MonoBehaviour {
     {
         InventorySystem.instance.AddItem(name.Replace(" (entity)", ""));
         Destroy(gameObject);
+        HUDController.instance.DisplayObjectName("");
     }
 }
