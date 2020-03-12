@@ -52,6 +52,8 @@ public class UIController : MonoBehaviour {
             Escape();
         else if (Input.GetKeyDown(KeyCode.T))
             SetScreen("pnlConsole", true);
+        else if (Input.GetKeyDown(KeyCode.Tab))
+            SetScreen("pnlInventory", true);
     }
 
     public void SetScreenString(string input)
