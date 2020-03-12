@@ -51,6 +51,14 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
+    public void ConvertAndAddItem(string itemName)
+    {
+        itemName = itemName.Replace("_", " ");
+        itemName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemName.ToLower());
+        AddItem(itemName);
+        Debug.Log(itemName);
+    }
+
     public void RemoveItem(string name)
     {
         for (int i = 0; i < slotsParent.childCount; i++)
@@ -86,6 +94,19 @@ public class InventorySystem : MonoBehaviour {
             UpdateSlotSelectorPosition();
             UpdateNameText();
         }
+    }
+
+    public bool CheckIfItemExists(string itemName)
+    {
+        itemName = itemName.Replace("_", " ");
+        itemName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemName.ToLower());
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].name == itemName)
+                return true;
+        }
+        return false;
     }
 
     void InitializeItem(GameObject newItem, ItemData itemData)

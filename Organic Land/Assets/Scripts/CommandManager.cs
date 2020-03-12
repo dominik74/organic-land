@@ -29,6 +29,7 @@ public class CommandManager {
     {
         RegisterCommand("help", Help, "Lists all available commands.");
         RegisterCommand("restart", Restart, "Restarts the level.");
+        RegisterCommand("give", Give, "Gives item [value1 = (itemName)]");
     }
 
 	void RegisterCommand(string command, CommandHandler handler, string help)
@@ -90,6 +91,22 @@ public class CommandManager {
     void Restart(string val, string val2)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
+    void Give(string val, string val2)
+    {
+        if(val != "")
+        {
+            InventorySystem invSystem = InventorySystem.instance;
+
+            if(invSystem.CheckIfItemExists(val))
+            {
+                invSystem.ConvertAndAddItem(val);
+                AppendLogLine(string.Format("Successfully given {0} to player.", val));
+            }
+            else
+                AppendLogLine("Unable to run command 'give', item not found.");
+        }
     }
     #endregion
 

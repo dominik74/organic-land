@@ -48,9 +48,7 @@ public class UIController : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.Alpha9))
             inventorySystem.SelectSlot(8);
 
-        if (Input.GetKeyDown(KeyCode.X))
-            inventorySystem.RemoveSelectedItem();
-        else if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
             Escape();
         else if (Input.GetKeyDown(KeyCode.T))
             SetScreen("pnlConsole", true);
