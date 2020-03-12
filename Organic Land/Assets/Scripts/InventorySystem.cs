@@ -86,6 +86,16 @@ public class InventorySystem : MonoBehaviour {
         Debug.Log("> Removed item");
     }
 
+    public void Clear()
+    {
+        for (int i = 0; i < slotsParent.childCount; i++)
+        {
+            if (slotsParent.GetChild(i).childCount != 0)
+                Destroy(slotsParent.GetChild(i).GetChild(0).gameObject);
+        }
+        UpdateNameText();
+    }
+
     public void SelectSlot(int index)
     {
         if (index >= 0 && index < slotsParent.childCount)

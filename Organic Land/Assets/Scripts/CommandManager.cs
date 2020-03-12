@@ -30,6 +30,7 @@ public class CommandManager {
         RegisterCommand("help", Help, "Lists all available commands.");
         RegisterCommand("restart", Restart, "Restarts the level.");
         RegisterCommand("give", Give, "Gives item [value1 = (itemName)]");
+        RegisterCommand("clear", ClearInventory, "Clears the player's inventory.");
     }
 
 	void RegisterCommand(string command, CommandHandler handler, string help)
@@ -106,6 +107,14 @@ public class CommandManager {
             }
             else
                 AppendLogLine("Unable to run command 'give', item not found.");
+        }
+    }
+
+    void ClearInventory(string val, string val2)
+    {
+        if(val == "" && val2 == "")
+        {
+            InventorySystem.instance.Clear();
         }
     }
     #endregion
