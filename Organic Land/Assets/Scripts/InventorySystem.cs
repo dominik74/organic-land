@@ -25,7 +25,7 @@ public class InventorySystem : MonoBehaviour {
     private void Start()
     {
         selectedSlot = slotsParent.GetChild(0);
-        UpdateSlotSelectorPosition();
+        Invoke("UpdateSlotSelectorPosition", 0.2f);      
         UpdateNameText();
     }
 
