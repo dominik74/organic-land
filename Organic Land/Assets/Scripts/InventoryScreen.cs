@@ -7,6 +7,8 @@ public class InventoryScreen : MonoBehaviour {
     public Transform hotbarParent;
     public Transform invHotbarParent;
 
+    public Transform slotSelector;
+
     private Transform[] hotbarSlots;
     private Transform[] invHotbarSlots;
 
@@ -25,6 +27,7 @@ public class InventoryScreen : MonoBehaviour {
     {
         CacheSlots();
         SyncInventoryHotbar();
+        slotSelector.transform.position = invHotbarSlots[0].position;
         initialized = true;
     }
 
@@ -81,11 +84,14 @@ public class InventoryScreen : MonoBehaviour {
     public void SelectSlot(Transform target)
     {
         selectedSlot = target;
+        slotSelector.gameObject.SetActive(true);
+        slotSelector.transform.position = selectedSlot.position;
     }
 
     public void DeselectSlot()
     {
         selectedSlot = null;
+        slotSelector.gameObject.SetActive(false);
     }
 
     void CacheSlots()

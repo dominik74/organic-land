@@ -77,7 +77,12 @@ public class UIController : MonoBehaviour {
         for (int i = 0; i < screens.Length; i++)
         {
             if (screens[i].name == screenName)
-                screens[i].SetActive(state);
+            {
+                if (screens[i].activeSelf && state == true)
+                    screens[i].SetActive(false);
+                else
+                    screens[i].SetActive(state);
+            }
         }
 
         UpdateTimeScale();
