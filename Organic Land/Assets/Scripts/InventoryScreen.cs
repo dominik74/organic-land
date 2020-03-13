@@ -56,6 +56,7 @@ public class InventoryScreen : MonoBehaviour {
         {
             GrabItem(targetSlot);
         }
+        SyncHotbar();
     }
 
     void GrabItem(Transform targetSlot)
@@ -66,7 +67,6 @@ public class InventoryScreen : MonoBehaviour {
 
             selectedItem.SetParent(transform);
             selectedItem.transform.localScale = new Vector3(1.7f, 1.7f, 1);
-            SyncHotbar();
         }
     }
 
@@ -76,7 +76,6 @@ public class InventoryScreen : MonoBehaviour {
         selectedItem.transform.localScale = new Vector3(1.4f, 1.4f, 1);
         selectedItem.transform.localPosition = new Vector3(0, 0, 0);
         selectedItem = null;
-        SyncHotbar();
     }
 
     public void SelectSlot(Transform target)
