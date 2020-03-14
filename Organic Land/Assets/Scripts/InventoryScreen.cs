@@ -76,14 +76,14 @@ public class InventoryScreen : MonoBehaviour {
             selectedItem = targetSlot.GetChild(0);
 
             selectedItem.SetParent(transform);
-            selectedItem.transform.localScale = new Vector3(1.7f, 1.7f, 1);
+            selectedItem.transform.localScale = new Vector3(1.55f, 1.55f, 1);
         }
     }
 
     void PlaceItem(Transform targetSlot)
     {
         selectedItem.SetParent(targetSlot);
-        selectedItem.transform.localScale = new Vector3(1.4f, 1.4f, 1);
+        selectedItem.transform.localScale = new Vector3(1.25f, 1.25f, 1);
         selectedItem.transform.localPosition = new Vector3(0, 0, 0);
         selectedItem = null;
     }
@@ -190,7 +190,7 @@ public class InventoryScreen : MonoBehaviour {
         newItem.name = itemToCopy.name;
 
         if (parent.parent.name == invHotbarParent.name)
-            ScaleItem(newItem.transform, 1.4f);
+            ScaleItem(newItem.transform, 1.25f);
         else
             ScaleItem(newItem.transform, 1f);
     }
