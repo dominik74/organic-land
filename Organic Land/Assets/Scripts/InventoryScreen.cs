@@ -6,6 +6,7 @@ public class InventoryScreen : MonoBehaviour {
 
     public Transform hotbarParent;
     public Transform invHotbarParent;
+    public Transform invSlotsParent;
 
     public Transform slotSelector;
     [Space]
@@ -14,6 +15,7 @@ public class InventoryScreen : MonoBehaviour {
 
     private Transform[] hotbarSlots;
     private Transform[] invHotbarSlots;
+    private Transform[] invSlots;
 
     private bool initialized;
 
@@ -52,19 +54,29 @@ public class InventoryScreen : MonoBehaviour {
 
     public void ProcessSlot(Transform targetSlot)
     {
-        if(selectedItem != null)
+        if (targetSlot.childCount == 0)
         {
-            if (targetSlot.childCount == 0)
+            if(selectedItem != null)
                 PlaceItem(targetSlot);
-            else
-            {
-                PlaceItem(targetSlot);
-                GrabItem(targetSlot);
-            }
         }
         else
         {
-            GrabItem(targetSlot);
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                QuickSort(targetSlot.GetChild(0));
+            }
+            else
+            {
+                if (selectedItem != null)
+                {
+                    PlaceItem(targetSlot);
+                    GrabItem(targetSlot);
+                }
+                else
+                {
+                    GrabItem(targetSlot);
+                }
+            }
         }
         SyncHotbar();
     }
@@ -120,6 +132,12 @@ public class InventoryScreen : MonoBehaviour {
         for (int i = 0; i < invHotbarSlots.Length; i++)
         {
             invHotbarSlots[i] = invHotbarParent.GetChild(i);
+        }
+
+        invSlots = new Transform[invSlotsParent.childCount];
+        for (int i = 0; i < invSlots.Length; i++)
+        {
+            invSlots[i] = invSlotsParent.GetChild(i);
         }
     }
 
@@ -177,6 +195,40 @@ public class InventoryScreen : MonoBehaviour {
                         CopyItemTo(invHotbarSlots[i].GetChild(0).gameObject, hotbarSlots[i]);
                     }
                 }
+            }
+        }
+    }
+
+    void QuickSort(Transform targetItem)
+    {
+        if (targetItem.parent.parent.name == invHotbarParent.name)
+            SortInventory(targetItem);
+        else
+            SortHotbar(targetItem);
+    }
+
+    void SortInventory(Transform itemToSort)
+    {
+        for (int i = 0; i < invSlots.Length; i++)
+        {
+            if(invSlots[i].childCount == 0)
+            {
+                itemToSort.SetParent(invSlots[i]);
+                itemToSort.localPosition = new Vector3(0, 0, 0);
+                return;
+            }
+        }
+    }
+
+    void SortHotbar(Transform itemToSort)
+    {
+        for (int i = 0; i < invHotbarSlots.Length; i++)
+        {
+            if (invHotbarSlots[i].childCount == 0)
+            {
+                itemToSort.SetParent(invHotbarSlots[i]);
+                itemToSort.localPosition = new Vector3(0, 0, 0);
+                return;
             }
         }
     }

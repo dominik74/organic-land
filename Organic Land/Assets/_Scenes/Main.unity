@@ -882,6 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hotbarParent: {fileID: 904154334}
   invHotbarParent: {fileID: 1434940598}
+  invSlotsParent: {fileID: 794952590}
   slotSelector: {fileID: 1294107309}
   tooltipDialog: {fileID: 1993889563}
   tooltipOffset: {x: 10, y: 2}
