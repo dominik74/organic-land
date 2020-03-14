@@ -71,6 +71,9 @@ public class InventoryScreen : MonoBehaviour {
                 {
                     PlaceItem(targetSlot);
                     GrabItem(targetSlot);
+
+                    tooltipDialog.SetActive(true);
+                    tooltipDialog.GetComponent<TooltipDialog>().UpdateTooltip(selectedItem.gameObject);
                 }
                 else
                 {
@@ -105,7 +108,7 @@ public class InventoryScreen : MonoBehaviour {
         selectedSlot = target;
         slotSelector.gameObject.SetActive(true);
         slotSelector.transform.position = selectedSlot.position;
-        if(target.childCount != 0)
+        if(target.childCount != 0 && selectedItem == null)
         {
             tooltipDialog.SetActive(true);
             tooltipDialog.GetComponent<TooltipDialog>().UpdateTooltip(target.GetChild(0).gameObject);
