@@ -8,6 +8,9 @@ public class InventoryScreen : MonoBehaviour {
     public Transform invHotbarParent;
 
     public Transform slotSelector;
+    [Space]
+    public GameObject tooltipDialog;
+    public Vector2 tooltipOffset;
 
     private Transform[] hotbarSlots;
     private Transform[] invHotbarSlots;
@@ -27,7 +30,8 @@ public class InventoryScreen : MonoBehaviour {
     {
         CacheSlots();
         SyncInventoryHotbar();
-        slotSelector.transform.position = invHotbarSlots[0].position;
+        slotSelector.gameObject.SetActive(false);
+        tooltipDialog.SetActive(false);
         initialized = true;
     }
 
@@ -41,6 +45,9 @@ public class InventoryScreen : MonoBehaviour {
     {
         if (selectedItem != null)
             selectedItem.position = Input.mousePosition;
+
+        if (tooltipDialog.activeSelf)
+            tooltipDialog.transform.position = Input.mousePosition + (Vector3)tooltipOffset;
     }
 
     public void ProcessSlot(Transform targetSlot)
@@ -86,12 +93,19 @@ public class InventoryScreen : MonoBehaviour {
         selectedSlot = target;
         slotSelector.gameObject.SetActive(true);
         slotSelector.transform.position = selectedSlot.position;
+        if(target.childCount != 0)
+        {
+            tooltipDialog.SetActive(true);
+            tooltipDialog.GetComponent<TooltipDialog>().UpdateTooltip(target.GetChild(0).gameObject);
+        }
     }
 
     public void DeselectSlot()
     {
         selectedSlot = null;
         slotSelector.gameObject.SetActive(false);
+        if(selectedItem == null)
+            tooltipDialog.SetActive(false);
     }
 
     void CacheSlots()
