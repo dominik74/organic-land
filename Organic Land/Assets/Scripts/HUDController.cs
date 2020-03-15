@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class HUDController : MonoBehaviour {
 
@@ -22,8 +23,15 @@ public class HUDController : MonoBehaviour {
 
     private void Update()
     {
-        if(selectedObjectName.activeSelf)
-            selectedObjectName.transform.position = Input.mousePosition;
+        if(!EventSystem.current.IsPointerOverGameObject())
+        {
+            if (selectedObjectName.activeSelf)
+                selectedObjectName.transform.position = Input.mousePosition;
+        }
+        else
+        {
+            selectedObjectName.SetActive(false);
+        }
     }
 
     public void DisplayObjectName(string objName)

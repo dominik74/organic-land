@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SelectController : MonoBehaviour {
 
@@ -15,6 +16,9 @@ public class SelectController : MonoBehaviour {
 
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;
