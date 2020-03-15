@@ -7,4 +7,15 @@ public class ItemData : ScriptableObject {
 
     public Sprite icon;
 
+    [Space]
+    public bool craftable;
+    public Materials[] materials;
+
+}
+
+[System.Serializable]
+public class Materials
+{
+    public string name;
+    public int count;
 }
