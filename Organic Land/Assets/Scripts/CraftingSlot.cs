@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class CraftingSlot : MonoBehaviour, IPointerDownHandler
+public class CraftingSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -11,4 +11,13 @@ public class CraftingSlot : MonoBehaviour, IPointerDownHandler
             CraftingScreen.instance.DisplayItem(transform.GetChild(0).gameObject);
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        InventoryScreen.instance.SelectSlot(transform);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        InventoryScreen.instance.DeselectSlot();
+    }
 }

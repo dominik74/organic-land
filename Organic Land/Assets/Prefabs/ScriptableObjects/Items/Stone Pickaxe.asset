@@ -18,3 +18,5 @@ MonoBehaviour:
     count: 5
   - name: Rock
     count: 1
+  - name: Stone Axe
+    count: 1

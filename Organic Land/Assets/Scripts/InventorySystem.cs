@@ -100,6 +100,26 @@ public class InventorySystem : MonoBehaviour {
         return null;
     }
 
+    public Sprite GetItemSprite(string itemName)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].name == itemName)
+                return items[i].icon;
+        }
+        return null;
+    }
+
+    public ItemData GetItemData(string itemName)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].name == itemName)
+                return items[i];
+        }
+        return null;
+    }
+
     public void Clear()
     {
         for (int i = 0; i < slotsParent.childCount; i++)
