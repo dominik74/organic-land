@@ -123,6 +123,39 @@ public class InventoryScreen : MonoBehaviour {
             tooltipDialog.SetActive(false);
     }
 
+    public GameObject[] FindItems(string itemName, int limit = 9999)
+    {
+        List<GameObject> items = new List<GameObject>();
+        for (int i = 0; i < invSlots.Length; i++)
+        {
+            if(invSlots[i].childCount != 0)
+            {
+                if (invSlots[i].GetChild(0).name == itemName)
+                {
+                    if (items.Count < limit)
+                        items.Add(invSlots[i].GetChild(0).gameObject);
+                    else
+                        return items.ToArray();
+                }
+            }
+        }
+
+        for (int i = 0; i < invHotbarSlots.Length; i++)
+        {
+            if (invHotbarSlots[i].childCount != 0)
+            {
+                if (invHotbarSlots[i].GetChild(0).name == itemName)
+                {
+                    if (items.Count < limit)
+                        items.Add(invHotbarSlots[i].GetChild(0).gameObject);
+                    else
+                        return items.ToArray();
+                }
+            }
+        }
+        return items.ToArray();
+    }
+
     void CacheSlots()
     {
         hotbarSlots = new Transform[hotbarParent.childCount];

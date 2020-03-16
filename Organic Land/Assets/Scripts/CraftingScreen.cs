@@ -10,6 +10,8 @@ public class CraftingScreen : MonoBehaviour {
     private InventorySystem inventorySystem;
     private CraftingSystem craftingSystem;
 
+    private string selectedItem;
+
     public static CraftingScreen instance;
     private void Awake()
     {
@@ -27,6 +29,13 @@ public class CraftingScreen : MonoBehaviour {
     {
         itemWindow.SetActive(true);
         itemWindow.GetComponent<ItemWindow>().UpdateWindow(targetItem);
+        selectedItem = targetItem.name;
+    }
+
+    public void CraftSelectedItem()
+    {
+        if (selectedItem != null)
+            craftingSystem.CraftItem(selectedItem);
     }
 
     void InitializeCraftingSlots()
