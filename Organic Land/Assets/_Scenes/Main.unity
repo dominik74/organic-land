@@ -1204,6 +1204,7 @@ GameObject:
   - component: {fileID: 470053613}
   - component: {fileID: 470053614}
   - component: {fileID: 470053615}
+  - component: {fileID: 470053616}
   m_Layer: 0
   m_Name: __Main
   m_TagString: Untagged
@@ -1227,6 +1228,8 @@ MonoBehaviour:
   slotsParent: {fileID: 904154334}
   slotSelector: {fileID: 895009109}
   selectedItemNameText: {fileID: 2115377711}
+  objectTemplate: {fileID: 1902158370817034, guid: 0833b3824375d02498a000d02e149fa9,
+    type: 2}
   items:
   - {fileID: 11400000, guid: 2c683d55c3e9e4a4ea8df986fbc927be, type: 2}
   - {fileID: 11400000, guid: 7c6118ffc346a7349b2c2240609aa5d4, type: 2}
@@ -1313,6 +1316,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   craftableItems: []
+--- !u!114 &470053616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 470053608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc27cd094201d842b152f2a1573c913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 418703707}
 --- !u!1 &483269449
 GameObject:
   m_ObjectHideFlags: 0

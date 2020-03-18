@@ -9,6 +9,7 @@ public class InventorySystem : MonoBehaviour {
     public Transform slotsParent;
     public Transform slotSelector;
     public Text selectedItemNameText;
+    public GameObject objectTemplate;
 
     public ItemData[] items;
 
@@ -138,6 +139,17 @@ public class InventorySystem : MonoBehaviour {
             UpdateSlotSelectorPosition();
             UpdateNameText();
         }
+    }
+
+    public void DropSelectedItem()
+    {
+        RemoveSelectedItem();
+
+        if (selectedSlot.childCount == 0)
+            return;
+        GameObject droppedItem = Instantiate(objectTemplate);
+        droppedItem.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = selectedSlot.GetChild(0).GetComponent<Image>().sprite;
+        droppedItem.transform.position = PlayerManager.playerUnit.transform.position;
     }
 
     public bool CheckIfItemExists(string itemName)
