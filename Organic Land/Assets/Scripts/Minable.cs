@@ -5,6 +5,7 @@ using UnityEngine;
 public class Minable : MonoBehaviour, IObjectController
 {
     public CollectTool collectTool;
+    public string loot;
 
     private const float maxDurability = 100f;
     private float currentDurability;
@@ -28,7 +29,7 @@ public class Minable : MonoBehaviour, IObjectController
 
     void Die()
     {
-        InventorySystem.instance.AddItem("Stick");
+        InventorySystem.instance.AddItem(loot);
         Destroy(gameObject);
     }
 }

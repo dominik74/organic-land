@@ -60,7 +60,10 @@ public class TerrainGenerator : MonoBehaviour {
         if (data.collectBehavior == CollectBehavior.pickable)
             obj.AddComponent<Pickable>();
         else if (data.collectBehavior == CollectBehavior.minable)
+        {
             obj.AddComponent<Minable>().collectTool = data.collectTool;
+            obj.GetComponent<Minable>().loot = data.lootDrop;
+        }
     }
 
 }
