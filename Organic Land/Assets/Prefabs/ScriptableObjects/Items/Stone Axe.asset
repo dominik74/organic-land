@@ -12,3 +12,9 @@ MonoBehaviour:
   m_Name: Stone Axe
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: daf1da7b3b79ede499d77e7b9174b632, type: 3}
+  craftable: 1
+  materials:
+  - name: Stick
+    count: 2
+  - name: Rock
+    count: 2

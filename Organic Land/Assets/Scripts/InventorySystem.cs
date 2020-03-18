@@ -86,6 +86,40 @@ public class InventorySystem : MonoBehaviour {
         Debug.Log("> Removed item");
     }
 
+    public GameObject GetItem(string itemName)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].name == itemName)
+            {
+                GameObject newItem = Instantiate(itemTeplate);
+                InitializeItem(newItem, items[i]);
+                return newItem;
+            }
+        }
+        return null;
+    }
+
+    public Sprite GetItemSprite(string itemName)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].name == itemName)
+                return items[i].icon;
+        }
+        return null;
+    }
+
+    public ItemData GetItemData(string itemName)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].name == itemName)
+                return items[i];
+        }
+        return null;
+    }
+
     public void Clear()
     {
         for (int i = 0; i < slotsParent.childCount; i++)
