@@ -57,10 +57,12 @@ public class SelectController : MonoBehaviour {
             {
                 Debug.Log(lastSelected.transform, lastSelected.transform);
                 Pickable pickable = lastSelected.transform.parent.GetComponent<Pickable>();
+                IObjectController iObjectController = lastSelected.transform.parent.GetComponent<IObjectController>();
+
                 if (pickable)
-                {
                     pickable.Pickup();
-                }
+                else if (iObjectController != null)
+                    iObjectController.Interact();
             }
 
         }

@@ -10,6 +10,22 @@ public class ObjectData : ScriptableObject {
     public Color color = Color.white;
 
     [Space]
-    public bool pickable;
+    public CollectBehavior collectBehavior;
+    [Tooltip("Change this ONLY if collectBehavior is minable.")]
+    public CollectTool collectTool;
 
+}
+
+public enum CollectBehavior
+{
+    none,
+    pickable,
+    minable
+}
+
+public enum CollectTool
+{
+    none,
+    axe,
+    pickaxe,
 }

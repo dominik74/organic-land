@@ -57,8 +57,10 @@ public class TerrainGenerator : MonoBehaviour {
         obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
         obj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.color;
 
-        if (data.pickable)
+        if (data.collectBehavior == CollectBehavior.pickable)
             obj.AddComponent<Pickable>();
+        else if (data.collectBehavior == CollectBehavior.minable)
+            obj.AddComponent<Minable>().collectTool = data.collectTool;
     }
 
 }
