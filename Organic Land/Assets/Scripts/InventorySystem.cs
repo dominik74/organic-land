@@ -150,6 +150,8 @@ public class InventorySystem : MonoBehaviour {
         GameObject droppedItem = Instantiate(objectTemplate);
         droppedItem.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = selectedSlot.GetChild(0).GetComponent<Image>().sprite;
         droppedItem.transform.position = PlayerManager.playerUnit.transform.position;
+        droppedItem.name = selectedSlot.GetChild(0).name;
+        droppedItem.AddComponent<Pickable>();
     }
 
     public bool CheckIfItemExists(string itemName)
