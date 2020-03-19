@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351edde0670475848b8f666bbfc06940, type: 3}
+  m_Name: Campfire
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 717bc1ca2efdf6b49885987e20a0636f, type: 3}
+  craftable: 1
+  materials:
+  - name: Log
+    count: 4
