@@ -16,9 +16,18 @@ public class LightDetector : MonoBehaviour {
         EventManager.OnTimeUpdated += OnTimeUpdated;
     }
 
+    private void OnDisable()
+    {
+        EventManager.OnTimeUpdated -= OnTimeUpdated;
+    }
+
     void OnTimeUpdated()
     {
-        spriteRenderer.color = Color
+        Color newColor = spriteRenderer.color;
+        newColor *= 0.5f;
+        newColor.a = 1;
+        spriteRenderer.color = newColor;
+        Debug.Log("Change color");
     }
 
 }

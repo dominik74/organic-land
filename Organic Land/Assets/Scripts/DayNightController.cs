@@ -38,6 +38,7 @@ public class DayNightController : MonoBehaviour {
             dirLight.Rotate(new Vector3(timeBtwStage/dayLength * 360, 0, 0));
             currentStage += timeBtwStage;
             UpdateUI();
+            EventManager.TimeUpdated();
         }
 
         // Debug

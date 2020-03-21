@@ -1330,6 +1330,7 @@ MonoBehaviour:
   dirLight: {fileID: 1796992562}
   timeBtwStage: 10
   dayLength: 60
+  timebar: {fileID: 956453304}
 --- !u!1 &483269449
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ public class EventManager : MonoBehaviour {
     {
         if (OnTimeUpdated != null)
             OnTimeUpdated();
+        Debug.Log("call");
     }
 
 }
