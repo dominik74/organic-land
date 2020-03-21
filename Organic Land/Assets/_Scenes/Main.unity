@@ -3888,6 +3888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxOffset: {x: 0, y: 18, z: -30}
   maxRotation: 35
+  yRotSpeed: 150
 --- !u!1 &1067289766
 GameObject:
   m_ObjectHideFlags: 0

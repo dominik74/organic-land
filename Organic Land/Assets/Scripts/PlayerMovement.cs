@@ -35,12 +35,6 @@ public class PlayerMovement : MonoBehaviour {
 
         transform.position += new Vector3(movement.x, 0, movement.z) * movementSpeed * Time.fixedDeltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-            Rotate(-45f);
-        else if (Input.GetKeyDown(KeyCode.E))
-            Rotate(45f);
-
-
         if(Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -57,11 +51,6 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
 
-    }
-
-    void Rotate(float amount)
-    {
-        transform.Rotate(0, amount, 0, Space.World);
     }
 
     IEnumerator MoveTo(Vector3 targetPos)
