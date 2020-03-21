@@ -8,6 +8,7 @@ public class DayNightController : MonoBehaviour {
     public Transform dirLight;
     public float timeBtwStage = 10f;
     public float dayLength = 60f;
+    public bool secondHalf;
 
     [Space]
     public Slider timebar;
@@ -16,6 +17,12 @@ public class DayNightController : MonoBehaviour {
     private float currentTime;
 
     private float currentStage;
+
+    public static DayNightController instance;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -37,8 +44,14 @@ public class DayNightController : MonoBehaviour {
         {
             dirLight.Rotate(new Vector3(timeBtwStage/dayLength * 360, 0, 0));
             currentStage += timeBtwStage;
+
+            if (currentTime >= dayLength / 2)
+                secondHalf = true;
+            else
+                secondHalf = false;
+
+            TerrainGenerator.UpdateLighting();
             UpdateUI();
-            EventManager.TimeUpdated();
         }
 
         // Debug

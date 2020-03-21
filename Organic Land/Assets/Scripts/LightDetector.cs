@@ -11,20 +11,13 @@ public class LightDetector : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void OnEnable()
-    {
-        EventManager.OnTimeUpdated += OnTimeUpdated;
-    }
-
-    private void OnDisable()
-    {
-        EventManager.OnTimeUpdated -= OnTimeUpdated;
-    }
-
-    void OnTimeUpdated()
+    public void UpdateLighting()
     {
         Color newColor = spriteRenderer.color;
-        newColor *= 0.5f;
+        if (!DayNightController.instance.secondHalf)
+            newColor *= 0.5f;
+        else
+            newColor /= 0.5f;
         newColor.a = 1;
         spriteRenderer.color = newColor;
         Debug.Log("Change color");
