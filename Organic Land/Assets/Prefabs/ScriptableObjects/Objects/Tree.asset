@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Tree
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 514c3c52f8142614982cdb8da34a84a3, type: 3}
-  spawnChance: 60
+  spawnChance: 40
   color: {r: 1, g: 1, b: 1, a: 1}
   collectBehavior: 2
   collectTool: 1

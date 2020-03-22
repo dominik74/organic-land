@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Minable : MonoBehaviour, IObjectController
 {
-    public CollectTool collectTool;
+    public Tools collectTool;
     public string loot;
 
     private const float maxDurability = 100f;
@@ -17,7 +17,17 @@ public class Minable : MonoBehaviour, IObjectController
 
     public void Interact()
     {
-        TakeDamage(15f);
+        DetectCorrectToolType();
+    }
+
+    void DetectCorrectToolType()
+    {
+        GameObject selectedItem = InventorySystem.instance.GetSelectedItem();
+        if(selectedItem != null)
+        {
+            if (selectedItem.GetComponent<Item>().toolType == collectTool)
+                TakeDamage(15f);
+        }
     }
 
     void TakeDamage(float dmg)

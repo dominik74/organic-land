@@ -120,6 +120,15 @@ public class InventorySystem : MonoBehaviour {
         return null;
     }
 
+    public GameObject GetSelectedItem()
+    {
+        if(selectedSlot != null && selectedSlot.childCount != 0)
+        {
+            return selectedSlot.GetChild(0).gameObject;
+        }
+        return null;
+    }
+
     public void Clear()
     {
         for (int i = 0; i < slotsParent.childCount; i++)
@@ -157,6 +166,9 @@ public class InventorySystem : MonoBehaviour {
     {
         newItem.name = itemData.name;
         newItem.GetComponent<Image>().sprite = itemData.icon;
+
+        newItem.GetComponent<Item>().isTool = itemData.isTool;
+        newItem.GetComponent<Item>().toolType = itemData.toolType;
     }
 
     void SortItem(Transform newItem)
