@@ -12,7 +12,7 @@ public class ObjectData : ScriptableObject {
     [Space]
     public CollectBehavior collectBehavior;
     [Tooltip("Change this ONLY if collectBehavior is minable.")]
-    public CollectTool collectTool;
+    public Tools collectTool;
 
     [Space]
     [Tooltip("Change this ONLY if collectBehavior is minable.")]
@@ -27,7 +27,7 @@ public enum CollectBehavior
     minable
 }
 
-public enum CollectTool
+public enum Tools
 {
     none,
     axe,

@@ -8,6 +8,10 @@ public class ItemData : ScriptableObject {
     public Sprite icon;
 
     [Space]
+    public bool isTool;
+    public Tools toolType;
+
+    [Space]
     public bool craftable;
     public Materials[] materials;
 
