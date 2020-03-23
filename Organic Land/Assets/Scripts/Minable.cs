@@ -32,6 +32,9 @@ public class Minable : MonoBehaviour, IObjectController
 
     void TakeDamage(float dmg)
     {
+        if (transform.GetChild(0).GetComponent<ObjectAnimator>())
+            transform.GetChild(0).GetComponent<ObjectAnimator>().Animate();
+
         currentDurability -= dmg;
         if (currentDurability <= 0)
             Die();
