@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Name: Grass Tuft
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e0e9e199393d2804c9fbf6ec600cff78, type: 3}
-  spawnChance: 30
+  spawnChance: 20
   color: {r: 1, g: 1, b: 1, a: 1}
-  pickable: 0
+  collectBehavior: 0
+  collectTool: 0
+  lootDrop: 
