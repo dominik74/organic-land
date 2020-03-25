@@ -58,8 +58,9 @@ public class UIController : MonoBehaviour {
                 SetScreen("pnlInventory", true);
             else if (Input.GetKeyDown(KeyCode.Z))
                 inventorySystem.RemoveSelectedItem();
+            else if (Input.GetKeyDown(KeyCode.I))
+              inventorySystem.DropSelectedItem();
         }
-
     }
 
     public void SetScreenString(string input)

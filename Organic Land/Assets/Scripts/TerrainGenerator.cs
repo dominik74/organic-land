@@ -13,9 +13,25 @@ public class TerrainGenerator : MonoBehaviour {
     public GameObject objectTemplate;
     public ObjectData[] objectData;
 
+    public static TerrainGenerator instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         Generate();
+    }
+
+    public ObjectData GetObjectData(string objName)
+    {
+        for (int i = 0; i < objectData.Length; i++)
+        {
+            if (objectData[i].name == objName)
+                return objectData[i];
+        }
+        return null;
     }
 
     void Generate()
