@@ -50,12 +50,16 @@ public class UIController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
             Escape();
-        else if (Input.GetKeyDown(KeyCode.T))
-            SetScreen("pnlConsole", true);
-        else if (Input.GetKeyDown(KeyCode.Tab))
-            SetScreen("pnlInventory", true);
-        else if (Input.GetKeyDown(KeyCode.Z))
-            inventorySystem.RemoveSelectedItem();
+        else if (!ConsoleView.isActive)
+        {
+            if (Input.GetKeyDown(KeyCode.T))
+                SetScreen("pnlConsole", true);
+            else if (Input.GetKeyDown(KeyCode.Tab))
+                SetScreen("pnlInventory", true);
+            else if (Input.GetKeyDown(KeyCode.Z))
+                inventorySystem.RemoveSelectedItem();
+        }
+
     }
 
     public void SetScreenString(string input)

@@ -8,6 +8,8 @@ public class ConsoleView : MonoBehaviour {
     public InputField inputField;
     public Text outputText;
 
+    public static bool isActive;
+
     private CommandManager commandManager = new CommandManager();
 
     private void Start()
@@ -19,6 +21,12 @@ public class ConsoleView : MonoBehaviour {
     private void OnEnable()
     {
         inputField.ActivateInputField();
+        isActive = true;
+    }
+
+    private void OnDisable()
+    {
+        isActive = false;
     }
 
     public void SendCommand()
