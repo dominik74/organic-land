@@ -1274,6 +1274,7 @@ GameObject:
   - component: {fileID: 470053614}
   - component: {fileID: 470053615}
   - component: {fileID: 470053617}
+  - component: {fileID: 470053616}
   m_Layer: 0
   m_Name: __Main
   m_TagString: Untagged
@@ -1387,6 +1388,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   craftableItems: []
+--- !u!114 &470053616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 470053608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d451ebe5992c68049a0d772b5f553702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &470053617
 MonoBehaviour:
   m_ObjectHideFlags: 0
