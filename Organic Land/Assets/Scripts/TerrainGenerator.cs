@@ -6,6 +6,8 @@ public class TerrainGenerator : MonoBehaviour {
 
     public float terrainSize;
 
+    private static List<GameObject> spawnedObjects = new List<GameObject>();
+
     [Range(1, 300)]
     public int maxObjectCount;
 
@@ -23,7 +25,7 @@ public class TerrainGenerator : MonoBehaviour {
     {
         Generate();
     }
-
+  
     public ObjectData GetObjectData(string objName)
     {
         for (int i = 0; i < objectData.Length; i++)
@@ -32,6 +34,14 @@ public class TerrainGenerator : MonoBehaviour {
                 return objectData[i];
         }
         return null;
+    }
+
+    public static void UpdateLighting()
+    {
+        spawnedObjects.RemoveAll(GameObject => GameObject == null);
+        instance.StopCoroutine("UpdateLightingTimer");
+        instance.StartCoroutine("UpdateLightingTimer");
+
     }
 
     void Generate()
@@ -56,6 +66,7 @@ public class TerrainGenerator : MonoBehaviour {
                     InitializeObject(obj, objectData[i]);
                     obj.transform.position = new Vector3(Random.Range(-terrainSize, terrainSize), 0, Random.Range(-terrainSize, terrainSize));
 
+                    spawnedObjects.Add(obj);
                     objectsSpawned++;
                     break;
                 }
@@ -79,6 +90,17 @@ public class TerrainGenerator : MonoBehaviour {
         {
             obj.AddComponent<Minable>().collectTool = data.collectTool;
             obj.GetComponent<Minable>().loot = data.lootDrop;
+        }
+    }
+
+    IEnumerator UpdateLightingTimer()
+    {
+        for (int i = 0; i < spawnedObjects.Count; i++)
+        {
+            spawnedObjects[i].transform.GetChild(0).GetComponent<LightDetector>().UpdateLighting();
+
+            if(i % 5 == 0)
+                yield return null;
         }
     }
 
