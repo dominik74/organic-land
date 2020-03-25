@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b6f769e5f42094da813239f8a68806, type: 3}
-  m_Name: Tree
+  m_Name: Big Rock
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 514c3c52f8142614982cdb8da34a84a3, type: 3}
-  spawnChance: 35
+  sprite: {fileID: 21300000, guid: 1103d10eae976354bbeacb6c75d75d31, type: 3}
+  spawnChance: 40
   color: {r: 1, g: 1, b: 1, a: 1}
   collectBehavior: 2
-  collectTool: 1
-  lootDrop: Log
+  collectTool: 2
+  lootDrop: Rock
