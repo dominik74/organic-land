@@ -25,12 +25,23 @@ public class TerrainGenerator : MonoBehaviour {
     {
         Generate();
     }
+  
+    public ObjectData GetObjectData(string objName)
+    {
+        for (int i = 0; i < objectData.Length; i++)
+        {
+            if (objectData[i].name == objName)
+                return objectData[i];
+        }
+        return null;
+    }
 
     public static void UpdateLighting()
     {
         spawnedObjects.RemoveAll(GameObject => GameObject == null);
         instance.StopCoroutine("UpdateLightingTimer");
         instance.StartCoroutine("UpdateLightingTimer");
+
     }
 
     void Generate()

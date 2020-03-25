@@ -9,6 +9,7 @@ public class InventorySystem : MonoBehaviour {
     public Transform slotsParent;
     public Transform slotSelector;
     public Text selectedItemNameText;
+    public GameObject objectTemplate;
 
     public ItemData[] items;
 
@@ -120,6 +121,15 @@ public class InventorySystem : MonoBehaviour {
         return null;
     }
 
+    public GameObject GetSelectedItem()
+    {
+        if(selectedSlot != null && selectedSlot.childCount != 0)
+        {
+            return selectedSlot.GetChild(0).gameObject;
+        }
+        return null;
+    }
+
     public void Clear()
     {
         for (int i = 0; i < slotsParent.childCount; i++)
@@ -140,6 +150,19 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
+    public void DropSelectedItem()
+    {
+        RemoveSelectedItem();
+
+        if (selectedSlot.childCount == 0)
+            return;
+        GameObject droppedItem = Instantiate(objectTemplate);
+        droppedItem.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = selectedSlot.GetChild(0).GetComponent<Image>().sprite;
+        droppedItem.transform.position = PlayerManager.playerUnit.transform.position;
+        droppedItem.name = selectedSlot.GetChild(0).name;
+        droppedItem.AddComponent<Pickable>();
+    }
+
     public bool CheckIfItemExists(string itemName)
     {
         itemName = itemName.Replace("_", " ");
@@ -157,6 +180,9 @@ public class InventorySystem : MonoBehaviour {
     {
         newItem.name = itemData.name;
         newItem.GetComponent<Image>().sprite = itemData.icon;
+
+        newItem.GetComponent<Item>().isTool = itemData.isTool;
+        newItem.GetComponent<Item>().toolType = itemData.toolType;
     }
 
     void SortItem(Transform newItem)

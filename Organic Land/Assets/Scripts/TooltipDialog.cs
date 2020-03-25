@@ -11,7 +11,11 @@ public class TooltipDialog : MonoBehaviour {
     public void UpdateTooltip(GameObject targetItem)
     {
         itemName.text = targetItem.name;
-        itemType.text = "Object";
+
+        if (targetItem.GetComponent<Item>().isTool)
+            itemType.text = "Tools";
+        else
+            itemType.text = "Objects";
     }
 
 }
