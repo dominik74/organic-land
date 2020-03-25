@@ -50,7 +50,7 @@ public class DayNightController : MonoBehaviour {
             else
                 secondHalf = false;
 
-            TerrainGenerator.UpdateLighting();
+            //TerrainGenerator.UpdateLighting();
             UpdateUI();
         }
 

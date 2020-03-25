@@ -36,14 +36,6 @@ public class TerrainGenerator : MonoBehaviour {
         return null;
     }
 
-    public static void UpdateLighting()
-    {
-        spawnedObjects.RemoveAll(GameObject => GameObject == null);
-        instance.StopCoroutine("UpdateLightingTimer");
-        instance.StartCoroutine("UpdateLightingTimer");
-
-    }
-
     void Generate()
     {
         int objectsSpawned = 0;
@@ -90,17 +82,6 @@ public class TerrainGenerator : MonoBehaviour {
         {
             obj.AddComponent<Minable>().collectTool = data.collectTool;
             obj.GetComponent<Minable>().loot = data.lootDrop;
-        }
-    }
-
-    IEnumerator UpdateLightingTimer()
-    {
-        for (int i = 0; i < spawnedObjects.Count; i++)
-        {
-            spawnedObjects[i].transform.GetChild(0).GetComponent<LightDetector>().UpdateLighting();
-
-            if(i % 5 == 0)
-                yield return null;
         }
     }
 
