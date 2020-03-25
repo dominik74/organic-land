@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114184592005641736}
   - component: {fileID: 114619610895341854}
   - component: {fileID: 114681077452416230}
+  - component: {fileID: 114420799921678450}
   m_Layer: 0
   m_Name: graphics
   m_TagString: Untagged
@@ -96,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bbde52743d2b834bad8bfcf24e1a959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114327390164665274
+--- !u!114 &114420799921678450
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
