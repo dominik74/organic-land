@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 300124149}
   - component: {fileID: 300124148}
   - component: {fileID: 300124147}
+  - component: {fileID: 300124150}
   m_Layer: 5
   m_Name: btnResume
   m_TagString: Untagged
@@ -909,7 +910,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.22837368, g: 0.4705882, b: 0.3205205, a: 1}
     m_DisabledColor: {r: 0.7794118, g: 0.36105108, b: 0.36105108, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -970,6 +971,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 300124145}
+--- !u!114 &300124150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 300124145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178a0859b3718bc4889145760492d042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &302568148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,6 +1210,7 @@ GameObject:
   - component: {fileID: 399992355}
   - component: {fileID: 399992354}
   - component: {fileID: 399992353}
+  - component: {fileID: 399992356}
   m_Layer: 5
   m_Name: btnQuit
   m_TagString: Untagged
@@ -1248,7 +1261,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.22745098, g: 0.47058824, b: 0.32156864, a: 1}
     m_DisabledColor: {r: 0.7794118, g: 0.36105108, b: 0.36105108, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -1309,6 +1322,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 399992351}
+--- !u!114 &399992356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 399992351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178a0859b3718bc4889145760492d042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &418703707
 GameObject:
   m_ObjectHideFlags: 0
@@ -4943,6 +4967,7 @@ GameObject:
   - component: {fileID: 1301270708}
   - component: {fileID: 1301270707}
   - component: {fileID: 1301270706}
+  - component: {fileID: 1301270709}
   m_Layer: 5
   m_Name: btnFullscreen
   m_TagString: Untagged
@@ -4993,7 +5018,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.22745098, g: 0.47058824, b: 0.32156864, a: 1}
     m_DisabledColor: {r: 0.7794118, g: 0.36105108, b: 0.36105108, a: 0.5019608}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
+    m_FadeDuration: 0
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -5054,6 +5079,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1301270704}
+--- !u!114 &1301270709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1301270704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178a0859b3718bc4889145760492d042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1316883096
 GameObject:
   m_ObjectHideFlags: 0
