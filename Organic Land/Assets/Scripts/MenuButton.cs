@@ -13,12 +13,21 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     private Text myText;
 
+    private bool initialized;
+
     private void Start()
     {
         myText = transform.GetChild(0).GetComponent<Text>();
         defaultColor = myText.color;
         highlightColor = GetComponent<Button>().colors.highlightedColor;
         pressedColor = GetComponent<Button>().colors.pressedColor;
+        initialized = true;
+    }
+
+    void OnEnable()
+    {
+        if(initialized)
+            myText.color = defaultColor;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -38,6 +47,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        myText.color = defaultColor;
+        myText.color = highlightColor;
     }
 }
