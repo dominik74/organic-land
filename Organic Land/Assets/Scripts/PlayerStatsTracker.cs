@@ -11,7 +11,6 @@ public class PlayerStatsTracker : MonoBehaviour {
 
     private void Start()
     {
-        playerStats = PlayerStats.instance;
         InitializeStatusBars();
     }
 
@@ -30,10 +29,17 @@ public class PlayerStatsTracker : MonoBehaviour {
         healthbar.maxValue = playerStats.maxHealth;
         hungerbar.maxValue = playerStats.maxHunger;
         thirstbar.maxValue = playerStats.maxThirst;
+
+        healthbar.value = healthbar.maxValue;
+        hungerbar.value = hungerbar.maxValue;
+        thirstbar.value = thirstbar.maxValue;
     }
 
     void UpdateStats()
     {
+        if (playerStats == null) // Prevent Null Reference Errors (quick workaround)
+            playerStats = PlayerStats.instance;
+
         healthbar.value = playerStats.GetCurrentStats().health;
         hungerbar.value = playerStats.GetCurrentStats().hunger;
         thirstbar.value = playerStats.GetCurrentStats().thirst;
