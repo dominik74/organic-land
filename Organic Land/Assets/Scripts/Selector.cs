@@ -29,23 +29,39 @@ public class Selector : MonoBehaviour {
         Debug.Log("Selected");
         spriteRenderer.color = darkerColor;
 
-        HUDController.instance.DisplayObjectName(transform.parent.name);
+        HUDController.instance.DisplayObjectLabel(transform.parent.name);
+        ProcessDurabilityStatus();
+        HUDController.instance.DrawObjectLabel();
     }
 
     public void Deselect()
     {
         spriteRenderer.color = defaultColor;
-        HUDController.instance.DisplayObjectName("");
+        HUDController.instance.DisplayObjectLabel("");
+        HUDController.instance.DrawObjectLabel();
     }
 
     public void Press()
     {
         spriteRenderer.color = pressedColor;
+
+        ProcessDurabilityStatus();
+        HUDController.instance.DrawObjectLabel();
     }
 
     public void UnPress()
     {
         spriteRenderer.color = darkerColor;
+    }
+
+    void ProcessDurabilityStatus()
+    {
+        Minable minable = transform.parent.GetComponent<Minable>();
+
+        if (minable != null)
+            HUDController.instance.UpdateDurabilityStatus(minable.currentDurability, Minable.maxDurability);
+        else
+            HUDController.instance.UpdateDurabilityStatus(0f, 0f);
     }
 
 }

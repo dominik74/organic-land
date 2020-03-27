@@ -8,8 +8,8 @@ public class Minable : MonoBehaviour, IObjectController
     public string loot;
     public int lootCount;
 
-    private const float maxDurability = 100f;
-    private float currentDurability;
+    public const float maxDurability = 100f;
+    public float currentDurability;
 
     void Start()
     {
@@ -38,7 +38,10 @@ public class Minable : MonoBehaviour, IObjectController
 
         currentDurability -= dmg;
         if (currentDurability <= 0)
+        {
+            currentDurability = 0;
             Die();
+        }
     }
 
     void Die()
