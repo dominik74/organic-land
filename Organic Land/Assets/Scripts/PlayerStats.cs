@@ -48,6 +48,29 @@ public class PlayerStats : MonoBehaviour {
         return new PlayerStatsContainer(currentHealth, currentHunger, currentThirst);
     }
 
+    public void Add(string statName, float amount)
+    {
+        switch (statName)
+        {
+            case "health":
+                currentHealth += amount;
+                if (currentHealth > maxHealth)
+                    currentHealth = maxHealth;
+                break;
+            case "hunger":
+                currentHunger += amount;
+                if (currentHunger > maxHunger)
+                    currentHunger = maxHunger;
+                break;
+            case "thirst":
+                currentThirst += amount;
+                if (currentThirst > maxThirst)
+                    currentThirst = maxThirst;
+                break;
+        }
+
+    }
+
     void ResetStats()
     {
         currentHealth = maxHealth;
