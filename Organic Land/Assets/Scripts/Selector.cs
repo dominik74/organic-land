@@ -6,8 +6,9 @@ public class Selector : MonoBehaviour {
 
     private SpriteRenderer spriteRenderer;
 
-    private Color darkerColor;
     private Color defaultColor;
+    private Color darkerColor;
+    private Color pressedColor;
 
     private void Start()
     {
@@ -19,6 +20,8 @@ public class Selector : MonoBehaviour {
         defaultColor = spriteRenderer.color;
         darkerColor = spriteRenderer.color * 0.5f;
         darkerColor.a = 1;
+        pressedColor = spriteRenderer.color * 0.25f;
+        pressedColor.a = 1;
     }
 
     public void Select()
@@ -33,6 +36,16 @@ public class Selector : MonoBehaviour {
     {
         spriteRenderer.color = defaultColor;
         HUDController.instance.DisplayObjectName("");
+    }
+
+    public void Press()
+    {
+        spriteRenderer.color = pressedColor;
+    }
+
+    public void UnPress()
+    {
+        spriteRenderer.color = darkerColor;
     }
 
 }
