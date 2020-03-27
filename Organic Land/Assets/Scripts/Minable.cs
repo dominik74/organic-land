@@ -42,7 +42,7 @@ public class Minable : MonoBehaviour, IObjectController
 
     void Die()
     {
-        InventorySystem.instance.AddItem(loot);
+        LootSystem.instance.DropItem(loot, transform.position);
         Destroy(gameObject);
     }
 }
