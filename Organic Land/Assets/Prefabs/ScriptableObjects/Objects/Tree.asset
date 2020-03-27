@@ -17,3 +17,4 @@ MonoBehaviour:
   collectBehavior: 2
   collectTool: 1
   lootDrop: Log
+  lootCount: 2

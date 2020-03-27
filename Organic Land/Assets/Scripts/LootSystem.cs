@@ -12,21 +12,29 @@ public class LootSystem : MonoBehaviour {
         instance = this;
     }
 
-    public void DropItem(string itemToDrop, Vector3 targetPos)
+    public void DropItem(string itemToDrop, Vector3 targetPos, int amount = 1)
     {
-        // Get ItemData
-        ItemData itemData = InventorySystem.instance.GetItemData(itemToDrop);
+        for (int i = 0; i < amount; i++)
+        {
+            // Get ItemData
+            ItemData itemData = InventorySystem.instance.GetItemData(itemToDrop);
 
-        // Instantiate
-        GameObject droppedItem = Instantiate(objectTemplate);
+            // Instantiate
+            GameObject droppedItem = Instantiate(objectTemplate);
 
-        // Initialize
-        droppedItem.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = itemData.icon;
-        droppedItem.transform.position = targetPos;
-        droppedItem.name = itemData.name;
+            // Initialize
+            droppedItem.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = itemData.icon;
 
-        // Add components
-        droppedItem.AddComponent<Pickable>();
+            Vector3 randomPos = new Vector3(Random.Range(-0.85f, 0.85f), 0, Random.Range(-0.85f, 0.85f));
+            targetPos += randomPos;
+
+            droppedItem.transform.position = targetPos;
+            droppedItem.name = itemData.name;
+
+            // Add components
+            droppedItem.AddComponent<Pickable>();
+        }
+        
     }
 
 }

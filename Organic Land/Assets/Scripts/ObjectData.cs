@@ -17,6 +17,7 @@ public class ObjectData : ScriptableObject {
     [Space]
     [Tooltip("Change this ONLY if collectBehavior is minable.")]
     public string lootDrop;
+    public int lootCount = 1;
 
 }
 

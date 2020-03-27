@@ -6,6 +6,7 @@ public class Minable : MonoBehaviour, IObjectController
 {
     public Tools collectTool;
     public string loot;
+    public int lootCount;
 
     private const float maxDurability = 100f;
     private float currentDurability;
@@ -42,7 +43,7 @@ public class Minable : MonoBehaviour, IObjectController
 
     void Die()
     {
-        LootSystem.instance.DropItem(loot, transform.position);
+        LootSystem.instance.DropItem(loot, transform.position, lootCount);
         Destroy(gameObject);
     }
 }
