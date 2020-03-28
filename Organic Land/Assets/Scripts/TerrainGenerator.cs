@@ -40,34 +40,25 @@ public class TerrainGenerator : MonoBehaviour {
     {
         int objectsSpawned = 0;
 
-        while(objectsSpawned < maxObjectCount)
+        for (int i = 0; i < objectData.Length; i++)
         {
-            float random = Random.Range(0, 100);
-
-            int lowLimit = 0;
-            int highLimit = 0;
-
-            for (int i = 0; i < objectData.Length; i++)
+            for (int y = 0; y < objectData[i].spawnChance; y++)
             {
-                lowLimit = highLimit;
-                highLimit += objectData[i].spawnChance;
-
-                if (random >= lowLimit && random < highLimit)
-                {
-                    GameObject obj = Instantiate(objectTemplate);
-                    InitializeObject(obj, objectData[i]);
-                    obj.transform.position = new Vector3(Random.Range(-terrainSize, terrainSize), 0, Random.Range(-terrainSize, terrainSize));
-
-                    spawnedObjects.Add(obj);
-                    objectsSpawned++;
-                    break;
-                }
-
+                SpawnObject(objectData[i]);
+                objectsSpawned++;
             }
         }
 
         Debug.Log(objectsSpawned);
+    }
 
+    void SpawnObject(ObjectData data)
+    {
+        GameObject obj = Instantiate(objectTemplate);
+        InitializeObject(obj, data);
+        obj.transform.position = new Vector3(Random.Range(-terrainSize, terrainSize), 0, Random.Range(-terrainSize, terrainSize));
+
+        spawnedObjects.Add(obj);
     }
 
     void InitializeObject(GameObject obj, ObjectData data)
