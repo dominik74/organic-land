@@ -59,7 +59,9 @@ public class UIController : MonoBehaviour {
             else if (Input.GetKeyDown(KeyCode.Z))
                 inventorySystem.RemoveSelectedItem();
             else if (Input.GetKeyDown(KeyCode.I))
-              inventorySystem.DropSelectedItem();
+                inventorySystem.DropSelectedItem();
+            else if (Input.GetKeyDown(KeyCode.F))
+                inventorySystem.UseSelectedItem();
         }
     }
 
