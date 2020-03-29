@@ -1598,7 +1598,7 @@ MonoBehaviour:
     type: 2}
   slotsParent: {fileID: 904154334}
   slotSelector: {fileID: 895009109}
-  selectedItemNameText: {fileID: 2115377711}
+  selectedItemTooltipText: {fileID: 2115377711}
   objectTemplate: {fileID: 1902158370817034, guid: 0833b3824375d02498a000d02e149fa9,
     type: 2}
   items:
@@ -10132,7 +10132,7 @@ GameObject:
   - component: {fileID: 2115377712}
   - component: {fileID: 2115377711}
   m_Layer: 5
-  m_Name: SelectedItemName
+  m_Name: selectedItemTooltipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
