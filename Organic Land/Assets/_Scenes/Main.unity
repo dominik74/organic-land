@@ -1557,7 +1557,7 @@ MonoBehaviour:
   maxHealth: 100
   maxHunger: 150
   maxThirst: 125
-  hungerDropRate: 1
+  hungerDropRate: 1.25
   healthDropRate: 0.75
 --- !u!1 &425034085
 GameObject:
