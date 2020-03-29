@@ -45,7 +45,7 @@ public class CraftingSystem : MonoBehaviour {
             }
             // --- ABLE TO CRAFT --- //
             DeleteAllFromList(itemsToRemove);
-            inventorySystem.AddItem(itemToCraft.name);
+            inventorySystem.AddItemViaName(itemToCraft.name);
             Debug.Log("success!");
         }
 

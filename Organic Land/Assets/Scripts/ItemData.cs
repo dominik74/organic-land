@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject {
 
     public Sprite icon;
+    public string id;
 
     [Space]
     public bool isTool;
