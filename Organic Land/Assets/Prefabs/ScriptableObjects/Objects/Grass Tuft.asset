@@ -17,3 +17,4 @@ MonoBehaviour:
   collectBehavior: 0
   collectTool: 0
   lootDrop: 
+  lootCount: 1

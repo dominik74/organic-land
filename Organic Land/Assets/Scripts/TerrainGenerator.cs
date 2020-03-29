@@ -73,6 +73,7 @@ public class TerrainGenerator : MonoBehaviour {
         {
             obj.AddComponent<Minable>().collectTool = data.collectTool;
             obj.GetComponent<Minable>().loot = data.lootDrop;
+            obj.GetComponent<Minable>().lootCount = data.lootCount;
         }
     }
 

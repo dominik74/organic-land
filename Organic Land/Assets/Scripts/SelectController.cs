@@ -63,8 +63,19 @@ public class SelectController : MonoBehaviour {
                     pickable.Pickup();
                 else if (iObjectController != null)
                     iObjectController.Interact();
+
+                Selector selector = lastSelected.GetComponent<Selector>();
+                selector.Press();
             }
 
+        }
+        else if(Input.GetMouseButtonUp(0))
+        {
+            if(lastSelected != null)
+            {
+                Selector selector = lastSelected.GetComponent<Selector>();
+                selector.UnPress();
+            }
         }
     }
 
