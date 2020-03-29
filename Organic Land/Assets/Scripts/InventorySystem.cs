@@ -8,12 +8,14 @@ public class InventorySystem : MonoBehaviour {
     public GameObject itemTeplate;
     public Transform slotsParent;
     public Transform slotSelector;
-    public Text selectedItemNameText;
+    public Text selectedItemTooltipText;
     public GameObject objectTemplate;
 
     public ItemData[] items;
 
     private Transform selectedSlot;
+
+    private const string tipRightClick = "Right-click to Use (or press F)";
 
     #region SINGLETON
     public static InventorySystem instance;
@@ -27,7 +29,7 @@ public class InventorySystem : MonoBehaviour {
     {
         selectedSlot = slotsParent.GetChild(0);
         Invoke("UpdateSlotSelectorPosition", 0.2f);      
-        UpdateNameText();
+        UpdateItemTooltip();
     }
 
     public void AddItem(string name)
@@ -44,7 +46,7 @@ public class InventorySystem : MonoBehaviour {
                 SortItem(newItem.transform);
 
                 // Update Text Display
-                UpdateNameText();
+                UpdateItemTooltip(CheckIfItemIsUsable(newItem));
 
                 // Output log
                 Debug.Log("> Added item");
@@ -69,7 +71,7 @@ public class InventorySystem : MonoBehaviour {
                 if (slotsParent.GetChild(i).GetChild(0).name == name)
                 {
                     Destroy(slotsParent.GetChild(i).GetChild(0).gameObject);
-                    selectedItemNameText.text = "";
+                    selectedItemTooltipText.text = "";
 
                     Debug.Log("> Removed item");
                     return;
@@ -83,7 +85,7 @@ public class InventorySystem : MonoBehaviour {
         if (selectedSlot.childCount != 0)
             Destroy(selectedSlot.GetChild(0).gameObject);
 
-        selectedItemNameText.text = "";
+        selectedItemTooltipText.text = "";
         Debug.Log("> Removed item");
     }
 
@@ -137,7 +139,7 @@ public class InventorySystem : MonoBehaviour {
             if (slotsParent.GetChild(i).childCount != 0)
                 Destroy(slotsParent.GetChild(i).GetChild(0).gameObject);
         }
-        UpdateNameText();
+        UpdateItemTooltip();
     }
 
     public void SelectSlot(int index)
@@ -146,8 +148,24 @@ public class InventorySystem : MonoBehaviour {
         { 
             selectedSlot = slotsParent.GetChild(index);
             UpdateSlotSelectorPosition();
-            UpdateNameText();
+
+            if (slotsParent.GetChild(index).childCount != 0)
+                UpdateItemTooltip(CheckIfItemIsUsable(slotsParent.GetChild(index).GetChild(0).gameObject));
+            else
+                UpdateItemTooltip();
         }
+    }
+
+    public void SelectSlot(Transform targetSlot)
+    {
+        selectedSlot = targetSlot;
+        UpdateSlotSelectorPosition();
+
+        if (targetSlot.childCount != 0)
+            UpdateItemTooltip(CheckIfItemIsUsable(targetSlot.GetChild(0).gameObject));
+        else
+            UpdateItemTooltip();
+
     }
 
     public void DropSelectedItem()
@@ -211,16 +229,27 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
+    bool CheckIfItemIsUsable(GameObject itemObj)
+    {
+        Item item = itemObj.GetComponent<Item>();
+        return item.isFood;
+    }
+
     void UpdateSlotSelectorPosition()
     {
         slotSelector.position = selectedSlot.position;
     }
 
-    void UpdateNameText()
+    void UpdateItemTooltip(bool usable = false)
     {
         if (selectedSlot.childCount != 0)
-            selectedItemNameText.text = selectedSlot.GetChild(0).name;
+        {
+            if (usable)
+                selectedItemTooltipText.text = string.Format("{0}\n{1}", selectedSlot.GetChild(0).name, tipRightClick);
+            else
+                selectedItemTooltipText.text = selectedSlot.GetChild(0).name;
+        }
         else
-            selectedItemNameText.text = "";
+            selectedItemTooltipText.text = "";
     }
 }
