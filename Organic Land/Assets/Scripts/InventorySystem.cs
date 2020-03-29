@@ -150,6 +150,13 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
+    public void SelectSlot(Transform targetSlot)
+    {
+        selectedSlot = targetSlot;
+        UpdateSlotSelectorPosition();
+        UpdateNameText();
+    }
+
     public void DropSelectedItem()
     {
         RemoveSelectedItem();
