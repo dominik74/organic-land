@@ -14,6 +14,8 @@ public class TooltipDialog : MonoBehaviour {
 
         if (targetItem.GetComponent<Item>().isTool)
             itemType.text = "Tools";
+        else if (targetItem.GetComponent<Item>().isFood)
+            itemType.text = "Food";
         else
             itemType.text = "Objects";
     }

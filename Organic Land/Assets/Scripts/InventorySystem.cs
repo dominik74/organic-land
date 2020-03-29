@@ -170,6 +170,18 @@ public class InventorySystem : MonoBehaviour {
         droppedItem.AddComponent<Pickable>();
     }
 
+    public void UseSelectedItem()
+    {
+        if (selectedSlot.childCount == 0)
+            return;
+
+        if(selectedSlot.GetChild(0).GetComponent<Item>().isFood)
+        {
+            RemoveSelectedItem();
+            PlayerStats.instance.Add("hunger", 10f);
+        }
+    }
+
     public bool CheckIfItemExists(string itemName)
     {
         itemName = itemName.Replace("_", " ");
@@ -190,6 +202,7 @@ public class InventorySystem : MonoBehaviour {
 
         newItem.GetComponent<Item>().isTool = itemData.isTool;
         newItem.GetComponent<Item>().toolType = itemData.toolType;
+        newItem.GetComponent<Item>().isFood = itemData.isFood;
     }
 
     void SortItem(Transform newItem)
