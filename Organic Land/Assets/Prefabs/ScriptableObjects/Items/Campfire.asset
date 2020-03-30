@@ -18,5 +18,5 @@ MonoBehaviour:
   isFood: 0
   craftable: 1
   materials:
-  - name: log
+  - id: log
     count: 4
