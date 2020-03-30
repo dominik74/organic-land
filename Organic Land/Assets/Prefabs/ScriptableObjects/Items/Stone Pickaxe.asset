@@ -18,7 +18,7 @@ MonoBehaviour:
   isFood: 0
   craftable: 1
   materials:
-  - name: stick
+  - id: rock
     count: 2
-  - name: rock
+  - id: stick
     count: 4
