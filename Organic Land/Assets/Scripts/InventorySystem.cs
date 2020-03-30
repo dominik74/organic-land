@@ -95,11 +95,11 @@ public class InventorySystem : MonoBehaviour {
         return null;
     }
 
-    public Sprite GetItemSprite(string itemName)
+    public Sprite GetItemSprite(string itemID)
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i].name == itemName)
+            if (items[i].id == itemID)
                 return items[i].icon;
         }
         return null;
@@ -216,6 +216,7 @@ public class InventorySystem : MonoBehaviour {
         newItem.name = itemData.name;
         newItem.GetComponent<Image>().sprite = itemData.icon;
 
+        newItem.GetComponent<Item>().id = itemData.id;
         newItem.GetComponent<Item>().isTool = itemData.isTool;
         newItem.GetComponent<Item>().toolType = itemData.toolType;
         newItem.GetComponent<Item>().isFood = itemData.isFood;

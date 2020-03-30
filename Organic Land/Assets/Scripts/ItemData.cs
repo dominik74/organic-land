@@ -24,6 +24,6 @@ public class ItemData : ScriptableObject {
 [System.Serializable]
 public class Materials
 {
-    public string name;
+    public string id;
     public int count;
 }
