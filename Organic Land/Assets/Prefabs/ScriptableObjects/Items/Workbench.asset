@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Name: Workbench
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: bb46c3efddcd78a469d480ebda3ecdca, type: 3}
+  id: workbench
   isTool: 0
   toolType: 0
   isFood: 0
   craftable: 1
   materials:
-  - name: Log
+  - id: log
     count: 5
-  - name: Stick
-    count: 1
