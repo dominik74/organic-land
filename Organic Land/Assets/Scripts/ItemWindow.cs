@@ -26,7 +26,7 @@ public class ItemWindow : MonoBehaviour {
             GameObject rit = Instantiate(requiredItemTemplate);
 
             // Initialize
-            rit.GetComponent<Image>().sprite = InventorySystem.instance.GetItemSprite(itemData.materials[i].name);
+            rit.GetComponent<Image>().sprite = InventorySystem.instance.GetItemSprite(itemData.materials[i].id);
             rit.transform.GetChild(0).GetComponent<Text>().text = itemData.materials[i].count.ToString();
 
             rit.transform.SetParent(requiredItemsParent);

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 1763c25961cf8204b93ae7b0a5c165a6, type: 3}
+  id: carrot
   isTool: 0
   toolType: 0
   isFood: 1
   craftable: 1
   materials:
-  - name: Log
+  - name: log
     count: 1

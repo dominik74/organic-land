@@ -21,9 +21,9 @@ public class CraftingSystem : MonoBehaviour {
         StoreAllCraftableItems();
     }
 
-    public void CraftItem(string itemName)
+    public void CraftItem(string itemID)
     {
-        ItemData itemToCraft = GetCraftableItem(itemName);
+        ItemData itemToCraft = GetCraftableItem(itemID);
         Debug.Log("Checking item...");
 
         if(itemToCraft != null)
@@ -32,7 +32,7 @@ public class CraftingSystem : MonoBehaviour {
             List<GameObject> itemsToRemove = new List<GameObject>();
             for (int i = 0; i < itemToCraft.materials.Length; i++)
             {
-                GameObject[] availableItems = InventoryScreen.instance.FindItems(itemToCraft.materials[i].name, itemToCraft.materials[i].count);
+                GameObject[] availableItems = InventoryScreen.instance.FindItems(itemToCraft.materials[i].id, itemToCraft.materials[i].count);
                 Debug.Log(availableItems.Length);
                 if (availableItems.Length == itemToCraft.materials[i].count)
                     itemsToRemove.AddRange(availableItems);
@@ -45,7 +45,7 @@ public class CraftingSystem : MonoBehaviour {
             }
             // --- ABLE TO CRAFT --- //
             DeleteAllFromList(itemsToRemove);
-            inventorySystem.AddItem(itemToCraft.name);
+            inventorySystem.AddItemViaName(itemToCraft.name);
             Debug.Log("success!");
         }
 
@@ -60,11 +60,11 @@ public class CraftingSystem : MonoBehaviour {
         }
     }
 
-    ItemData GetCraftableItem(string itemName)
+    ItemData GetCraftableItem(string itemID)
     {
         for (int i = 0; i < craftableItems.Count; i++)
         {
-            if (craftableItems[i].name == itemName)
+            if (craftableItems[i].id == itemID)
                 return craftableItems[i];
         }
         return null;

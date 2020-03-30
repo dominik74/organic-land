@@ -6,7 +6,7 @@ public class Pickable : MonoBehaviour {
 
     public void Pickup()
     {
-        InventorySystem.instance.AddItem(name.Replace(" (entity)", ""));
+        InventorySystem.instance.AddItemViaName(name.Replace(" (entity)", ""));
         Destroy(gameObject);
         HUDController.instance.DisplayObjectLabel("");
     }

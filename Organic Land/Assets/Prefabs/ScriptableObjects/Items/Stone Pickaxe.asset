@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Name: Stone Pickaxe
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: c99dd7f285347ab44b8c11c235573958, type: 3}
+  id: stone_pickaxe
   isTool: 1
   toolType: 2
+  isFood: 0
   craftable: 1
   materials:
-  - name: Stick
+  - name: stick
     count: 2
-  - name: Rock
+  - name: rock
     count: 4
