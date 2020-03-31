@@ -12,6 +12,19 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool isMoving;
 
+    public delegate void PickupCallbackDelegate();
+    public PickupCallbackDelegate pickupCallbackDelegate;
+
+    private Coroutine lastMoveToCroutine;
+
+    #region SINGLETON
+    private static PlayerMovement instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
+
     private void Start()
     {
         cameraTransform = Camera.main.transform;
@@ -48,7 +61,8 @@ public class PlayerMovement : MonoBehaviour {
             {
                 if (hit.transform.CompareTag("Ground"))
                 {
-                    isMoving = true;
+                    if (lastMoveToCroutine != null)
+                        StopCoroutine(lastMoveToCroutine);
                     StopCoroutine("MoveTo");
                     StartCoroutine("MoveTo", hit.point);
                 }
@@ -57,8 +71,17 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
+    public static void MoveToTarget(Vector3 targetPos, float pickupDistance, PickupCallbackDelegate pickup = null)
+    {
+        if(instance.lastMoveToCroutine != null)
+            instance.StopCoroutine(instance.lastMoveToCroutine);
+        instance.StopCoroutine("MoveTo");
+        instance.lastMoveToCroutine = instance.StartCoroutine(instance.MoveToComplex(targetPos, pickupDistance, pickup));
+    }
+
     IEnumerator MoveTo(Vector3 targetPos)
     {
+        isMoving = true;
         while (isMoving)
         {
             Vector3 dir = (targetPos - transform.position).normalized;
@@ -70,6 +93,28 @@ public class PlayerMovement : MonoBehaviour {
 
             yield return null;
         }
+    }
+
+    IEnumerator MoveToComplex(Vector3 targetPos, float pickupDistance, PickupCallbackDelegate pickup)
+    {
+        bool reachedTarget = false;
+        isMoving = true;
+        while (isMoving)
+        {
+            Vector3 dir = (targetPos - transform.position).normalized;
+            dir.y = 0;
+            transform.position += dir * movementSpeed * Time.fixedDeltaTime;
+
+            if ((targetPos - transform.position).sqrMagnitude <= pickupDistance * pickupDistance)
+            {
+                isMoving = false;
+                reachedTarget = true;
+            }
+
+            yield return null;
+        }
+        if (pickup != null && reachedTarget)
+            pickup();
     }
 
 }
