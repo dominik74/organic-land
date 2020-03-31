@@ -25,7 +25,7 @@ public class LootSystem : MonoBehaviour {
             // Initialize
             droppedItem.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = itemData.icon;
 
-            Vector3 randomPos = new Vector3(Random.Range(-0.85f, 0.85f), 0, Random.Range(-0.85f, 0.85f));
+            Vector3 randomPos = new Vector3(Random.Range(-1.25f, 1.25f), 0, Random.Range(-1.25f, 1.25f));
             targetPos += randomPos;
 
             droppedItem.transform.position = targetPos;
