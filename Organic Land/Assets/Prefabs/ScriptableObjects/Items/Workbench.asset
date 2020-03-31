@@ -18,5 +18,5 @@ MonoBehaviour:
   isFood: 0
   craftable: 1
   materials:
-  - id: log
+  - id: planks
     count: 5
