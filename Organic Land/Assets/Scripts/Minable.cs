@@ -11,9 +11,13 @@ public class Minable : MonoBehaviour, IObjectController
     public const float maxDurability = 100f;
     public float currentDurability;
 
+    private Transform player;
+    private float minMineDistance = 2.5f;
+
     void Start()
     {
         currentDurability = maxDurability;
+        player = PlayerManager.playerUnit.transform;
     }
 
     public void Interact()
@@ -27,8 +31,22 @@ public class Minable : MonoBehaviour, IObjectController
         if(selectedItem != null)
         {
             if (selectedItem.GetComponent<Item>().toolType == collectTool)
-                TakeDamage(15f);
+            {
+                if ((player.position - transform.position).sqrMagnitude <= minMineDistance * minMineDistance)
+                {
+                    TakeDamage(15f);
+                }
+                else
+                {
+                    PlayerMovement.MoveToTarget(transform.position, minMineDistance, TakeDmg);
+                }
+            }
         }
+    }
+
+    void TakeDmg()
+    {
+        TakeDamage(15f);
     }
 
     void TakeDamage(float dmg)
