@@ -102,7 +102,7 @@ public class CommandManager {
 
             if(invSystem.CheckIfItemExists(val))
             {
-                invSystem.ConvertAndAddItem(val);
+                invSystem.AddItemViaID(val);
                 AppendLogLine(string.Format("Successfully given {0} to player.", val));
             }
             else

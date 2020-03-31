@@ -32,34 +32,26 @@ public class InventorySystem : MonoBehaviour {
         UpdateItemTooltip();
     }
 
-    public void AddItem(string name)
+    public void AddItemViaName(string itemName)
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if(items[i].name == name)
+            if(items[i].name == itemName)
             {
-                // Instantiate item template
-                GameObject newItem = Instantiate(itemTeplate);
-
-                // Initialize & Sort
-                InitializeItem(newItem, items[i]);
-                SortItem(newItem.transform);
-
-                // Update Text Display
-                UpdateItemTooltip(CheckIfItemIsUsable(newItem));
-
-                // Output log
-                Debug.Log("> Added item");
+                AddItem(items[i]);
             }
         }
     }
 
-    public void ConvertAndAddItem(string itemName)
+    public void AddItemViaID(string itemID)
     {
-        itemName = itemName.Replace("_", " ");
-        itemName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemName.ToLower());
-        AddItem(itemName);
-        Debug.Log(itemName);
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].id == itemID)
+            {
+                AddItem(items[i]);
+            }
+        }
     }
 
     public void RemoveItem(string name)
@@ -103,11 +95,11 @@ public class InventorySystem : MonoBehaviour {
         return null;
     }
 
-    public Sprite GetItemSprite(string itemName)
+    public Sprite GetItemSprite(string itemID)
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i].name == itemName)
+            if (items[i].id == itemID)
                 return items[i].icon;
         }
         return null;
@@ -193,17 +185,30 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
-    public bool CheckIfItemExists(string itemName)
+    public bool CheckIfItemExists(string itemID)
     {
-        itemName = itemName.Replace("_", " ");
-        itemName = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(itemName.ToLower());
-
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i].name == itemName)
+            if (items[i].id == itemID)
                 return true;
         }
         return false;
+    }
+
+    void AddItem(ItemData data)
+    {
+        // Instantiate item template
+        GameObject newItem = Instantiate(itemTeplate);
+
+        // Initialize & Sort
+        InitializeItem(newItem, data);
+        SortItem(newItem.transform);
+
+        // Update Text Display
+        UpdateItemTooltip(CheckIfItemIsUsable(newItem));
+
+        // Output log
+        Debug.Log("> Added item");
     }
 
     void InitializeItem(GameObject newItem, ItemData itemData)
@@ -211,6 +216,7 @@ public class InventorySystem : MonoBehaviour {
         newItem.name = itemData.name;
         newItem.GetComponent<Image>().sprite = itemData.icon;
 
+        newItem.GetComponent<Item>().id = itemData.id;
         newItem.GetComponent<Item>().isTool = itemData.isTool;
         newItem.GetComponent<Item>().toolType = itemData.toolType;
         newItem.GetComponent<Item>().isFood = itemData.isFood;

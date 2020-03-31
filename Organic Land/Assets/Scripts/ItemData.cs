@@ -6,6 +6,7 @@ using UnityEngine;
 public class ItemData : ScriptableObject {
 
     public Sprite icon;
+    public string id;
 
     [Space]
     public bool isTool;
@@ -23,6 +24,6 @@ public class ItemData : ScriptableObject {
 [System.Serializable]
 public class Materials
 {
-    public string name;
+    public string id;
     public int count;
 }

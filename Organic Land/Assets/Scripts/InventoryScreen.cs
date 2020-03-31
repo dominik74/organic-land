@@ -123,14 +123,14 @@ public class InventoryScreen : MonoBehaviour {
             tooltipDialog.SetActive(false);
     }
 
-    public GameObject[] FindItems(string itemName, int limit = 9999)
+    public GameObject[] FindItems(string itemID, int limit = 9999)
     {
         List<GameObject> items = new List<GameObject>();
         for (int i = 0; i < invSlots.Length; i++)
         {
             if(invSlots[i].childCount != 0)
             {
-                if (invSlots[i].GetChild(0).name == itemName)
+                if (invSlots[i].GetChild(0).GetComponent<Item>().id == itemID)
                 {
                     if (items.Count < limit)
                         items.Add(invSlots[i].GetChild(0).gameObject);
@@ -144,7 +144,7 @@ public class InventoryScreen : MonoBehaviour {
         {
             if (invHotbarSlots[i].childCount != 0)
             {
-                if (invHotbarSlots[i].GetChild(0).name == itemName)
+                if (invHotbarSlots[i].GetChild(0).GetComponent<Item>().id == itemID)
                 {
                     if (items.Count < limit)
                         items.Add(invHotbarSlots[i].GetChild(0).gameObject);
