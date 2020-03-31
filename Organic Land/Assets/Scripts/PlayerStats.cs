@@ -16,6 +16,8 @@ public class PlayerStats : MonoBehaviour {
     private float currentHunger;
     private float currentThirst;
 
+    private bool starving;
+
     public class PlayerStatsContainer
     {
         public float health;
@@ -61,6 +63,7 @@ public class PlayerStats : MonoBehaviour {
                 currentHunger += amount;
                 if (currentHunger > maxHunger)
                     currentHunger = maxHunger;
+                starving = false;
                 break;
             case "thirst":
                 currentThirst += amount;
@@ -85,16 +88,26 @@ public class PlayerStats : MonoBehaviour {
 
     IEnumerator HungerTimer()
     {
-        while (currentHunger > 0)
+        while (true)
         {
-            currentHunger--;
-            EventManager.StatsUpdated();
+            if(currentHunger > 0)
+            {
+                currentHunger--;
+
+                EventManager.StatsUpdated();
+            }
+            else
+            {
+                if(!starving)
+                {
+                    currentHunger = 0;
+                    StopCoroutine("DamageTimer");
+                    StartCoroutine("DamageTimer");
+                    starving = true;
+                }
+            }
             yield return new WaitForSeconds(hungerDropRate);
         }
-        currentHunger = 0;
-
-        StopCoroutine("DamageTimer");
-        StartCoroutine("DamageTimer");
     }
 
     IEnumerator DamageTimer()
