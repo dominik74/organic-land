@@ -230,6 +230,7 @@ public class InventorySystem : MonoBehaviour {
             {
                 newItem.SetParent(slotsParent.GetChild(i));
                 newItem.localPosition = new Vector3(0, 0, 0);
+                EventManager.ItemAdded();
                 return;
             }
         }

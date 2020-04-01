@@ -257,6 +257,7 @@ public class InventoryScreen : MonoBehaviour {
             {
                 itemToSort.SetParent(invSlots[i]);
                 itemToSort.localPosition = new Vector3(0, 0, 0);
+                EventManager.ItemAdded();
                 return;
             }
         }
