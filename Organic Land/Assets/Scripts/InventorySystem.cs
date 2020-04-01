@@ -233,6 +233,7 @@ public class InventorySystem : MonoBehaviour {
                 return;
             }
         }
+        InventoryScreen.instance.StoreNewItemInInventory(newItem);
     }
 
     bool CheckIfItemIsUsable(GameObject itemObj)
