@@ -26,7 +26,13 @@ public class Pickable : MonoBehaviour {
 
     void InternalPickup()
     {
+        EventManager.OnItemAdded = OnItemAdded;
         InventorySystem.instance.AddItemViaName(name.Replace(" (entity)", ""));
+    }
+
+    void OnItemAdded()
+    {
+        EventManager.OnItemAdded = null;
         Destroy(gameObject);
         HUDController.instance.DisplayObjectLabel("");
     }

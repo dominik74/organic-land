@@ -230,9 +230,12 @@ public class InventorySystem : MonoBehaviour {
             {
                 newItem.SetParent(slotsParent.GetChild(i));
                 newItem.localPosition = new Vector3(0, 0, 0);
+                newItem.localScale = new Vector3(1, 1, 1);
+                EventManager.ItemAdded();
                 return;
             }
         }
+        InventoryScreen.instance.StoreNewItemInInventory(newItem);
     }
 
     bool CheckIfItemIsUsable(GameObject itemObj)

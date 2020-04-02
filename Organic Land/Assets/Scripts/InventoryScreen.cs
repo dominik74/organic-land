@@ -156,6 +156,12 @@ public class InventoryScreen : MonoBehaviour {
         return items.ToArray();
     }
 
+    public void StoreNewItemInInventory(Transform newItem)
+    {
+        SortInventory(newItem);
+        ScaleItem(newItem, 1.25f);
+    }
+
     void CacheSlots()
     {
         hotbarSlots = new Transform[hotbarParent.childCount];
@@ -251,6 +257,7 @@ public class InventoryScreen : MonoBehaviour {
             {
                 itemToSort.SetParent(invSlots[i]);
                 itemToSort.localPosition = new Vector3(0, 0, 0);
+                EventManager.ItemAdded();
                 return;
             }
         }
