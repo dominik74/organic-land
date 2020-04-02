@@ -106,7 +106,7 @@ public class CommandManager {
                 AppendLogLine(string.Format("Successfully given {0} to player.", val));
             }
             else
-                AppendLogLine("Unable to run command 'give', item not found.");
+                AppendLogLine("<color=red>Unable to run command 'give', item not found.</color>");
         }
     }
 
