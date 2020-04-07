@@ -16,6 +16,7 @@ MonoBehaviour:
   isTool: 0
   toolType: 0
   isFood: 0
+  isBuildable: 1
   craftable: 1
   materials:
   - id: planks
