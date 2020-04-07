@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BuildingSystem : MonoBehaviour {
 
     public bool isBuilding;
     public GameObject buildPreviewTemplate;
+    public GameObject objectTemplate;
     public ObjectData objectData;
 
     private Camera cam;
@@ -20,6 +22,7 @@ public class BuildingSystem : MonoBehaviour {
     private void Start()
     {
         cam = Camera.main;
+        objectTemplate = TerrainGenerator.instance.objectTemplate;
         CachePreview();
     }
 
@@ -27,6 +30,9 @@ public class BuildingSystem : MonoBehaviour {
     {
         if (isBuilding)
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
@@ -34,6 +40,9 @@ public class BuildingSystem : MonoBehaviour {
             {
                 PlacePreview(hit.point);
             }
+
+            if (Input.GetMouseButtonDown(0))
+                PlaceBuilding();
         }
         else
             preview.SetActive(false);
@@ -44,6 +53,21 @@ public class BuildingSystem : MonoBehaviour {
         if (data != null)
             objectData = data;
         isBuilding = activate;
+    }
+
+    void PlaceBuilding()
+    {
+        if(objectData != null)
+        {
+            GameObject obj = Instantiate(objectTemplate);
+            obj.name = objectData.name;
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = objectData.sprite;
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = objectData.color;
+            obj.transform.position = preview.transform.position;
+
+            InventorySystem.instance.RemoveSelectedItem();
+            isBuilding = false;
+        }
     }
 
     void CachePreview()
