@@ -142,9 +142,19 @@ public class InventorySystem : MonoBehaviour {
             UpdateSlotSelectorPosition();
 
             if (slotsParent.GetChild(index).childCount != 0)
+            {
                 UpdateItemTooltip(CheckIfItemIsUsable(slotsParent.GetChild(index).GetChild(0).gameObject));
+
+                if (CheckIfItemIsBuildable(slotsParent.GetChild(index).GetChild(0).gameObject))
+                    BuildingSystem.instance.StartBuilding(true, TerrainGenerator.instance.GetObjectData(slotsParent.GetChild(index).GetChild(0).name));
+                else
+                    BuildingSystem.instance.StartBuilding(false);
+            }
             else
+            {
                 UpdateItemTooltip();
+                BuildingSystem.instance.StartBuilding(false);
+            }
         }
     }
 
@@ -154,9 +164,19 @@ public class InventorySystem : MonoBehaviour {
         UpdateSlotSelectorPosition();
 
         if (targetSlot.childCount != 0)
+        {
             UpdateItemTooltip(CheckIfItemIsUsable(targetSlot.GetChild(0).gameObject));
+
+            if (CheckIfItemIsBuildable(targetSlot.GetChild(0).gameObject))
+                BuildingSystem.instance.StartBuilding(true, TerrainGenerator.instance.GetObjectData(targetSlot.GetChild(0).name));
+            else
+                BuildingSystem.instance.StartBuilding(false);
+        }
         else
+        {
             UpdateItemTooltip();
+            BuildingSystem.instance.StartBuilding(false);
+        }
 
     }
 
@@ -220,6 +240,7 @@ public class InventorySystem : MonoBehaviour {
         newItem.GetComponent<Item>().isTool = itemData.isTool;
         newItem.GetComponent<Item>().toolType = itemData.toolType;
         newItem.GetComponent<Item>().isFood = itemData.isFood;
+        newItem.GetComponent<Item>().isBuildable = itemData.isBuildable;
     }
 
     void SortItem(Transform newItem)
@@ -242,6 +263,12 @@ public class InventorySystem : MonoBehaviour {
     {
         Item item = itemObj.GetComponent<Item>();
         return item.isFood;
+    }
+
+    bool CheckIfItemIsBuildable(GameObject itemObj)
+    {
+        Item item = itemObj.GetComponent<Item>();
+        return item.isBuildable;
     }
 
     void UpdateSlotSelectorPosition()

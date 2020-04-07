@@ -16,6 +16,9 @@ public class ItemData : ScriptableObject {
     public bool isFood;
 
     [Space]
+    public bool isBuildable;
+
+    [Space]
     public bool craftable;
     public Materials[] materials;
 

@@ -11,6 +11,12 @@ public class BuildingSystem : MonoBehaviour {
     private Camera cam;
     private GameObject preview;
 
+    public static BuildingSystem instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         cam = Camera.main;
@@ -19,16 +25,25 @@ public class BuildingSystem : MonoBehaviour {
 
     private void Update()
     {
-        if(isBuilding)
+        if (isBuilding)
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
-            if(Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit))
             {
                 PlacePreview(hit.point);
             }
         }
+        else
+            preview.SetActive(false);
+    }
+
+    public void StartBuilding(bool activate, ObjectData data = null)
+    {
+        if (data != null)
+            objectData = data;
+        isBuilding = activate;
     }
 
     void CachePreview()
