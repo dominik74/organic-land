@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingSystem : MonoBehaviour {
 
     public bool isBuilding;
+    public GameObject buildPreviewTemplate;
     public ObjectData objectData;
 
-    private GameObject objectTemplate;
     private Camera cam;
-
     private GameObject preview;
 
     private void Start()
     {
-        objectTemplate = TerrainGenerator.instance.objectTemplate;
         cam = Camera.main;
         CachePreview();
     }
@@ -36,7 +33,7 @@ public class BuildingSystem : MonoBehaviour {
 
     void CachePreview()
     {
-        preview = Instantiate(objectTemplate);
+        preview = Instantiate(buildPreviewTemplate);
         preview.SetActive(false);
     }
 
@@ -52,8 +49,6 @@ public class BuildingSystem : MonoBehaviour {
         preview.name = string.Format("{0} (preview)", data.name);
         preview.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
         preview.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.color;
-        preview.GetComponent<BoxCollider>().enabled = false;
-        preview.transform.GetChild(0).GetComponent<BoxCollider>().enabled = false;
     }
 
 }
