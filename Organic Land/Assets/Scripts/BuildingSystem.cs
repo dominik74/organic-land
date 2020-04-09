@@ -87,7 +87,6 @@ public class BuildingSystem : MonoBehaviour {
     {
         preview.name = string.Format("{0} (preview)", data.name);
         preview.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
-        preview.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.color;
     }
 
 }
