@@ -6,6 +6,7 @@ using UnityEngine;
 public class ObjectData : ScriptableObject {
 
     public Sprite sprite;
+    public string id;
     public int spawnChance = 100;
     public Color color = Color.white;
 

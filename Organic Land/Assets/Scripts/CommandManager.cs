@@ -31,6 +31,7 @@ public class CommandManager {
         RegisterCommand("restart", Restart, "Restarts the level.");
         RegisterCommand("give", Give, "Gives item [value1 = (itemName)]");
         RegisterCommand("clear", ClearInventory, "Clears the player's inventory.");
+        RegisterCommand("place", Place, "Places an object at the player position [value1 = (objectName)]");
     }
 
 	void RegisterCommand(string command, CommandHandler handler, string help)
@@ -115,6 +116,15 @@ public class CommandManager {
         if(val == "" && val2 == "")
         {
             InventorySystem.instance.Clear();
+        }
+    }
+
+    void Place(string val, string val2)
+    {
+        if(val != "" && val2 == "")
+        {
+            ObjectData data = TerrainGenerator.instance.GetObjectDataViaID(val);
+            BuildingSystem.instance.PlaceBuilding(data, PlayerManager.instance.player.transform.position);
         }
     }
     #endregion
