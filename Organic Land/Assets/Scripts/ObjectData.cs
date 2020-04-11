@@ -11,6 +11,10 @@ public class ObjectData : ScriptableObject {
     public Color color = Color.white;
 
     [Space]
+    public bool usesGUI;
+    public Object scriptHandler;
+
+    [Space]
     public CollectBehavior collectBehavior;
     [Tooltip("Change this ONLY if collectBehavior is minable.")]
     public Tools collectTool;
