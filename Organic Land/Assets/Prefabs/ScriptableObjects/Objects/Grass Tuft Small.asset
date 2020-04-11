@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Grass Tuft Small
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 8e74f581feff01f4abcdae8066847adf, type: 3}
+  id: grass_tuft_small
   spawnChance: 30
   color: {r: 1, g: 1, b: 1, a: 1}
   collectBehavior: 0

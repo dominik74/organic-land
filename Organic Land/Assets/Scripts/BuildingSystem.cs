@@ -8,7 +8,7 @@ public class BuildingSystem : MonoBehaviour {
     public bool isBuilding;
     public GameObject buildPreviewTemplate;
     public GameObject objectTemplate;
-    public ObjectData objectData;
+    private ObjectData objectData;
 
     private Camera cam;
     private GameObject preview;
@@ -53,6 +53,18 @@ public class BuildingSystem : MonoBehaviour {
         if (data != null)
             objectData = data;
         isBuilding = activate;
+    }
+
+    public void PlaceBuilding(ObjectData data, Vector3 pos)
+    {
+        if(data != null)
+        {
+            GameObject obj = Instantiate(objectTemplate);
+            obj.name = data.name;
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
+            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.color;
+            obj.transform.position = pos;
+        }
     }
 
     void PlaceBuilding()

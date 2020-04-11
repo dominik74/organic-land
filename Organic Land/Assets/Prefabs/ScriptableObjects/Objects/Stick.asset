@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Stick
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 748f26c97363cec4fa578b46a0b2c694, type: 3}
+  id: stick
   spawnChance: 35
   color: {r: 1, g: 1, b: 1, a: 1}
   collectBehavior: 1

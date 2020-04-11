@@ -26,11 +26,21 @@ public class TerrainGenerator : MonoBehaviour {
         Generate();
     }
   
-    public ObjectData GetObjectData(string objName)
+    public ObjectData GetObjectDataViaName(string objName)
     {
         for (int i = 0; i < objectData.Length; i++)
         {
             if (objectData[i].name == objName)
+                return objectData[i];
+        }
+        return null;
+    }
+
+    public ObjectData GetObjectDataViaID(string id)
+    {
+        for (int i = 0; i < objectData.Length; i++)
+        {
+            if (objectData[i].id == id)
                 return objectData[i];
         }
         return null;

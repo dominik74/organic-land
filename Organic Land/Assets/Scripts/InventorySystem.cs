@@ -146,7 +146,7 @@ public class InventorySystem : MonoBehaviour {
                 UpdateItemTooltip(CheckIfItemIsUsable(slotsParent.GetChild(index).GetChild(0).gameObject));
 
                 if (CheckIfItemIsBuildable(slotsParent.GetChild(index).GetChild(0).gameObject))
-                    BuildingSystem.instance.StartBuilding(true, TerrainGenerator.instance.GetObjectData(slotsParent.GetChild(index).GetChild(0).name));
+                    BuildingSystem.instance.StartBuilding(true, TerrainGenerator.instance.GetObjectDataViaName(slotsParent.GetChild(index).GetChild(0).name));
                 else
                     BuildingSystem.instance.StartBuilding(false);
             }
@@ -168,7 +168,7 @@ public class InventorySystem : MonoBehaviour {
             UpdateItemTooltip(CheckIfItemIsUsable(targetSlot.GetChild(0).gameObject));
 
             if (CheckIfItemIsBuildable(targetSlot.GetChild(0).gameObject))
-                BuildingSystem.instance.StartBuilding(true, TerrainGenerator.instance.GetObjectData(targetSlot.GetChild(0).name));
+                BuildingSystem.instance.StartBuilding(true, TerrainGenerator.instance.GetObjectDataViaName(targetSlot.GetChild(0).name));
             else
                 BuildingSystem.instance.StartBuilding(false);
         }
