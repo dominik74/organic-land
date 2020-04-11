@@ -17,5 +17,7 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   collectBehavior: 2
   collectTool: 1
-  lootDrop: Log
-  lootCount: 2
+  lootTable:
+    materials:
+    - name: log
+      count: 3

@@ -17,7 +17,7 @@ public class LootSystem : MonoBehaviour {
         for (int i = 0; i < amount; i++)
         {
             // Get ItemData
-            ItemData itemData = InventorySystem.instance.GetItemData(itemToDrop);
+            ItemData itemData = InventorySystem.instance.GetItemDataID(itemToDrop);
 
             // Instantiate
             GameObject droppedItem = Instantiate(objectTemplate);
@@ -37,4 +37,28 @@ public class LootSystem : MonoBehaviour {
         
     }
 
+    public void DropLootTable(LootTable lootTable, Vector3 targetPos)
+    {
+        for (int i = 0; i < lootTable.materials.Length; i++)
+        {
+            for (int y = 0; y < lootTable.materials[i].count; y++)
+            {
+                DropItem(lootTable.materials[i].name, targetPos);
+            }
+        }
+    }
+
+}
+
+[System.Serializable]
+public struct LootTable
+{
+    public LootTableMaterial[] materials;
+}
+
+[System.Serializable]
+public struct LootTableMaterial
+{
+    public string name;
+    public int count;
 }

@@ -115,6 +115,16 @@ public class InventorySystem : MonoBehaviour {
         return null;
     }
 
+    public ItemData GetItemDataID(string itemID)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].id == itemID)
+                return items[i];
+        }
+        return null;
+    }
+
     public GameObject GetSelectedItem()
     {
         if(selectedSlot != null && selectedSlot.childCount != 0)
