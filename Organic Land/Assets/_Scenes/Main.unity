@@ -2043,6 +2043,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2071a5af24dce204b8ac3aec96f2d976, type: 2}
   - {fileID: 11400000, guid: 1d265f911ab4c5247bdffb9ebcfab107, type: 2}
   - {fileID: 11400000, guid: 9b1d3a18487cb0343ab5f767c07b1aed, type: 2}
+  - {fileID: 11400000, guid: 8e7b30db27c40a54b883ddb18f73e67d, type: 2}
 --- !u!114 &470053613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2332,7 +2333,8 @@ MonoBehaviour:
   isBuilding: 0
   buildPreviewTemplate: {fileID: 1902158370817034, guid: f32b2598935cae942a0742a0cfff997c,
     type: 2}
-  objectData: {fileID: 11400000, guid: 8e7b30db27c40a54b883ddb18f73e67d, type: 2}
+  objectTemplate: {fileID: 1902158370817034, guid: 0833b3824375d02498a000d02e149fa9,
+    type: 2}
 --- !u!1 &512649006
 GameObject:
   m_ObjectHideFlags: 0
