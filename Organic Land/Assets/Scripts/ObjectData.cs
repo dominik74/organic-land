@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Object", menuName = "ObjectData")]
+[CreateAssetMenu(fileName = "New Object", menuName = "Object")]
 public class ObjectData : ScriptableObject {
 
     public Sprite sprite;
