@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SmeltingScreen : MonoBehaviour {
 
     public Transform smeltingSlotsParent;
     public GameObject itemWindow;
+    public Slider progressbar;
 
     private InventorySystem inventorySystem;
     private SmeltingSystem smeltingSystem;
@@ -22,6 +24,9 @@ public class SmeltingScreen : MonoBehaviour {
     {
         inventorySystem = InventorySystem.instance;
         smeltingSystem = SmeltingSystem.instance;
+
+        progressbar.value = 0;
+
         InitializeSmeltingSlots();
     }
 
@@ -36,6 +41,23 @@ public class SmeltingScreen : MonoBehaviour {
     {
         if (selectedItemID != null)
             smeltingSystem.SmeltItem(selectedItemID);
+    }
+
+    public void SetProgressbar(bool state)
+    {
+        progressbar.gameObject.SetActive(state);
+        if (state == true)
+            ResetProgressbar();
+    }
+
+    public void UpdateProgressbar(float newValue)
+    {
+        progressbar.value = newValue;
+    }
+
+    void ResetProgressbar()
+    {
+        progressbar.value = 0;
     }
 
     void InitializeSmeltingSlots()
