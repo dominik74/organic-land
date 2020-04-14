@@ -11,12 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b6f769e5f42094da813239f8a68806, type: 3}
   m_Name: Furnace
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: bb46c3efddcd78a469d480ebda3ecdca, type: 3}
+  sprite: {fileID: 21300000, guid: aee76452736c7864e80ab0710d29be6c, type: 3}
   id: furnace
   spawnChance: 0
-  color: {r: 0.32352942, g: 0.32352942, b: 0.32352942, a: 1}
-  usesGUI: 0
-  scriptHandler: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
+  usesGUI: 1
+  scriptName: pnlFurnace
   collectBehavior: 0
   collectTool: 0
   lootTable:

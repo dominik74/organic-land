@@ -12,7 +12,7 @@ public class ObjectData : ScriptableObject {
 
     [Space]
     public bool usesGUI;
-    public Object scriptHandler;
+    public string scriptName;
 
     [Space]
     public CollectBehavior collectBehavior;

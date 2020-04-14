@@ -13,6 +13,12 @@ public class BuildingSystem : MonoBehaviour {
     private Camera cam;
     private GameObject preview;
 
+    //TMP
+    private Dictionary<string, System.Type> objectScripts = new Dictionary<string, System.Type>()
+    {
+        { "Furnace", typeof(Furnace) }
+    };
+
     public static BuildingSystem instance;
     private void Awake()
     {
@@ -55,15 +61,13 @@ public class BuildingSystem : MonoBehaviour {
         isBuilding = activate;
     }
 
-    public void PlaceBuilding(ObjectData data, Vector3 pos)
+    public void PlaceBuilding(ObjectData data, Vector3 pos) // Used by commands (EXPERIMENTAL)
     {
         if(data != null)
         {
             GameObject obj = Instantiate(objectTemplate);
-            obj.name = data.name;
-            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
-            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.color;
-            obj.transform.position = pos;
+
+            InitializePlacedObject(obj, data, pos);
         }
     }
 
@@ -72,10 +76,8 @@ public class BuildingSystem : MonoBehaviour {
         if(objectData != null)
         {
             GameObject obj = Instantiate(objectTemplate);
-            obj.name = objectData.name;
-            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = objectData.sprite;
-            obj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = objectData.color;
-            obj.transform.position = preview.transform.position;
+
+            InitializePlacedObject(obj, objectData, preview.transform.position);
 
             InventorySystem.instance.RemoveSelectedItem();
             isBuilding = false;
@@ -99,6 +101,33 @@ public class BuildingSystem : MonoBehaviour {
     {
         preview.name = string.Format("{0} (preview)", data.name);
         preview.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
+    }
+
+    void InitializePlacedObject(GameObject obj, ObjectData data, Vector3 pos)
+    {
+        obj.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = data.sprite;
+        obj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = data.color;
+
+        //Object script = data.scriptHandler;
+
+        if (data.usesGUI)
+        {
+            obj.transform.gameObject.AddComponent<GUITrigger>().guiName = data.scriptName;
+            //AddComponentAsString(data.scriptName, obj.transform.GetChild(0).gameObject);
+        }
+
+        obj.name = data.name;
+        obj.transform.position = pos;
+    }
+
+    void AddComponentAsString(string name, GameObject objectToAddComponentTo)
+    {
+        System.Type componentType;
+
+        if(objectScripts.TryGetValue(name, out componentType))
+        {
+            objectToAddComponentTo.AddComponent(componentType);
+        }
     }
 
 }
