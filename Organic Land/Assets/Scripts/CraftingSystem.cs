@@ -29,24 +29,18 @@ public class CraftingSystem : MonoBehaviour {
         if(itemToCraft != null)
         {
             Debug.Log("Starting to craft...");
-            List<GameObject> itemsToRemove = new List<GameObject>();
             for (int i = 0; i < itemToCraft.materials.Length; i++)
             {
-                GameObject[] availableItems = InventoryScreen.instance.FindItems(itemToCraft.materials[i].id, itemToCraft.materials[i].count);
-                Debug.Log(availableItems.Length);
-                if (availableItems.Length == itemToCraft.materials[i].count)
-                    itemsToRemove.AddRange(availableItems);
-                else
+                if (!CraftingCore.CompareItemsWithInventory(itemToCraft.materials[i].id, itemToCraft.materials[i].count))
                 {
                     Debug.Log("Not enough items.");
                     return;
                 }
-
             }
+
             // --- ABLE TO CRAFT --- //
-            DeleteAllFromList(itemsToRemove);
+            CraftingCore.DeleteAllFromList();
             inventorySystem.AddItemViaName(itemToCraft.name);
-            Debug.Log("success!");
         }
 
     }
@@ -68,15 +62,6 @@ public class CraftingSystem : MonoBehaviour {
                 return craftableItems[i];
         }
         return null;
-    }
-
-    void DeleteAllFromList(List<GameObject> list)
-    {
-        for (int i = 0; i < list.Count; i++)
-        {
-            Destroy(list[i]);
-        }
-        list.Clear();
     }
 
 }

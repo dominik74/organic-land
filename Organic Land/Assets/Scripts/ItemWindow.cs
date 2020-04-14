@@ -31,6 +31,7 @@ public class ItemWindow : MonoBehaviour {
 
             rit.transform.SetParent(requiredItemsParent);
             rit.transform.localPosition = new Vector3(0, 0, 0);
+            rit.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 

@@ -16,5 +16,9 @@ MonoBehaviour:
   isTool: 0
   toolType: 0
   isFood: 0
+  smeltable: 1
+  isBuildable: 0
   craftable: 0
-  materials: []
+  materials:
+  - id: log
+    count: 2

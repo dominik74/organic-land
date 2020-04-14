@@ -8,16 +8,16 @@ public class SmeltingSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     public void OnPointerDown(PointerEventData eventData)
     {
         if(transform.childCount != 0)
-            CraftingScreen.instance.DisplayItem(transform.GetChild(0).gameObject);
+            SmeltingScreen.instance.DisplayItem(transform.GetChild(1).gameObject);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        InventoryScreen.instance.SelectSlot(transform);
+        //InventoryScreen.instance.SelectSlot(transform);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        InventoryScreen.instance.DeselectSlot();
+        //InventoryScreen.instance.DeselectSlot();
     }
 }
