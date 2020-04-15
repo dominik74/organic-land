@@ -45,6 +45,7 @@ public class SmeltingSystem : MonoBehaviour {
 
             // --- ABLE TO SMELT --- //
             CraftingCore.DeleteAllFromList();
+            InventoryScreen.instance.UpdateHotbar();
 
             SmeltingScreen.instance.SetProgressbar(true);
             StopCoroutine("SmeltTimer");

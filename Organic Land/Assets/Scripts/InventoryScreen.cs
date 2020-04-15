@@ -165,6 +165,11 @@ public class InventoryScreen : MonoBehaviour {
         ScaleItem(newItem, 1.25f);
     }
 
+    public void UpdateHotbar()
+    {
+        UpdateAfterDelay.ExecuteAfterFrame(SyncHotbar);
+    }
+
     void CacheSlots()
     {
         hotbarSlots = new Transform[hotbarParent.childCount];

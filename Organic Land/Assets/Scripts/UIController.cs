@@ -55,7 +55,7 @@ public class UIController : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.T))
                 SetScreen("pnlConsole", true);
             else if (Input.GetKeyDown(KeyCode.Tab))
-                SetScreen("pnlInventory", true);
+                Tab();
             else if (Input.GetKeyDown(KeyCode.Z))
                 inventorySystem.RemoveSelectedItem();
             else if (Input.GetKeyDown(KeyCode.I))
@@ -126,6 +126,22 @@ public class UIController : MonoBehaviour {
         }
         else
             SetScreen("pnlPause", true);
+
+    }
+
+    void Tab()
+    {
+        GameObject activeScreen = GetActiveScreen();
+
+        if (activeScreen == null)
+            SetScreen("pnlInventory", true);
+        else
+        {
+            if (activeScreen.name == "pnlInventory")
+                SetScreen("pnlInventory", false);
+            else if (activeScreen.name == "pnlFurnace")
+                SetScreen("pnlFurnace", false);
+        }
 
     }
 

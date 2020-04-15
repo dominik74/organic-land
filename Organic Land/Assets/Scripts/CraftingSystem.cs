@@ -40,6 +40,8 @@ public class CraftingSystem : MonoBehaviour {
 
             // --- ABLE TO CRAFT --- //
             CraftingCore.DeleteAllFromList();
+            InventoryScreen.instance.UpdateHotbar();
+
             inventorySystem.AddItemViaName(itemToCraft.name);
         }
 
