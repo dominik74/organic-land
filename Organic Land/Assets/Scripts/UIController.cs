@@ -63,6 +63,11 @@ public class UIController : MonoBehaviour {
             else if (Input.GetKeyDown(KeyCode.F))
                 inventorySystem.UseSelectedItem();
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                ConsoleView.instance.GoToPreviousCommand();
+        }
     }
 
     public void SetScreenString(string input)
