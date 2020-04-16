@@ -13,11 +13,11 @@ public class SmeltingSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        //InventoryScreen.instance.SelectSlot(transform);
+        SmeltingScreen.instance.SelectSlot(transform);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        //InventoryScreen.instance.DeselectSlot();
+        SmeltingScreen.instance.DeselectSlot();
     }
 }

@@ -9,6 +9,9 @@ public class SmeltingScreen : MonoBehaviour {
     public GameObject itemWindow;
     public Slider progressbar;
 
+    [Space]
+    public Transform slotSelector;
+
     private InventorySystem inventorySystem;
     private SmeltingSystem smeltingSystem;
 
@@ -26,8 +29,20 @@ public class SmeltingScreen : MonoBehaviour {
         smeltingSystem = SmeltingSystem.instance;
 
         progressbar.value = 0;
+        slotSelector.gameObject.SetActive(false);
 
         InitializeSmeltingSlots();
+    }
+
+    public void SelectSlot(Transform targetSlot)
+    {
+        slotSelector.gameObject.SetActive(true);
+        slotSelector.transform.position = targetSlot.position;
+    }
+
+    public void DeselectSlot()
+    {
+        slotSelector.gameObject.SetActive(false);
     }
 
     public void DisplayItem(GameObject targetItem)
