@@ -9,18 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 351edde0670475848b8f666bbfc06940, type: 3}
-  m_Name: Furnace
+  m_Name: Copper Axe
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 544d80ac78a5a1940ac2666043629a03, type: 3}
-  id: furnace
-  isTool: 0
-  toolType: 0
+  icon: {fileID: 21300000, guid: b57f0778b293aea4486ce595fa3b3967, type: 3}
+  id: copper_axe
+  isTool: 1
+  toolType: 1
   isFood: 0
   smeltable: 0
-  isBuildable: 1
+  isBuildable: 0
   craftable: 1
   materials:
-  - id: rock
-    count: 4
-  - id: planks
-    count: 1
+  - id: stick
+    count: 2
+  - id: copper_ingot
+    count: 2
