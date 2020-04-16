@@ -45,7 +45,7 @@ public class Minable : MonoBehaviour, IObjectController
 
     void TakeDmg()
     {
-        TakeDamage(15f);
+        TakeDamage(5f);
     }
 
     void TakeDamage(float dmg)
