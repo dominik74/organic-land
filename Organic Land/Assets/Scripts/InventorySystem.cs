@@ -251,6 +251,11 @@ public class InventorySystem : MonoBehaviour {
         newItem.GetComponent<Item>().toolType = itemData.toolType;
         newItem.GetComponent<Item>().isFood = itemData.isFood;
         newItem.GetComponent<Item>().isBuildable = itemData.isBuildable;
+
+        if (itemData.isTool)
+        {
+            newItem.AddComponent<Durability>().SetMaxDurability(70);
+        }
     }
 
     void SortItem(Transform newItem)
