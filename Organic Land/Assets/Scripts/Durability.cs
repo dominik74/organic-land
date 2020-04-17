@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Durability : MonoBehaviour {
 
     public int maxDurability;
-    private int currentDurability;
+    public int currentDurability;
     private Text durabilityDisplayText;
 
     private void Start()
@@ -29,6 +29,12 @@ public class Durability : MonoBehaviour {
         if (currentDurability <= 0)
             Destroy(gameObject);
 
+        UpdateUI();
+    }
+
+    public void SetDurability(int newValue)
+    {
+        currentDurability = newValue;
         UpdateUI();
     }
 

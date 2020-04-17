@@ -15,6 +15,7 @@ MonoBehaviour:
   id: copper_axe
   isTool: 1
   toolType: 1
+  durability: 70
   isFood: 0
   smeltable: 0
   isBuildable: 0

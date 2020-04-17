@@ -254,7 +254,7 @@ public class InventorySystem : MonoBehaviour {
 
         if (itemData.isTool)
         {
-            newItem.AddComponent<Durability>().SetMaxDurability(70);
+            newItem.AddComponent<Durability>().SetMaxDurability(itemData.durability);
         }
     }
 

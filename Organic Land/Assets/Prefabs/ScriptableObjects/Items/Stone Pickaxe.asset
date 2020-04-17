@@ -15,7 +15,10 @@ MonoBehaviour:
   id: stone_pickaxe
   isTool: 1
   toolType: 2
+  durability: 50
   isFood: 0
+  smeltable: 0
+  isBuildable: 0
   craftable: 1
   materials:
   - id: rock

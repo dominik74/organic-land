@@ -11,7 +11,7 @@ public class ItemData : ScriptableObject {
     [Space]
     public bool isTool;
     public Tools toolType;
-    public int durability = 150;
+    public int durability = 50;
 
     [Space]
     public bool isFood;

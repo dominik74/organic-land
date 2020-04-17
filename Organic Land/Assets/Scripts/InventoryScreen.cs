@@ -215,6 +215,16 @@ public class InventoryScreen : MonoBehaviour {
                         Destroy(invHotbarSlots[i].GetChild(0).gameObject);
                         CopyItemTo(hotbarSlots[i].GetChild(0).gameObject, invHotbarSlots[i]);
                     }
+                    else
+                    {
+                        Durability durability1 = hotbarSlots[i].GetChild(0).GetComponent<Durability>();
+                        Durability durability2 = invHotbarSlots[i].GetChild(0).GetComponent<Durability>();
+                        if (durability1 != null && durability2 != null)
+                        {
+                            if (durability2.currentDurability != durability1.currentDurability)
+                                durability2.SetDurability(durability1.currentDurability);
+                        }
+                    }
                 }
             }
         }

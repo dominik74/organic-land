@@ -15,7 +15,10 @@ MonoBehaviour:
   id: stone_axe
   isTool: 1
   toolType: 1
+  durability: 50
   isFood: 0
+  smeltable: 0
+  isBuildable: 0
   craftable: 1
   materials:
   - id: rock
