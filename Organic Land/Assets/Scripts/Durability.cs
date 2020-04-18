@@ -9,17 +9,21 @@ public class Durability : MonoBehaviour {
     public int currentDurability;
     private Text durabilityDisplayText;
 
+    private bool initialized;
+    private bool hideDurability;
+
     private void Start()
     {
-        currentDurability = maxDurability;
-        transform.GetChild(0).gameObject.SetActive(true);
-        durabilityDisplayText = transform.GetChild(0).GetComponent<Text>();
+        Initialize();
         UpdateUI();
     }
 
     public void SetMaxDurability(int amount)
     {
         maxDurability = amount;
+        currentDurability = maxDurability;
+        Initialize();
+        UpdateUI();
     }
 
     public void TakeDamage()
@@ -36,6 +40,23 @@ public class Durability : MonoBehaviour {
     {
         currentDurability = newValue;
         UpdateUI();
+    }
+
+    public void HideDurability()
+    {
+        hideDurability = true;
+        transform.GetChild(0).gameObject.SetActive(false);
+    }
+
+    void Initialize()
+    {
+        if(!initialized)
+        {
+            if(!hideDurability)
+                transform.GetChild(0).gameObject.SetActive(true);
+            durabilityDisplayText = transform.GetChild(0).GetComponent<Text>();
+            initialized = true;
+        }
     }
 
     void UpdateUI()

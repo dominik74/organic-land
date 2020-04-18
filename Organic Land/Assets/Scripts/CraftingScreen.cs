@@ -46,6 +46,10 @@ public class CraftingScreen : MonoBehaviour {
             newItem.transform.SetParent(craftingSlotsParent.GetChild(i));
             newItem.transform.localScale = new Vector3(1.25f, 1.25f, 0);
             newItem.transform.localPosition = new Vector3(0, 0, 0);
+
+            Durability durability = newItem.GetComponent<Durability>();
+            if (durability != null)
+                durability.HideDurability();
         }
     }
 
