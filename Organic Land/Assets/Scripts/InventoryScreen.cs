@@ -95,6 +95,8 @@ public class InventoryScreen : MonoBehaviour {
 
             selectedItem.SetParent(transform);
             selectedItem.transform.localScale = new Vector3(1.55f, 1.55f, 1);
+
+            InventorySystem.instance.UpdateItemTooltip();
         }
     }
 
@@ -104,6 +106,8 @@ public class InventoryScreen : MonoBehaviour {
         selectedItem.transform.localScale = new Vector3(1.25f, 1.25f, 1);
         selectedItem.transform.localPosition = new Vector3(0, 0, 0);
         selectedItem = null;
+
+        InventorySystem.instance.UpdateItemTooltip();
     }
 
     public void SelectSlot(Transform target)

@@ -225,6 +225,19 @@ public class InventorySystem : MonoBehaviour {
         return false;
     }
 
+    public void UpdateItemTooltip(bool usable = false)
+    {
+        if (selectedSlot.childCount != 0)
+        {
+            if (usable)
+                selectedItemTooltipText.text = string.Format("{0}\n{1}", selectedSlot.GetChild(0).name, tipRightClick);
+            else
+                selectedItemTooltipText.text = selectedSlot.GetChild(0).name;
+        }
+        else
+            selectedItemTooltipText.text = "";
+    }
+
     void AddItem(ItemData data)
     {
         // Instantiate item template
@@ -291,16 +304,4 @@ public class InventorySystem : MonoBehaviour {
         slotSelector.position = selectedSlot.position;
     }
 
-    void UpdateItemTooltip(bool usable = false)
-    {
-        if (selectedSlot.childCount != 0)
-        {
-            if (usable)
-                selectedItemTooltipText.text = string.Format("{0}\n{1}", selectedSlot.GetChild(0).name, tipRightClick);
-            else
-                selectedItemTooltipText.text = selectedSlot.GetChild(0).name;
-        }
-        else
-            selectedItemTooltipText.text = "";
-    }
 }
