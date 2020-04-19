@@ -297,6 +297,7 @@ public class InventoryScreen : MonoBehaviour {
             {
                 itemToSort.SetParent(invHotbarSlots[i]);
                 itemToSort.localPosition = new Vector3(0, 0, 0);
+                EventManager.ItemAdded();
                 return;
             }
         }
