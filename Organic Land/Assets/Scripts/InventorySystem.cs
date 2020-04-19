@@ -153,7 +153,7 @@ public class InventorySystem : MonoBehaviour {
 
             if (slotsParent.GetChild(index).childCount != 0)
             {
-                UpdateItemTooltip(CheckIfItemIsUsable(slotsParent.GetChild(index).GetChild(0).gameObject));
+                UpdateItemTooltip();
 
                 if (CheckIfItemIsBuildable(slotsParent.GetChild(index).GetChild(0).gameObject))
                     BuildingSystem.instance.StartBuilding(true, TerrainGenerator.instance.GetObjectDataViaName(slotsParent.GetChild(index).GetChild(0).name));
@@ -175,7 +175,7 @@ public class InventorySystem : MonoBehaviour {
 
         if (targetSlot.childCount != 0)
         {
-            UpdateItemTooltip(CheckIfItemIsUsable(targetSlot.GetChild(0).gameObject));
+            UpdateItemTooltip();
 
             if (CheckIfItemIsBuildable(targetSlot.GetChild(0).gameObject))
                 BuildingSystem.instance.StartBuilding(true, TerrainGenerator.instance.GetObjectDataViaName(targetSlot.GetChild(0).name));
@@ -225,10 +225,11 @@ public class InventorySystem : MonoBehaviour {
         return false;
     }
 
-    public void UpdateItemTooltip(bool usable = false)
+    public void UpdateItemTooltip()
     {
         if (selectedSlot.childCount != 0)
         {
+            bool usable = selectedSlot.GetChild(0).GetComponent<Item>().isFood;
             if (usable)
                 selectedItemTooltipText.text = string.Format("{0}\n{1}", selectedSlot.GetChild(0).name, tipRightClick);
             else
@@ -246,7 +247,7 @@ public class InventorySystem : MonoBehaviour {
         InitializeItem(newItem, data);
         InventoryScreen.instance.StoreItem(newItem.transform);
 
-        UpdateItemTooltip(CheckIfItemIsUsable(newItem));
+        UpdateItemTooltip();
         Debug.Log("<color=green>> Added item</color>", newItem.transform);
     }
 
@@ -265,12 +266,6 @@ public class InventorySystem : MonoBehaviour {
         {
             newItem.AddComponent<Durability>().SetMaxDurability(itemData.durability);
         }
-    }
-
-    bool CheckIfItemIsUsable(GameObject itemObj)
-    {
-        Item item = itemObj.GetComponent<Item>();
-        return item.isFood;
     }
 
     bool CheckIfItemIsBuildable(GameObject itemObj)
