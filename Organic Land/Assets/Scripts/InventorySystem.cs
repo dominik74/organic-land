@@ -251,7 +251,7 @@ public class InventorySystem : MonoBehaviour {
         UpdateItemTooltip(CheckIfItemIsUsable(newItem));
 
         // Output log
-        Debug.Log("> Added item");
+        Debug.Log("<color=green>> Added item</color>", newItem.transform);
     }
 
     void InitializeItem(GameObject newItem, ItemData itemData)

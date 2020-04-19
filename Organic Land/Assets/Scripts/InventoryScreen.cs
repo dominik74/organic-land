@@ -171,7 +171,8 @@ public class InventoryScreen : MonoBehaviour {
 
     public void UpdateHotbar()
     {
-        UpdateAfterDelay.ExecuteAfterFrame(SyncHotbar);
+        Debug.Log("<color=yellow>TISSS</color>");
+        UpdateAfterDelay.ExecuteAfterFrame(SyncInventoryHotbar);
     }
 
     void CacheSlots()
@@ -247,6 +248,7 @@ public class InventoryScreen : MonoBehaviour {
                 else
                 {
                     Destroy(hotbarSlots[i].GetChild(0).gameObject);
+                    Debug.Log(string.Format("<color=red>> Destroyed item: {0}</color>", hotbarSlots[i].GetChild(0).name));
                 }
             }
             else
@@ -256,6 +258,7 @@ public class InventoryScreen : MonoBehaviour {
                     if(hotbarSlots[i].GetChild(0).name != invHotbarSlots[i].GetChild(0).name)
                     {
                         Destroy(hotbarSlots[i].GetChild(0).gameObject);
+                        Debug.Log(string.Format("<color=red>> Destroyed item: {0}</color>", hotbarSlots[i].GetChild(0).name));
                         CopyItemTo(invHotbarSlots[i].GetChild(0).gameObject, hotbarSlots[i]);
                     }
                 }
