@@ -240,17 +240,13 @@ public class InventorySystem : MonoBehaviour {
 
     void AddItem(ItemData data)
     {
-        // Instantiate item template
         GameObject newItem = Instantiate(itemTeplate);
 
         // Initialize & Sort
         InitializeItem(newItem, data);
-        SortItem(newItem.transform);
+        InventoryScreen.instance.StoreItem(newItem.transform);
 
-        // Update Text Display
         UpdateItemTooltip(CheckIfItemIsUsable(newItem));
-
-        // Output log
         Debug.Log("<color=green>> Added item</color>", newItem.transform);
     }
 
@@ -269,22 +265,6 @@ public class InventorySystem : MonoBehaviour {
         {
             newItem.AddComponent<Durability>().SetMaxDurability(itemData.durability);
         }
-    }
-
-    void SortItem(Transform newItem)
-    {
-        for (int i = 0; i < slotsParent.childCount; i++)
-        {
-            if(slotsParent.GetChild(i).childCount == 0)
-            {
-                newItem.SetParent(slotsParent.GetChild(i));
-                newItem.localPosition = new Vector3(0, 0, 0);
-                newItem.localScale = new Vector3(1, 1, 1);
-                EventManager.ItemAdded();
-                return;
-            }
-        }
-        InventoryScreen.instance.StoreNewItemInInventory(newItem);
     }
 
     bool CheckIfItemIsUsable(GameObject itemObj)

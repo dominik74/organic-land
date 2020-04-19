@@ -40,12 +40,6 @@ public class InventoryScreen : MonoBehaviour {
         inventoryOpened = true;
     }
 
-    private void OnEnable()
-    {
-        if (initialized)
-            SyncInventoryHotbar();
-    }
-
     private void Update()
     {
         if (selectedItem != null)
@@ -53,6 +47,11 @@ public class InventoryScreen : MonoBehaviour {
 
         if (tooltipDialog.activeSelf)
             tooltipDialog.transform.position = Input.mousePosition + (Vector3)tooltipOffset;
+    }
+
+    public void OnActivate()
+    {
+        SyncInventoryHotbar();
     }
 
     public void ProcessSlot(Transform targetSlot)
@@ -163,16 +162,17 @@ public class InventoryScreen : MonoBehaviour {
         return items.ToArray();
     }
 
-    public void StoreNewItemInInventory(Transform newItem)
+    public void StoreItem(Transform newItem)
     {
-        SortInventory(newItem);
+        SortHotbar(newItem);
         ScaleItem(newItem, 1.25f);
+        SyncHotbar();
     }
 
     public void UpdateHotbar()
     {
         Debug.Log("<color=yellow>TISSS</color>");
-        UpdateAfterDelay.ExecuteAfterFrame(SyncInventoryHotbar);
+        UpdateAfterDelay.ExecuteAfterFrame(SyncHotbar);
     }
 
     void CacheSlots()
@@ -286,6 +286,7 @@ public class InventoryScreen : MonoBehaviour {
                 return;
             }
         }
+        Debug.Log("<color=red>Inventory is FULL.</color>");
     }
 
     void SortHotbar(Transform itemToSort)
@@ -299,6 +300,7 @@ public class InventoryScreen : MonoBehaviour {
                 return;
             }
         }
+        SortInventory(itemToSort);
     }
 
     void CopyItemTo(GameObject itemToCopy, Transform parent)
