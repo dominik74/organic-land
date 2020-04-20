@@ -1881,6 +1881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   craftingSlotsParent: {fileID: 1110876735}
   itemWindow: {fileID: 766780627}
+  craftBtn: {fileID: 1500517748}
 --- !u!114 &336429222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,6 +1893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336288cca1c5f614a8df3625eace7bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryPanel: {fileID: 381923318}
+  craftItemWindow: {fileID: 766780627}
 --- !u!1 &346140832
 GameObject:
   m_ObjectHideFlags: 0

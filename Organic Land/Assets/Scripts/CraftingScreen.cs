@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CraftingScreen : MonoBehaviour {
 
     public Transform craftingSlotsParent;
     public GameObject itemWindow;
+
+    public Button craftBtn;
 
     private InventorySystem inventorySystem;
     private CraftingSystem craftingSystem;
@@ -30,12 +33,20 @@ public class CraftingScreen : MonoBehaviour {
         itemWindow.SetActive(true);
         itemWindow.GetComponent<ItemWindow>().UpdateWindow(targetItem);
         selectedItemID = targetItem.GetComponent<Item>().id;
+        CheckPlayerMaterials();
     }
 
     public void CraftSelectedItem()
     {
         if (selectedItemID != null)
             craftingSystem.CraftItem(selectedItemID);
+        UpdateAfterDelay.ExecuteAfterFrame(CheckPlayerMaterials);
+    }
+
+    void CheckPlayerMaterials()
+    {
+        if (selectedItemID != null)
+            craftBtn.interactable = CraftingSystem.instance.CraftItem(selectedItemID, true);
     }
 
     void InitializeCraftingSlots()

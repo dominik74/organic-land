@@ -21,7 +21,7 @@ public class CraftingSystem : MonoBehaviour {
         StoreAllCraftableItems();
     }
 
-    public void CraftItem(string itemID)
+    public bool CraftItem(string itemID, bool checkMaterials = false)
     {
         ItemData itemToCraft = GetCraftableItem(itemID);
         Debug.Log("Checking item...");
@@ -34,16 +34,24 @@ public class CraftingSystem : MonoBehaviour {
                 if (!CraftingCore.CompareItemsWithInventory(itemToCraft.materials[i].id, itemToCraft.materials[i].count))
                 {
                     Debug.Log("Not enough items.");
-                    return;
+                    return false;
                 }
             }
 
+            if (checkMaterials == true)
+                return true;
             // --- ABLE TO CRAFT --- //
             CraftingCore.DeleteAllFromList();
             InventoryScreen.instance.UpdateHotbar();
 
             inventorySystem.AddItemViaName(itemToCraft.name);
         }
+        return false;
+
+    }
+
+    public void CheckPlayerMaterials()
+    {
 
     }
 
