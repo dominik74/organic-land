@@ -6,7 +6,19 @@ public class Chunk : MonoBehaviour {
 
 	Vector3[] vertices;
 
+	private List<GameObject> myObjects = new List<GameObject>();
+
 	void OnEnable()
+	{
+		//GenerateObjects();
+	}
+
+	void OnDisable()
+	{
+		ClearObjectList();
+	}
+
+	public void Generate()
 	{
 		GenerateObjects();
 	}
@@ -18,7 +30,7 @@ public class Chunk : MonoBehaviour {
 
 		for (int v = 0; v < vertices.Length; v++)
 		{
-			if (Random.Range(0, 31) == 1)
+			if (Random.Range(0, 51) == 1)
 			{
 				SpawnObject(vertices[v]);
 			}
@@ -27,11 +39,17 @@ public class Chunk : MonoBehaviour {
 
 	void SpawnObject(Vector3 vertPos)
 	{
-		GameObject obj = Instantiate(TerrainGenerator.instance.objectTemplate);
-		obj.transform.SetParent(transform);
-		obj.transform.position = new Vector3(vertPos.x * transform.localScale.x, vertPos.y, vertPos.z * transform.localScale.z);
+		GameObject obj = ObjectPool.GetObject(TerrainGenerator.instance.GetRandomObjectData().name);
+		if (obj != null)
+		{
+			obj.transform.SetParent(transform);
+			obj.transform.localPosition = vertPos;
+			obj.SetActive(true);
 
-		InitializeObject(obj, TerrainGenerator.instance.GetRandomObjectData());
+			myObjects.Add(obj);
+
+			//InitializeObject(obj, TerrainGenerator.instance.GetRandomObjectData());
+		}
 	}
 
 	void InitializeObject(GameObject obj, ObjectData data)
@@ -47,6 +65,17 @@ public class Chunk : MonoBehaviour {
 			obj.AddComponent<Minable>().collectTool = data.collectTool;
 			obj.GetComponent<Minable>().lootTable = data.lootTable;
 		}
+	}
+
+	void ClearObjectList()
+	{
+		for (int i = 0; i < myObjects.Count; i++)
+		{
+			if (myObjects[i] != null)
+				myObjects[i].SetActive(false);
+		}
+
+		myObjects.Clear();
 	}
 
 }

@@ -7874,6 +7874,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1114976359}
   - component: {fileID: 1114976358}
+  - component: {fileID: 1114976360}
   m_Layer: 0
   m_Name: __Terrain
   m_TagString: Untagged
@@ -7897,8 +7898,6 @@ MonoBehaviour:
   tileSize: 40
   clampDistance: 200
   player: {fileID: 418703707}
-  tileTemplate: {fileID: 1999480682946936, guid: b6cb0760075cd3a48a69ead6cc64d9da,
-    type: 2}
 --- !u!4 &1114976359
 Transform:
   m_ObjectHideFlags: 0
@@ -7912,6 +7911,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1114976360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1114976357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd636fc691c706844b1a3d33a5a5d762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectTemplate: {fileID: 1902158370817034, guid: 0833b3824375d02498a000d02e149fa9,
+    type: 2}
+  tileTemplate: {fileID: 1999480682946936, guid: b6cb0760075cd3a48a69ead6cc64d9da,
+    type: 2}
+  instanceCount: 102
+  tileCount: 115
+  objectData:
+  - {fileID: 11400000, guid: 1d265f911ab4c5247bdffb9ebcfab107, type: 2}
+  - {fileID: 11400000, guid: 9b1d3a18487cb0343ab5f767c07b1aed, type: 2}
+  - {fileID: 11400000, guid: 3567667571ec1bb4094954759a4023e7, type: 2}
+  - {fileID: 11400000, guid: cd08ed7d96761314d8dde4f9aff9ff1f, type: 2}
+  - {fileID: 11400000, guid: 50df858e69377324a83ec435acbe918c, type: 2}
+  - {fileID: 11400000, guid: b8eb9434cdac6384f912e96eaa1114ab, type: 2}
+  - {fileID: 11400000, guid: fa28d2f5dd56fc54e85f8f82167e6a48, type: 2}
+  - {fileID: 11400000, guid: 2071a5af24dce204b8ac3aec96f2d976, type: 2}
+  - {fileID: 11400000, guid: e9ab40aa7f85afa4f9628a4fb93beadb, type: 2}
+  - {fileID: 11400000, guid: 6d8fa1728cf1a6b4eaa018836e787618, type: 2}
+  - {fileID: 11400000, guid: b4612ae86bd32d14d85c9e9aaf01ac22, type: 2}
+  - {fileID: 11400000, guid: 8e7b30db27c40a54b883ddb18f73e67d, type: 2}
 --- !u!1 &1134693422
 GameObject:
   m_ObjectHideFlags: 0

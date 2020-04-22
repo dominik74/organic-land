@@ -10,8 +10,6 @@ public class InfiniteGenerator : MonoBehaviour {
 	public int clampDistance;
 	public GameObject player;
 
-	public GameObject tileTemplate;
-
 	private Vector3 startPos;
 	private Hashtable tiles = new Hashtable();
 
@@ -41,9 +39,11 @@ public class InfiniteGenerator : MonoBehaviour {
 				if ((player.transform.position - pos).sqrMagnitude > clampDistance * clampDistance)
 					continue;
 
-				GameObject t = Instantiate(tileTemplate);
+				GameObject t = ObjectPool.GetTile();
 				string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
 
+				t.SetActive(true);
+				t.GetComponent<Chunk>().Generate();
 				t.transform.position = pos;
 				t.name = tileName;
 				Tile tile = new Tile(t, updateTime);
@@ -82,10 +82,12 @@ public class InfiniteGenerator : MonoBehaviour {
 
 						if (!tiles.ContainsKey(tileName))
 						{
-							GameObject t = Instantiate(tileTemplate);
+							GameObject t = ObjectPool.GetTile();
 							t.name = tileName;
 							t.transform.position = pos;
 
+							t.SetActive(true);
+							t.GetComponent<Chunk>().Generate();
 							Tile tile = new Tile(t, updateTime);
 							tiles.Add(tileName, tile);
 							yield return null;
@@ -102,7 +104,7 @@ public class InfiniteGenerator : MonoBehaviour {
 				{
 					if (tls.creationTime != updateTime)
 					{
-						Destroy(tls.theTile);
+						tls.theTile.SetActive(false);
 					}
 					else
 					{
