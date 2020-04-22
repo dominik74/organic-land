@@ -15,15 +15,20 @@ public class TerrainGenerator : MonoBehaviour {
     public GameObject objectTemplate;
     public ObjectData[] objectData;
 
+    private int spawnChanceSum;
+
     public static TerrainGenerator instance;
     private void Awake()
     {
         instance = this;
+
+        InitChanceSum();
     }
 
     private void Start()
     {
-        Generate();
+
+        //Generate();
     }
   
     public ObjectData GetObjectDataViaName(string objName)
@@ -44,6 +49,34 @@ public class TerrainGenerator : MonoBehaviour {
                 return objectData[i];
         }
         return null;
+    }
+
+    public ObjectData GetRandomObjectData()
+    {
+        float randomChance = Random.value;
+        float s = 0f;
+
+        for (int i = 0; i < objectData.Length; i++)
+        {
+            if (objectData[i].spawnChance <= 0)
+                continue;
+
+            s += (float)objectData[i].spawnChance / spawnChanceSum;
+
+            if (s >= randomChance)
+                return objectData[i];
+        }
+
+        return objectData[objectData.Length - 1];
+    }
+
+    void InitChanceSum()
+    {
+        spawnChanceSum = 0;
+        for (int i = 0; i < objectData.Length; i++)
+        {
+            spawnChanceSum += objectData[i].spawnChance;
+        }
     }
 
     void Generate()
