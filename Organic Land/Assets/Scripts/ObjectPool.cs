@@ -21,6 +21,8 @@ public class ObjectPool : MonoBehaviour {
 
 	void Awake()
 	{
+		UpdateSettings();
+
 		objCount = 0;
 		tileIntCount = 0;
 
@@ -53,6 +55,21 @@ public class ObjectPool : MonoBehaviour {
 			}
 		}
 		return null;
+	}
+
+	void UpdateSettings()
+	{
+		InfiniteGenerator infiniteGenerator = GetComponent<InfiniteGenerator>();
+		if (infiniteGenerator.overrideSettings)
+			tileCount = (infiniteGenerator.halfTileAmount * 2) * (infiniteGenerator.halfTileAmount * 2);
+		else
+		{
+			int count = Settings.renderDistanceValues[Settings.renderDistanceValues.Length - 1];
+			tileCount = (count * 2) * (count * 2);
+		}
+
+		if (tileCount > 500)
+			tileCount = 500;
 	}
 
 	void InstantiateObjects()

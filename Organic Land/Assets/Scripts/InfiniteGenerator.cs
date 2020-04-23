@@ -7,7 +7,9 @@ public class InfiniteGenerator : MonoBehaviour {
 	public int halfTileAmountX;
 	public int halfTileAmountZ;
 	public int tileSize = 10;
+	public int halfTileAmount;
 	public int clampDistance;
+	public bool overrideSettings = true;
 	public GameObject player;
 
 	private Vector3 startPos;
@@ -25,7 +27,39 @@ public class InfiniteGenerator : MonoBehaviour {
 		}
 	}
 
+	public static InfiniteGenerator instance;
+	void Awake()
+	{
+		instance = this;
+	}
+
 	void Start()
+	{
+		UpdateSettings();
+		Generate();	
+	}
+
+	public void Regenerate()
+	{
+		StopAllCoroutines();
+		ClearTiles();
+		UpdateSettings();
+		Generate();
+	}
+
+	public void UpdateSettings()
+	{
+		if (!overrideSettings)
+		{
+			halfTileAmountX = Settings.renderDistance;
+			halfTileAmountZ = Settings.renderDistance;
+			halfTileAmount = Settings.renderDistance;
+		}
+
+		clampDistance = halfTileAmount * tileSize;
+	}
+
+	void Generate()
 	{
 		startPos = new Vector3(0, 0, 0);
 		float updateTime = Time.realtimeSinceStartup;
@@ -36,8 +70,11 @@ public class InfiniteGenerator : MonoBehaviour {
 			{
 				Vector3 pos = new Vector3((x * tileSize + startPos.x), 0, (z * tileSize + startPos.z));
 
-				if ((player.transform.position - pos).sqrMagnitude > clampDistance * clampDistance)
-					continue;
+				if (clampDistance > 0)
+				{
+					if ((player.transform.position - pos).sqrMagnitude > clampDistance * clampDistance)
+						continue;
+				}
 
 				GameObject t = ObjectPool.GetTile();
 				string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
@@ -52,6 +89,15 @@ public class InfiniteGenerator : MonoBehaviour {
 		}
 
 		StartCoroutine("UpdateTerrain");
+	}
+
+	void ClearTiles()
+	{
+		foreach (Tile item in tiles.Values)
+		{
+			item.theTile.SetActive(false);
+		}
+		tiles.Clear();
 	}
 
 	IEnumerator UpdateTerrain()
@@ -74,9 +120,11 @@ public class InfiniteGenerator : MonoBehaviour {
 					{
 						Vector3 pos = new Vector3((x * tileSize + playerX), 0, (z * tileSize + playerZ));
 
-
-						if ((player.transform.position - pos).sqrMagnitude > clampDistance * clampDistance)
-							continue;
+						if (clampDistance > 0)
+						{
+							if ((player.transform.position - pos).sqrMagnitude > clampDistance * clampDistance)
+								continue;
+						}
 
 						string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
 
