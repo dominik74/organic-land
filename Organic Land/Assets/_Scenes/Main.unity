@@ -8511,6 +8511,7 @@ GameObject:
   - component: {fileID: 1114976359}
   - component: {fileID: 1114976358}
   - component: {fileID: 1114976360}
+  - component: {fileID: 1114976361}
   m_Layer: 0
   m_Name: __Terrain
   m_TagString: Untagged
@@ -8579,6 +8580,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d8fa1728cf1a6b4eaa018836e787618, type: 2}
   - {fileID: 11400000, guid: b4612ae86bd32d14d85c9e9aaf01ac22, type: 2}
   - {fileID: 11400000, guid: 8e7b30db27c40a54b883ddb18f73e67d, type: 2}
+--- !u!114 &1114976361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1114976357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc91baaddfbf954aa63e81ed4b4e808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stringSeed: seed
+  useStringSeed: 1
+  seed: 0
+  useRandomSeed: 0
 --- !u!1 &1134693422
 GameObject:
   m_ObjectHideFlags: 0

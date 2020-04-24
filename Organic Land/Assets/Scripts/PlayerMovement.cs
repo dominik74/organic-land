@@ -47,7 +47,12 @@ public class PlayerMovement : MonoBehaviour {
 
         Vector3 movement = moveX + moveZ;
 
-        transform.position += new Vector3(movement.x, 0, movement.z) * movementSpeed * Time.fixedDeltaTime;
+        float sidewaysMultiplier = 1;
+        if (x != 0 && z != 0)
+            sidewaysMultiplier = 0.7071f;
+
+        transform.position += new Vector3(movement.x, 0, movement.z) * movementSpeed * sidewaysMultiplier * Time.fixedDeltaTime;
+
 
         if(Input.GetMouseButtonDown(0))
         {
