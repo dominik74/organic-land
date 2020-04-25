@@ -11,4 +11,10 @@ public class SettingsController : MonoBehaviour {
 		InfiniteGenerator.instance.Regenerate();
 	}
 
+	public void SetMovementSpeed(Slider slider)
+	{
+		float value = slider.value + 1;
+		PlayerManager.instance.player.GetComponent<PlayerMovement>().movementSpeed = value * 10;
+	}
+
 }
