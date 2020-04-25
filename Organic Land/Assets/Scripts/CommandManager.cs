@@ -32,6 +32,7 @@ public class CommandManager {
         RegisterCommand("give", Give, "Gives item [value1 = (itemName)]");
         RegisterCommand("clear", ClearInventory, "Clears the player's inventory.");
         RegisterCommand("place", Place, "Places an object at the player position [value1 = (objectName)]");
+        RegisterCommand("regenerate", Regenerate, "Regenerates the terrain.");
     }
 
 	void RegisterCommand(string command, CommandHandler handler, string help)
@@ -125,6 +126,14 @@ public class CommandManager {
         {
             ObjectData data = TerrainGenerator.instance.GetObjectDataViaID(val);
             BuildingSystem.instance.PlaceBuilding(data, PlayerManager.instance.player.transform.position);
+        }
+    }
+
+    void Regenerate(string val, string val2)
+    {
+        if(val == "" && val2 == "")
+        {
+            InfiniteGenerator.instance.Regenerate();
         }
     }
     #endregion
