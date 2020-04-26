@@ -9341,11 +9341,10 @@ MonoBehaviour:
   offsetX: 193.5
   offsetZ: 180.3
   scale: 2.8
-  multiplier: 2.5
-  smoothness: 80
-  minimumHeight: 1.75
+  smoothness: 75
+  minimumHeight: 0.85
   autoRefreshTerrain: 1
-  terrainRefreshRate: 1
+  terrainRefreshRate: 3
 --- !u!1 &1134693422
 GameObject:
   m_ObjectHideFlags: 0
