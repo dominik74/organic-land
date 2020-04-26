@@ -28,22 +28,33 @@ public class Chunk : MonoBehaviour {
 		Mesh mesh = GetComponent<MeshFilter>().mesh;
 		vertices = mesh.vertices;
 
+		GenerationController gc = GenerationController.instance;
+
 		for (int v = 0; v < vertices.Length; v++)
 		{
-			if (Random.Range(0, 51) == 1)
+			if (v % 5 == 0)
+				continue;
+
+			Vector3 vertPos = vertices[v];
+
+			/*if(Random.Range(0, 41) == 1)
+				SpawnObject(vertices[v]);*/
+
+			if (Mathf.PerlinNoise(vertPos.x + gc.offsetX / gc.smoothness,
+				vertPos.z + gc.offsetZ / gc.smoothness) >= gc.minimumHeight)
 			{
 				SpawnObject(vertices[v]);
 			}
 		}
 	}
 
-	void SpawnObject(Vector3 vertPos)
+	void SpawnObject(Vector3 pos)
 	{
 		GameObject obj = ObjectPool.GetObject(TerrainGenerator.instance.GetRandomObjectData().name);
 		if (obj != null)
 		{
 			obj.transform.SetParent(transform);
-			obj.transform.localPosition = vertPos;
+			obj.transform.localPosition = pos;
 			obj.SetActive(true);
 
 			myObjects.Add(obj);

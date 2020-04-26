@@ -9244,6 +9244,7 @@ GameObject:
   - component: {fileID: 1114976358}
   - component: {fileID: 1114976360}
   - component: {fileID: 1114976361}
+  - component: {fileID: 1114976362}
   m_Layer: 0
   m_Name: __Terrain
   m_TagString: Untagged
@@ -9326,6 +9327,25 @@ MonoBehaviour:
   stringSeed: seed
   useStringSeed: 1
   useRandomSeed: 0
+--- !u!114 &1114976362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1114976357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c5e53b71614494188ad21826dbd2e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 193.5
+  offsetZ: 180.3
+  scale: 2.8
+  multiplier: 2.5
+  smoothness: 80
+  minimumHeight: 1.75
+  autoRefreshTerrain: 1
+  terrainRefreshRate: 1
 --- !u!1 &1134693422
 GameObject:
   m_ObjectHideFlags: 0
