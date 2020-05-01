@@ -6,6 +6,9 @@ public class Chunk : MonoBehaviour {
 
 	public Color primaryColor;
 	public Color secondaryColor;
+	
+	public Color biome2ColorPrimary;
+	public Color biome2ColorSecondary;
 
 	Vector3[] vertices;
 	Color[] colors;
@@ -47,7 +50,21 @@ public class Chunk : MonoBehaviour {
 				currentColor = primaryColor;
 			}*/
 			
-			currentColor = Color.Lerp(primaryColor, secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+			float biomeMap = Mathf.PerlinNoise((vertices[v].x + transform.position.x) / 256, (vertices[v].z + transform.position.z) / 256);
+			
+			if (biomeMap < 0.5f)
+			{
+				currentColor = Color.Lerp(primaryColor, secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+			}
+			else if (biomeMap <= 0.53f)
+			{
+				currentColor = Color.Lerp(primaryColor, biome2ColorPrimary, Mathf.Abs(biomeMap - 0.5f) / 0.03f);
+			}
+			else
+			{
+				currentColor = Color.Lerp(biome2ColorPrimary, biome2ColorSecondary, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+			}
+			
 			
 			/*if (v % 3 == 0)
 			{
