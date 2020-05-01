@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 74b98d0d9e13923409b5233a2055e475, type: 2}
+  - {fileID: 2100000, guid: 875bde39ffd245b478923dc4d712514f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +109,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1123b2dd26c034d409fb1df9f4fd372e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  primaryColor: {r: 0.068103425, g: 0.21323532, b: 0.064284176, a: 1}
+  secondaryColor: {r: 0.5147059, g: 0.41949052, b: 0.29898357, a: 1}

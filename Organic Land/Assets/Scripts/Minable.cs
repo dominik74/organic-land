@@ -15,10 +15,16 @@ public class Minable : MonoBehaviour, IObjectController
 
     private Durability currentTool;
 
-    void Start()
+	// Initialize
+	void Start() 
+	{
+		player = PlayerManager.playerUnit.transform;
+	}
+	
+	// Reset
+    void OnEnable()
     {
         currentDurability = maxDurability;
-        player = PlayerManager.playerUnit.transform;
     }
 
     public void Interact()
@@ -68,6 +74,6 @@ public class Minable : MonoBehaviour, IObjectController
     void Die()
     {
         LootSystem.instance.DropLootTable(lootTable, transform.position);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

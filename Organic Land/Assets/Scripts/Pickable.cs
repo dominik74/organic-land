@@ -33,7 +33,7 @@ public class Pickable : MonoBehaviour {
     void OnItemAdded()
     {
         EventManager.OnItemAdded = null;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         HUDController.instance.DisplayObjectLabel("");
     }
 }

@@ -9343,7 +9343,7 @@ MonoBehaviour:
   scale: 2.8
   smoothness: 75
   minimumHeight: 0.85
-  autoRefreshTerrain: 1
+  autoRefreshTerrain: 0
   terrainRefreshRate: 3
 --- !u!1 &1134693422
 GameObject:
