@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f5be7172d2cfb94d940ce8c453a8cf6, type: 3}
   m_Name: Birch Forest
   m_EditorClassIdentifier: 
-  primaryColor: {r: 0.375, g: 0.2814402, b: 0.20955881, a: 1}
-  secondaryColor: {r: 0.41911763, g: 0.33503905, b: 0.15408736, a: 1}
+  primaryColor: {r: 0.30882353, g: 0.2343426, b: 0.17711937, a: 1}
+  secondaryColor: {r: 0.41176468, g: 0.32824242, b: 0.10899654, a: 1}
   height: 0.5
   offset: 0
   objects:
   - {fileID: 11400000, guid: 3567667571ec1bb4094954759a4023e7, type: 2}
   - {fileID: 11400000, guid: 1d265f911ab4c5247bdffb9ebcfab107, type: 2}
-  - {fileID: 11400000, guid: 9b1d3a18487cb0343ab5f767c07b1aed, type: 2}
-  - {fileID: 11400000, guid: b8eb9434cdac6384f912e96eaa1114ab, type: 2}
   - {fileID: 11400000, guid: 2071a5af24dce204b8ac3aec96f2d976, type: 2}
+  - {fileID: 11400000, guid: 928766cc9dbc1904db81655d9031a6a4, type: 2}
+  - {fileID: 11400000, guid: b8eb9434cdac6384f912e96eaa1114ab, type: 2}
