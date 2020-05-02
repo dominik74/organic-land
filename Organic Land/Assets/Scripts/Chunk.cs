@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Chunk : MonoBehaviour {
 
+	public Biome[] biomes;
+
 	public Color primaryColor;
 	public Color secondaryColor;
 	
@@ -14,11 +16,15 @@ public class Chunk : MonoBehaviour {
 	public float biomeOffset;
 	public float biomeDetailScale = 256f;
 
+	public bool usePerlinNoise = true;
+
 	public bool dbg_biome1;
 	public bool dbg_biome2;
 
 	Vector3[] vertices;
 	Color[] colors;
+
+	private Biome currentBiome;
 
 	private List<GameObject> myObjects = new List<GameObject>();
 
@@ -42,62 +48,96 @@ public class Chunk : MonoBehaviour {
 
 		for (int v = 0; v < vertices.Length; v++)
 		{
-			Color currentColor;
 
-			float biomeMap = Mathf.PerlinNoise((vertices[v].x + (transform.position.x / transform.localScale.x) + biomeOffset) / biomeDetailScale,
-				(vertices[v].z + (transform.position.z / transform.localScale.z) + biomeOffset) / biomeDetailScale);
-
-			if (biomeMap < 0.5f)
-			{
-				currentColor = Color.Lerp(primaryColor, secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
-				dbg_biome1 = true;
-			}
-			else if (biomeMap <= 0.5f + biomeBlend)
-			{
-				Color biome1Color = Color.Lerp(primaryColor, secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
-				Color biome2Color = Color.Lerp(biome2ColorPrimary, biome2ColorSecondary, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
-
-				currentColor = Color.Lerp(biome1Color, biome2Color, Mathf.Abs(biomeMap - 0.5f) / biomeBlend);
-			}
-			else
-			{
-				currentColor = Color.Lerp(biome2ColorPrimary, biome2ColorSecondary, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
-				dbg_biome2 = true;
-			}
-
-			colors[v] = currentColor;
+			GenerateColors(v);
 
 			if (v % 5 == 0)
 				continue;
 
-			GenerateObjects(v, vertices[v]);
+			GenerateObjects(v);
 		}
 
 		mesh.colors = colors;
 	}
 
-	void GenerateObjects(int vertIndex, Vector3 vertPos)
+	void GenerateColors(int v)
 	{
-		GenerationController gc = GenerationController.instance;
-		/*if(Random.Range(0, 41) == 1)
-			SpawnObject(vertices[v]);*/
+		Color currentColor = Color.black;
 
-		if (Mathf.PerlinNoise(vertPos.x + gc.offsetX / gc.smoothness,
-			vertPos.z + gc.offsetZ / gc.smoothness) >= gc.minimumHeight)
+		float biomeMap = Mathf.PerlinNoise((vertices[v].x + (transform.position.x / transform.localScale.x) + biomeOffset) / biomeDetailScale,
+			(vertices[v].z + (transform.position.z / transform.localScale.z) + biomeOffset) / biomeDetailScale);
+
+		for (int b = 0; b < biomes.Length; b++)
 		{
-			float chunkOffset = 0;
-			float vertexOffset = 0;
-			if (transform.position.x % 80 == 0 && transform.position.z % 80 == 0)
-				chunkOffset = -5f;
-			if (vertIndex % 2 == 0)
-				vertexOffset = 2f;
-			SpawnObject(vertices[vertIndex] + new Vector3(chunkOffset + vertexOffset, 0, chunkOffset + vertexOffset));
+			if (biomeMap <= biomes[b].height)
+			{
+				currentColor = Color.Lerp(biomes[b].primaryColor, biomes[b].secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+				dbg_biome1 = true;
+				currentBiome = biomes[b];
+				break;
+			}
+			else if (biomeMap <= biomes[b].height + biomeBlend)
+			{
+				Color biome1Color = Color.Lerp(biomes[b].primaryColor, biomes[b].secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+				Color biome2Color = Color.Lerp(biomes[b + 1].primaryColor, biomes[b + 1].secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+
+				currentColor = Color.Lerp(biome1Color, biome2Color, Mathf.Abs(biomeMap - biomes[b].height) / biomeBlend);
+				currentBiome = biomes[b + 1];
+				break;
+			}
+		}
+
+
+
+		/*if (biomeMap < 0.5f)
+		{
+			currentColor = Color.Lerp(primaryColor, secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+			dbg_biome1 = true;
+		}
+		else if (biomeMap <= 0.5f + biomeBlend)
+		{
+			Color biome1Color = Color.Lerp(primaryColor, secondaryColor, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+			Color biome2Color = Color.Lerp(biome2ColorPrimary, biome2ColorSecondary, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+
+			currentColor = Color.Lerp(biome1Color, biome2Color, Mathf.Abs(biomeMap - 0.5f) / biomeBlend);
+		}
+		else
+		{
+			currentColor = Color.Lerp(biome2ColorPrimary, biome2ColorSecondary, Mathf.PerlinNoise(vertices[v].x * 2.2f, vertices[v].z * 2.2f));
+			dbg_biome2 = true;
+		}*/
+
+		colors[v] = currentColor;
+	}
+
+	void GenerateObjects(int v)
+	{		
+		if (usePerlinNoise)
+		{
+			GenerationController gc = GenerationController.instance;
+
+			if (Mathf.PerlinNoise(vertices[v].x + gc.offsetX / gc.smoothness,
+				vertices[v].z + gc.offsetZ / gc.smoothness) >= gc.minimumHeight)
+			{
+				float chunkOffset = 0;
+				float vertexOffset = 0;
+				if ((transform.position.x / transform.localScale.x) % 80 == 0 && (transform.position.z / transform.localScale.z) % 80 == 0)
+					chunkOffset = -5f;
+				if (v % 2 == 0)
+					vertexOffset = 2f;
+				SpawnObject(vertices[v] + new Vector3(chunkOffset + vertexOffset, 0, chunkOffset + vertexOffset));
+			}
+		}
+		else
+		{
+			if(Random.Range(0, 56) == 1)
+				SpawnObject(vertices[v]);
 		}
 	}
 
 	void SpawnObject(Vector3 pos)
 	{
-		GameObject obj = ObjectPool.GetObject(TerrainGenerator.instance.GetRandomObjectData().name);
+		GameObject obj = ObjectPool.GetObject(TerrainGenerator.instance.GetBiomeRandomObjectData(currentBiome).name);
 		if (obj != null)
 		{
 			obj.transform.SetParent(transform);

@@ -70,6 +70,27 @@ public class TerrainGenerator : MonoBehaviour {
         return objectData[objectData.Length - 1];
     }
 
+    public ObjectData GetBiomeRandomObjectData(Biome biome)
+    {
+        ObjectData[] collection = biome.objects;
+
+        float randomChance = Random.value;
+        float s = 0f;
+
+        for (int i = 0; i < collection.Length; i++)
+        {
+            if (collection[i].spawnChance <= 0)
+                continue;
+
+            s += (float)collection[i].spawnChance / spawnChanceSum;
+
+            if (s >= randomChance)
+                return collection[i];
+        }
+
+        return collection[collection.Length - 1];
+    }
+
     void InitChanceSum()
     {
         spawnChanceSum = 0;
