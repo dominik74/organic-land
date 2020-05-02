@@ -109,5 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1123b2dd26c034d409fb1df9f4fd372e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryColor: {r: 0.068103425, g: 0.21323532, b: 0.064284176, a: 1}
-  secondaryColor: {r: 0.5147059, g: 0.41949052, b: 0.29898357, a: 1}
+  primaryColor: {r: 0.07266436, g: 0.2352941, b: 0.08724495, a: 1}
+  secondaryColor: {r: 0.42647058, g: 0.3320069, b: 0.16306229, a: 1}
+  biome2ColorPrimary: {r: 0.46323532, g: 0.20436853, b: 0.20436853, a: 1}
+  biome2ColorSecondary: {r: 0.44117647, g: 0.40314403, b: 0.27897924, a: 1}
+  biomeBlend: 0.02
+  biomeOffset: 0
+  biomeDetailScale: 200
+  dbg_biome1: 0
+  dbg_biome2: 0
