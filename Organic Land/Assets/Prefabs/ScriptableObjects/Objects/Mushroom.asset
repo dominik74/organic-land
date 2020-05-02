@@ -13,9 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: af3dd35b39aa79844bf5f409038f3fe9, type: 3}
   id: mushroom
-  spawnChance: 20
+  spawnChance: 25
   color: {r: 1, g: 1, b: 1, a: 1}
+  usesGUI: 0
+  scriptName: 
   collectBehavior: 1
   collectTool: 0
-  lootDrop: 
-  lootCount: 1
+  lootTable:
+    materials: []
