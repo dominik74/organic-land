@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 5a4499abfee4b1c419f1303bc77370bd, type: 3}
   id: bush
-  spawnChance: 30
-  color: {r: 0.41500863, g: 0.74264705, b: 0.33309907, a: 1}
+  spawnChance: 10
+  color: {r: 0.25540584, g: 0.3455882, b: 0.13467777, a: 1}
   usesGUI: 0
   scriptName: 
   collectBehavior: 0
