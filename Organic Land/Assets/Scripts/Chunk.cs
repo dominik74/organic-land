@@ -64,11 +64,17 @@ public class Chunk : MonoBehaviour {
 	{
 		Color currentColor = Color.black;
 
-		float biomeMap = Mathf.PerlinNoise((vertices[v].x + (transform.position.x / transform.localScale.x) + biomeOffset) / biomeDetailScale,
-			(vertices[v].z + (transform.position.z / transform.localScale.z) + biomeOffset) / biomeDetailScale) 
-			/** Mathf.PerlinNoise(((vertices[v].x + (transform.position.x / transform.localScale.x)) / 100), ((vertices[v].z + (transform.position.z / transform.localScale.z)) / 100))*/;
+        #region Biome Map Calculation
+        float biomeNoise1 = Mathf.PerlinNoise((vertices[v].x + (transform.position.x / transform.localScale.x) + biomeOffset) / biomeDetailScale,
+			(vertices[v].z + (transform.position.z / transform.localScale.z) + biomeOffset) / biomeDetailScale);
 
-		for (int b = 0; b < biomes.Length; b++)
+		float biomeNoise2 = Mathf.PerlinNoise(((vertices[v].x + (transform.position.x / transform.localScale.x) + 5.72f) / 30), 
+			((vertices[v].z + (transform.position.z / transform.localScale.z) + 5.72f) / 30));
+
+		float biomeMap = biomeNoise1 + 0.2f * biomeNoise2;
+        #endregion
+
+        for (int b = 0; b < biomes.Length; b++)
 		{
 			if (biomeMap <= biomes[b].height)
 			{

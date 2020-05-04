@@ -119,8 +119,8 @@ MonoBehaviour:
   biome2ColorPrimary: {r: 0.46323532, g: 0.20436853, b: 0.20436853, a: 1}
   biome2ColorSecondary: {r: 0.44117647, g: 0.40314403, b: 0.27897924, a: 1}
   biomeBlend: 0.01
-  biomeOffset: 0
-  biomeDetailScale: 200
+  biomeOffset: -1.17
+  biomeDetailScale: 250
   usePerlinNoise: 0
   dbg_biome1: 0
   dbg_biome2: 0

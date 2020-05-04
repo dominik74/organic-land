@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryColor: {r: 0.30882353, g: 0.2343426, b: 0.17711937, a: 1}
   secondaryColor: {r: 0.41176468, g: 0.32824242, b: 0.10899654, a: 1}
-  height: 0.5
+  height: 0.65
   offset: 0
   objects:
   - {fileID: 11400000, guid: 3567667571ec1bb4094954759a4023e7, type: 2}
