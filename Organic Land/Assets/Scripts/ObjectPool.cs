@@ -31,6 +31,10 @@ public class ObjectPool : MonoBehaviour {
 
 		Debug.Log("INSTANTIATED OBJECTS: " + objCount);
 		Debug.Log("INSTANTIATED TILES: " + tileIntCount);
+
+		// Update debug screen info
+		DebugScreen.objAllocateCount = objCount;
+		DebugScreen.chunkAllocateCount = tileIntCount;
 	}
 
 	public static GameObject GetObject(string objName)

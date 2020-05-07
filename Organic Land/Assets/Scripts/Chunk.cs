@@ -18,6 +18,8 @@ public class Chunk : MonoBehaviour {
 
 	public bool usePerlinNoise = true;
 
+	[HideInInspector] public string currentBiomeName;
+
 	public bool dbg_biome1;
 	public bool dbg_biome2;
 
@@ -57,6 +59,7 @@ public class Chunk : MonoBehaviour {
 			GenerateObjects(v);
 		}
 
+		currentBiomeName = currentBiome.name;
 		mesh.colors = colors;
 	}
 
@@ -152,6 +155,7 @@ public class Chunk : MonoBehaviour {
 			obj.SetActive(true);
 
 			myObjects.Add(obj);
+			InfiniteGenerator.objectsInUse++;
 
 			//InitializeObject(obj, TerrainGenerator.instance.GetRandomObjectData());
 		}
@@ -177,7 +181,10 @@ public class Chunk : MonoBehaviour {
 		for (int i = 0; i < myObjects.Count; i++)
 		{
 			if (myObjects[i] != null)
+			{
 				myObjects[i].SetActive(false);
+				InfiniteGenerator.objectsInUse--;
+			}
 		}
 
 		myObjects.Clear();

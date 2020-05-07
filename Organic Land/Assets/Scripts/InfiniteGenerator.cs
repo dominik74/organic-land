@@ -12,6 +12,9 @@ public class InfiniteGenerator : MonoBehaviour {
 	public bool overrideSettings = true;
 	public GameObject player;
 
+	public static int objectsInUse;
+	public static int tilesInUse;
+
 	private Vector3 startPos;
 	private Hashtable tiles = new Hashtable();
 
@@ -63,6 +66,7 @@ public class InfiniteGenerator : MonoBehaviour {
 	{
 		startPos = new Vector3(0, 0, 0);
 		float updateTime = Time.realtimeSinceStartup;
+		tilesInUse = 0;
 
 		for (int x = -halfTileAmountX; x < halfTileAmountX; x++)
 		{
@@ -85,6 +89,7 @@ public class InfiniteGenerator : MonoBehaviour {
 				t.name = tileName;
 				Tile tile = new Tile(t, updateTime);
 				tiles.Add(tileName, tile);
+				tilesInUse++;
 			}
 		}
 
@@ -138,6 +143,7 @@ public class InfiniteGenerator : MonoBehaviour {
 							t.GetComponent<Chunk>().Generate();
 							Tile tile = new Tile(t, updateTime);
 							tiles.Add(tileName, tile);
+							tilesInUse++;
 							yield return null;
 						}
 						else
@@ -153,6 +159,7 @@ public class InfiniteGenerator : MonoBehaviour {
 					if (tls.creationTime != updateTime)
 					{
 						tls.theTile.SetActive(false);
+						tilesInUse--;
 					}
 					else
 					{
