@@ -2760,7 +2760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5081ea6f90d20a4fa532159b86219ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 60
+  movementSpeed: 15
   stopPointMinimumDistance: 0.65
 --- !u!54 &418703709
 Rigidbody:
