@@ -29,6 +29,9 @@ public class CameraController : MonoBehaviour {
         minOffset = cameraFollow.offset;
         minRotation = transform.eulerAngles.x;
         rotationMultiplier = 1;
+
+        // Set default camera offset
+        currentScroll = 0.5f;
     }
 
     private void Update()
@@ -41,16 +44,7 @@ public class CameraController : MonoBehaviour {
         else if (Input.GetKeyDown(KeyCode.E))
             SetRotation(1);
 
-        float scrollData = Input.GetAxis("Mouse ScrollWheel");
-
-        currentScroll -= scrollData;
-        currentScroll = Mathf.Clamp01(currentScroll);
-
-        currentYrot -= scrollData;
-        currentYrot = Mathf.Clamp01(currentYrot);
-
-        cameraFollow.offset = Vector3.Lerp(minOffset, maxOffset, currentScroll);
-        transform.eulerAngles = Vector3.Lerp(new Vector3(minRotation, transform.eulerAngles.y, transform.eulerAngles.z), new Vector3(maxRotation, transform.eulerAngles.y, transform.eulerAngles.z), currentScroll);
+        UpdateZoom();
 
         rotationMultiplier -= yRotSpeed * Time.deltaTime;
         if (rotationMultiplier <= 0)
@@ -61,6 +55,21 @@ public class CameraController : MonoBehaviour {
             distanceRotated += yRotSpeed * Time.deltaTime;
         }
 
+    }
+
+    void UpdateZoom()
+    {
+        float scrollData = Input.GetAxis("Mouse ScrollWheel");
+
+        currentScroll -= scrollData;
+        currentScroll = Mathf.Clamp01(currentScroll);
+
+        currentYrot -= scrollData;
+        currentYrot = Mathf.Clamp01(currentYrot);
+
+        cameraFollow.offset = Vector3.Lerp(minOffset, maxOffset, currentScroll);
+        transform.eulerAngles = Vector3.Lerp(new Vector3(minRotation, transform.eulerAngles.y, transform.eulerAngles.z), 
+            new Vector3(maxRotation, transform.eulerAngles.y, transform.eulerAngles.z), currentScroll);
     }
 
     void SetRotation(int amount)
