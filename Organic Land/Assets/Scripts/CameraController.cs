@@ -39,22 +39,25 @@ public class CameraController : MonoBehaviour {
         if (Time.timeScale == 0)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-            SetRotation(-1);
-        else if (Input.GetKeyDown(KeyCode.E))
-            SetRotation(1);
-
-        UpdateZoom();
-
-        rotationMultiplier -= yRotSpeed * Time.deltaTime;
-        if (rotationMultiplier <= 0)
-            rotationMultiplier = 0;
-        if(distanceRotated < 45)
+        if(!Settings.smoothRotation)
         {
-            Rotate(rotationDir * yRotSpeed * Time.deltaTime);
-            distanceRotated += yRotSpeed * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Q))
+                SetRotation(-1);
+            else if (Input.GetKeyDown(KeyCode.E))
+                SetRotation(1);
+
+            UpdateRotation();
+        }
+        else
+        {
+            if (Input.GetKey(KeyCode.Q))
+                SetRotation(-1);
+            else if (Input.GetKey(KeyCode.E))
+                SetRotation(1);
         }
 
+        UpdateZoom();
+            
     }
 
     void UpdateZoom()
@@ -72,8 +75,26 @@ public class CameraController : MonoBehaviour {
             new Vector3(maxRotation, transform.eulerAngles.y, transform.eulerAngles.z), currentScroll);
     }
 
+    void UpdateRotation()
+    {
+        rotationMultiplier -= yRotSpeed * Time.deltaTime;
+        if (rotationMultiplier <= 0)
+            rotationMultiplier = 0;
+        if (distanceRotated < 45)
+        {
+            Rotate(rotationDir * yRotSpeed * Time.deltaTime);
+            distanceRotated += yRotSpeed * Time.deltaTime;
+        }
+    }
+
     void SetRotation(int amount)
     {
+        if(Settings.smoothRotation)
+        {
+            Rotate(amount * yRotSpeed * Time.deltaTime);
+            return;
+        }
+
         rotationMultiplier = 1;
         rotationDir = amount;
 

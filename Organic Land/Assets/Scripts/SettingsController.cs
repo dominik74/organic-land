@@ -17,4 +17,9 @@ public class SettingsController : MonoBehaviour {
 		PlayerManager.instance.player.GetComponent<PlayerMovement>().movementSpeed = value * 10;
 	}
 
+	public void SetSmoothRotation(Toggle toggle)
+	{
+		Settings.smoothRotation = toggle.isOn;
+	}
+
 }
