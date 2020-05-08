@@ -15,8 +15,11 @@ MonoBehaviour:
   id: campfire
   isTool: 0
   toolType: 0
+  durability: 50
   isFood: 0
-  craftable: 1
+  smeltable: 0
+  isBuildable: 0
+  craftable: 0
   materials:
   - id: log
     count: 4
