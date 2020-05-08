@@ -25,8 +25,7 @@ public class Selector : MonoBehaviour {
     }
 
     public void Select()
-    {
-        Debug.Log("Selected");
+    {       
         spriteRenderer.color = darkerColor;
 
         HUDController.instance.DisplayObjectLabel(transform.parent.name);

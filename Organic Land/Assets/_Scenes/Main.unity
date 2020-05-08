@@ -3350,6 +3350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 418703707}
+  spawnLocation: {x: 683, y: 1, z: 727}
 --- !u!114 &470053618
 MonoBehaviour:
   m_ObjectHideFlags: 0

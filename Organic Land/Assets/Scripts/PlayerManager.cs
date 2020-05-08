@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour {
 
     public GameObject player;
+    public Vector3 spawnLocation;
+
     public static GameObject playerUnit;
 
     public static PlayerManager instance;
@@ -12,8 +14,13 @@ public class PlayerManager : MonoBehaviour {
     {
         instance = this;
         playerUnit = player;
+
+        InitializePlayerPosition();
     }
 
-
+    private void InitializePlayerPosition()
+    {
+        playerUnit.transform.position = spawnLocation;
+    }
 
 }

@@ -39,7 +39,7 @@ public class InfiniteGenerator : MonoBehaviour {
 	void Start()
 	{
 		UpdateSettings();
-		Generate();	
+		Generate();
 	}
 
 	public void Regenerate()
@@ -64,7 +64,10 @@ public class InfiniteGenerator : MonoBehaviour {
 
 	void Generate()
 	{
-		startPos = new Vector3(0, 0, 0);
+		Debug.Log("Generating started...");
+		int playerX = (int)(Mathf.Floor(player.transform.position.x / tileSize) * tileSize);
+		int playerZ = (int)(Mathf.Floor(player.transform.position.z / tileSize) * tileSize);
+		
 		float updateTime = Time.realtimeSinceStartup;
 		tilesInUse = 0;
 
@@ -72,7 +75,7 @@ public class InfiniteGenerator : MonoBehaviour {
 		{
 			for (int z = -halfTileAmountZ; z < halfTileAmountZ; z++)
 			{
-				Vector3 pos = new Vector3((x * tileSize + startPos.x), 0, (z * tileSize + startPos.z));
+				Vector3 pos = new Vector3((x * tileSize + playerX), 0, (z * tileSize + playerZ));
 
 				if (clampDistance > 0)
 				{
@@ -83,10 +86,12 @@ public class InfiniteGenerator : MonoBehaviour {
 				GameObject t = ObjectPool.GetTile();
 				string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
 
-				t.SetActive(true);
-				t.GetComponent<Chunk>().Generate();
-				t.transform.position = pos;
 				t.name = tileName;
+				t.transform.position = pos;
+				t.SetActive(true);
+				
+				t.GetComponent<Chunk>().Generate();
+				
 				Tile tile = new Tile(t, updateTime);
 				tiles.Add(tileName, tile);
 				tilesInUse++;
@@ -138,9 +143,10 @@ public class InfiniteGenerator : MonoBehaviour {
 							GameObject t = ObjectPool.GetTile();
 							t.name = tileName;
 							t.transform.position = pos;
-
 							t.SetActive(true);
+							
 							t.GetComponent<Chunk>().Generate();
+							
 							Tile tile = new Tile(t, updateTime);
 							tiles.Add(tileName, tile);
 							tilesInUse++;
