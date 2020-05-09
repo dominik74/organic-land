@@ -19,7 +19,7 @@ public class ChunkDetector : MonoBehaviour {
 			RaycastHit hit;
 			if(Physics.Raycast(transform.position, Vector3.down, out hit))
 			{
-				if(hit.transform.gameObject.CompareTag("Chunk"))
+				if(hit.transform.gameObject.CompareTag("Ground"))
 				{
 					Chunk chunk = hit.transform.gameObject.GetComponent<Chunk>();
 
