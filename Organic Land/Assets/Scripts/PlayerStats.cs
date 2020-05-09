@@ -71,7 +71,18 @@ public class PlayerStats : MonoBehaviour {
                     currentThirst = maxThirst;
                 break;
         }
+        EventManager.StatsUpdated();
+    }
 
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Die();
+        }
+        EventManager.StatsUpdated();
     }
 
     void ResetStats()
