@@ -12,25 +12,9 @@ public class PlayerStats : MonoBehaviour {
     public float hungerDropRate = 0.25f;
     public float healthDropRate = 0.75f;
 
-    private float currentHealth;
-    private float currentHunger;
-    private float currentThirst;
-
     private bool starving;
 
-    public class PlayerStatsContainer
-    {
-        public float health;
-        public float hunger;
-        public float thirst;
-
-        public PlayerStatsContainer(float health, float hunger, float thirst)
-        {
-            this.health = health;
-            this.hunger = hunger;
-            this.thirst = thirst;
-        }
-    }
+    private PlayerStatsContainer stats;
 
     public static PlayerStats instance;
     private void Awake()
@@ -47,7 +31,7 @@ public class PlayerStats : MonoBehaviour {
 
     public PlayerStatsContainer GetCurrentStats()
     {
-        return new PlayerStatsContainer(currentHealth, currentHunger, currentThirst);
+        return stats;
     }
 
     public void Add(string statName, float amount)
@@ -55,20 +39,20 @@ public class PlayerStats : MonoBehaviour {
         switch (statName)
         {
             case "health":
-                currentHealth += amount;
-                if (currentHealth > maxHealth)
-                    currentHealth = maxHealth;
+                stats.health += amount;
+                if (stats.health > maxHealth)
+                    stats.health = maxHealth;
                 break;
             case "hunger":
-                currentHunger += amount;
-                if (currentHunger > maxHunger)
-                    currentHunger = maxHunger;
+                stats.hunger += amount;
+                if (stats.hunger > maxHunger)
+                    stats.hunger = maxHunger;
                 starving = false;
                 break;
             case "thirst":
-                currentThirst += amount;
-                if (currentThirst > maxThirst)
-                    currentThirst = maxThirst;
+                stats.thirst += amount;
+                if (stats.thirst > maxThirst)
+                    stats.thirst = maxThirst;
                 break;
         }
         EventManager.StatsUpdated();
@@ -76,10 +60,10 @@ public class PlayerStats : MonoBehaviour {
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
-        if (currentHealth <= 0)
+        stats.health -= amount;
+        if (stats.health <= 0)
         {
-            currentHealth = 0;
+            stats.health = 0;
             Die();
         }
         EventManager.StatsUpdated();
@@ -87,9 +71,7 @@ public class PlayerStats : MonoBehaviour {
 
     void ResetStats()
     {
-        currentHealth = maxHealth;
-        currentHunger = maxHunger;
-        currentThirst = maxThirst;
+        stats = new PlayerStatsContainer(maxHealth, maxHunger, maxThirst);
     }
 
     void Die()
@@ -101,17 +83,16 @@ public class PlayerStats : MonoBehaviour {
     {
         while (true)
         {
-            if(currentHunger > 0)
+            if(stats.hunger > 0)
             {
-                currentHunger--;
-
+                stats.hunger--;
                 EventManager.StatsUpdated();
             }
             else
             {
                 if(!starving)
                 {
-                    currentHunger = 0;
+                    stats.hunger = 0;
                     StopCoroutine("DamageTimer");
                     StartCoroutine("DamageTimer");
                     starving = true;
@@ -123,12 +104,12 @@ public class PlayerStats : MonoBehaviour {
 
     IEnumerator DamageTimer()
     {
-        while (currentHunger <= 0)
+        while (stats.hunger <= 0)
         {
-            currentHealth--;
-            if (currentHealth <= 0)
+            stats.health--;
+            if (stats.health <= 0)
             {
-                currentHealth = 0;
+                stats.health = 0;
                 Die();
                 yield break;
             }
@@ -137,4 +118,18 @@ public class PlayerStats : MonoBehaviour {
         }
     }
 
+}
+
+public class PlayerStatsContainer
+{
+    public float health;
+    public float hunger;
+    public float thirst;
+
+    public PlayerStatsContainer(float health, float hunger, float thirst)
+    {
+        this.health = health;
+        this.hunger = hunger;
+        this.thirst = thirst;
+    }
 }
