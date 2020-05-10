@@ -39,7 +39,7 @@ public class InfiniteGenerator : MonoBehaviour {
 	void Start()
 	{
 		UpdateSettings();
-		Generate();
+		StartCoroutine("Generate");
 	}
 
 	public void Regenerate()
@@ -47,7 +47,7 @@ public class InfiniteGenerator : MonoBehaviour {
 		StopAllCoroutines();
 		ClearTiles();
 		UpdateSettings();
-		Generate();
+		StartCoroutine("Generate");
 	}
 
 	public void UpdateSettings()
@@ -62,45 +62,6 @@ public class InfiniteGenerator : MonoBehaviour {
 		clampDistance = halfTileAmount * tileSize;
 	}
 
-	void Generate()
-	{
-		Debug.Log("Generating started...");
-		int playerX = (int)(Mathf.Floor(player.transform.position.x / tileSize) * tileSize);
-		int playerZ = (int)(Mathf.Floor(player.transform.position.z / tileSize) * tileSize);
-		
-		float updateTime = Time.realtimeSinceStartup;
-		tilesInUse = 0;
-
-		for (int x = -halfTileAmountX; x < halfTileAmountX; x++)
-		{
-			for (int z = -halfTileAmountZ; z < halfTileAmountZ; z++)
-			{
-				Vector3 pos = new Vector3((x * tileSize + playerX), 0, (z * tileSize + playerZ));
-
-				if (clampDistance > 0)
-				{
-					if ((player.transform.position - pos).sqrMagnitude > clampDistance * clampDistance)
-						continue;
-				}
-
-				GameObject t = ObjectPool.GetTile();
-				string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
-
-				t.name = tileName;
-				t.transform.position = pos;
-				t.SetActive(true);
-				
-				t.GetComponent<Chunk>().Generate();
-				
-				Tile tile = new Tile(t, updateTime);
-				tiles.Add(tileName, tile);
-				tilesInUse++;
-			}
-		}
-
-		StartCoroutine("UpdateTerrain");
-	}
-
 	void ClearTiles()
 	{
 		foreach (Tile item in tiles.Values)
@@ -108,6 +69,57 @@ public class InfiniteGenerator : MonoBehaviour {
 			item.theTile.SetActive(false);
 		}
 		tiles.Clear();
+	}
+
+	IEnumerator Generate()
+	{
+		Debug.Log("Generating started...");
+		int playerX = (int)(Mathf.Floor(player.transform.position.x / tileSize) * tileSize);
+		int playerZ = (int)(Mathf.Floor(player.transform.position.z / tileSize) * tileSize);
+
+		float updateTime = Time.realtimeSinceStartup;
+		int currentClamp = tileSize;
+		tilesInUse = 0;
+
+		while (currentClamp <= clampDistance)
+		{
+			for (int x = -halfTileAmountX; x < halfTileAmountX; x++)
+			{
+				for (int z = -halfTileAmountZ; z < halfTileAmountZ; z++)
+				{
+					Vector3 pos = new Vector3((x * tileSize + playerX), 0, (z * tileSize + playerZ));
+
+					if ((player.transform.position - pos).sqrMagnitude > currentClamp * currentClamp)
+						continue;
+
+					string tileName = "Tile_" + ((int)(pos.x)).ToString() + "_" + ((int)(pos.z)).ToString();
+
+					if (!tiles.ContainsKey(tileName))
+					{
+						GameObject t = ObjectPool.GetTile();
+						t.name = tileName;
+						t.transform.position = pos;
+						t.SetActive(true);
+
+						t.GetComponent<Chunk>().Generate();
+
+						Tile tile = new Tile(t, updateTime);
+						tiles.Add(tileName, tile);
+						tilesInUse++;
+						if(z % 2 == 0)
+							yield return null;
+					}
+					else
+					{
+						(tiles[tileName] as Tile).creationTime = updateTime;
+					}
+				}
+			}
+
+			currentClamp += tileSize;
+		}	
+
+		yield return StartCoroutine("UpdateTerrain");
 	}
 
 	IEnumerator UpdateTerrain()
