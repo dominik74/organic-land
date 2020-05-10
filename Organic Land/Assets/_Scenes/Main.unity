@@ -2731,7 +2731,7 @@ MonoBehaviour:
   maxHealth: 100
   maxHunger: 150
   maxThirst: 125
-  hungerDropRate: 2.75
+  hungerDropRate: 3.5
   healthDropRate: 0.75
 --- !u!114 &418703713
 MonoBehaviour:
