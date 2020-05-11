@@ -13,8 +13,6 @@ public class InventoryScreen : MonoBehaviour {
     public GameObject tooltipDialog;
     public Vector2 tooltipOffset;
 
-    [HideInInspector] public bool inventoryOpened;
-
     private Transform[] hotbarSlots;
     private Transform[] invHotbarSlots;
     private Transform[] invSlots;
@@ -37,7 +35,6 @@ public class InventoryScreen : MonoBehaviour {
         slotSelector.gameObject.SetActive(false);
         tooltipDialog.SetActive(false);
         initialized = true;
-        inventoryOpened = true;
     }
 
     private void Update()

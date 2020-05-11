@@ -1986,6 +1986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryPanel: {fileID: 381923318}
   craftItemWindow: {fileID: 766780627}
+  sideHint: {fileID: 1080396089}
 --- !u!1 &346140832
 GameObject:
   m_ObjectHideFlags: 0
@@ -9074,7 +9075,6 @@ GameObject:
   - component: {fileID: 1080396090}
   - component: {fileID: 1080396092}
   - component: {fileID: 1080396091}
-  - component: {fileID: 1080396093}
   m_Layer: 5
   m_Name: txtSideHint
   m_TagString: Untagged
@@ -9139,17 +9139,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1080396089}
---- !u!114 &1080396093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1080396089}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 252106eb8f60bf947828b0d45d2c8c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1081087779
 GameObject:
   m_ObjectHideFlags: 0
