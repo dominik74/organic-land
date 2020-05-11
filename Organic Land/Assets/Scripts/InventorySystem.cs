@@ -77,6 +77,8 @@ public class InventorySystem : MonoBehaviour {
         if (selectedSlot.childCount != 0)
             Destroy(selectedSlot.GetChild(0).gameObject);
 
+        InventoryScreen.instance.UpdateInvHotbar();
+
         selectedItemTooltipText.text = "";
         Debug.Log("> Removed item");
     }

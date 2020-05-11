@@ -169,10 +169,20 @@ public class InventoryScreen : MonoBehaviour {
         SyncHotbar();
     }
 
+    /// <summary>
+    /// Main hotbar update method. Executes after 1 frame.
+    /// </summary>
     public void UpdateHotbar()
     {
-        Debug.Log("<color=yellow>TISSS</color>");
         UpdateAfterDelay.ExecuteAfterFrame(SyncHotbar);
+    }
+
+    /// <summary>
+    /// Main inventory hotbar update method. Executes after 1 frame.
+    /// </summary>
+    public void UpdateInvHotbar()
+    {
+        UpdateAfterDelay.ExecuteAfterFrame(SyncInventoryHotbar);
     }
 
     void CacheSlots()
