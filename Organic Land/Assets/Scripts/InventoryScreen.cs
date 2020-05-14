@@ -63,6 +63,7 @@ public class InventoryScreen : MonoBehaviour {
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 QuickSort(targetSlot.GetChild(0));
+				UpdateAfterDelay.ExecuteAfterFrame(InventorySystem.instance.UpdateItemTooltip);
             }
             else
             {
@@ -92,7 +93,7 @@ public class InventoryScreen : MonoBehaviour {
             selectedItem.SetParent(transform);
             selectedItem.transform.localScale = new Vector3(1.55f, 1.55f, 1);
 
-            InventorySystem.instance.UpdateItemTooltip();
+            UpdateAfterDelay.ExecuteAfterFrame(InventorySystem.instance.UpdateItemTooltip);
         }
     }
 
@@ -103,7 +104,7 @@ public class InventoryScreen : MonoBehaviour {
         selectedItem.transform.localPosition = new Vector3(0, 0, 0);
         selectedItem = null;
 
-        InventorySystem.instance.UpdateItemTooltip();
+        UpdateAfterDelay.ExecuteAfterFrame(InventorySystem.instance.UpdateItemTooltip);
     }
 
     public void SelectSlot(Transform target)
