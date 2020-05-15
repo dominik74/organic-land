@@ -173,6 +173,7 @@ public class InventoryScreen : MonoBehaviour {
     public void UpdateHotbar()
     {
         UpdateAfterDelay.ExecuteAfterFrame(SyncHotbar);
+		Debug.Log("Updating hotbar...");
     }
 
     /// <summary>
