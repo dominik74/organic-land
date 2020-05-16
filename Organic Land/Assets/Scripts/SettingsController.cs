@@ -21,5 +21,10 @@ public class SettingsController : MonoBehaviour {
 	{
 		Settings.smoothRotation = toggle.isOn;
 	}
+	
+	public void SetFullscreen(Toggle toggle)
+	{
+		Screen.fullScreen = toggle.isOn;
+	}
 
 }
