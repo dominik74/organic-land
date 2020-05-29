@@ -112,7 +112,8 @@ public class BuildingSystem : MonoBehaviour {
 
         if (data.usesGUI)
         {
-            obj.transform.gameObject.AddComponent<GUITrigger>().guiName = data.scriptName;
+            obj.transform.gameObject.AddComponent<GUITrigger>().guiName = data.guiName;
+            obj.transform.gameObject.GetComponent<GUITrigger>().invLayout = data.invLayout;
             //AddComponentAsString(data.scriptName, obj.transform.GetChild(0).gameObject);
         }
 

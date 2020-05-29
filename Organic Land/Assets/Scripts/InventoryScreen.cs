@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum InventoryLayout
+{
+    inventory,
+    crafting,
+    storage
+}
+
 public class InventoryScreen : MonoBehaviour {
 
     public Transform hotbarParent;
     public Transform invHotbarParent;
     public Transform invSlotsParent;
+
+    [Space]
+    public Transform inventoryView;
+    public Transform craftingView;
+    public Transform storageView;
 
     public Transform slotSelector;
     [Space]
@@ -21,6 +33,35 @@ public class InventoryScreen : MonoBehaviour {
 
     private Transform selectedItem;
     private Transform selectedSlot;
+
+    public InventoryLayout invLayout;
+
+    public InventoryLayout InvLayout
+    {
+        get { return invLayout; }
+        set
+        {
+            invLayout = value;
+
+            switch (invLayout)
+            {
+                case InventoryLayout.inventory:
+                    inventoryView.SetAsLastSibling();
+                    break;
+                case InventoryLayout.crafting:
+                    craftingView.SetAsLastSibling();
+                    break;
+                case InventoryLayout.storage:
+                    storageView.gameObject.SetActive(true);
+                    ChangeLayout(false);
+                    return;
+                default:
+                    break;
+            }
+            storageView.gameObject.SetActive(false);
+            ChangeLayout(true);
+        }
+    }
 
     public static InventoryScreen instance;
     private void Awake()
@@ -49,6 +90,7 @@ public class InventoryScreen : MonoBehaviour {
     public void OnActivate()
     {
         SyncInventoryHotbar();
+        InvLayout = InventoryLayout.inventory;
     }
 
     public void ProcessSlot(Transform targetSlot)
@@ -330,6 +372,24 @@ public class InventoryScreen : MonoBehaviour {
     void ScaleItem(Transform itemToScale, float amount)
     {
         itemToScale.localScale = new Vector3(amount, amount, 1);
+    }
+
+    void ChangeLayout(bool @default)
+    {
+        RectTransform windowGroupRect = inventoryView.parent.parent.GetComponent<RectTransform>();
+
+        if (@default)
+        {
+            windowGroupRect.anchorMin = new Vector2(0.5f, 0.5f);
+            windowGroupRect.anchorMax = new Vector2(0.5f, 0.5f);
+            windowGroupRect.pivot = new Vector2(0.5f, 0.5f);
+        }
+        else
+        {
+            windowGroupRect.anchorMin = new Vector2(0.5f, 0);
+            windowGroupRect.anchorMax = new Vector2(0.5f, 0);
+            windowGroupRect.pivot = new Vector2(0.5f, 0);
+        }
     }
 
 }

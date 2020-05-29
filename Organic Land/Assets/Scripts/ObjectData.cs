@@ -12,7 +12,8 @@ public class ObjectData : ScriptableObject {
 
     [Space]
     public bool usesGUI;
-    public string scriptName;
+    public string guiName;
+    public InventoryLayout invLayout;
 
     [Space]
     public CollectBehavior collectBehavior;
