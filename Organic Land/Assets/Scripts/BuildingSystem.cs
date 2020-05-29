@@ -117,6 +117,9 @@ public class BuildingSystem : MonoBehaviour {
             //AddComponentAsString(data.scriptName, obj.transform.GetChild(0).gameObject);
         }
 
+        if (data.includeStorage)
+            obj.AddComponent<Storage>();
+
         obj.name = data.name;
         obj.transform.position = pos;
     }

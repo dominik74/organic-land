@@ -18,6 +18,7 @@ MonoBehaviour:
   usesGUI: 1
   guiName: pnlInventory
   invLayout: 2
+  includeStorage: 1
   collectBehavior: 0
   collectTool: 0
   lootTable:

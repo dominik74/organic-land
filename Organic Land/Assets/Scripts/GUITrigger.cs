@@ -14,6 +14,13 @@ public class GUITrigger : MonoBehaviour, IObjectController {
         if(guiName == "pnlInventory")
             InventoryScreen.instance.InvLayout = invLayout;
 
+        Storage storage = GetComponent<Storage>();
+        if (storage != null)
+        {
+            storage.Open();
+            storage.LoadStorage();
+        }
+
         Debug.Log("Opening GUI...");
     }
 }

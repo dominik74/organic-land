@@ -146,6 +146,12 @@ public class UIController : MonoBehaviour {
                 SetScreen("pnlInventory", false);
             else if (activeScreen.name == "pnlFurnace")
                 SetScreen("pnlFurnace", false);
+
+            if (Storage.current != null)
+            {
+                Storage.current.SaveStorage();
+                Storage.current = null;
+            }
         }
 
     }
