@@ -319,10 +319,20 @@ public class InventoryScreen : MonoBehaviour {
 
     void QuickSort(Transform targetItem)
     {
-        if (targetItem.parent.parent.name == invHotbarParent.name)
-            SortInventory(targetItem);
+        if (InvLayout == InventoryLayout.storage)
+        {
+            if (targetItem.parent.parent.name == invHotbarParent.name || targetItem.parent.parent.name == invSlotsParent.name)
+                SortStorage(targetItem);
+            else
+                SortHotbar(targetItem);
+        }
         else
-            SortHotbar(targetItem);
+        {
+            if (targetItem.parent.parent.name == invHotbarParent.name)
+                SortInventory(targetItem);
+            else
+                SortHotbar(targetItem);
+        }
     }
 
     void SortInventory(Transform itemToSort)
@@ -347,6 +357,22 @@ public class InventoryScreen : MonoBehaviour {
             if (invHotbarSlots[i].childCount == 0)
             {
                 itemToSort.SetParent(invHotbarSlots[i]);
+                itemToSort.localPosition = new Vector3(0, 0, 0);
+                EventManager.ItemAdded();
+                return;
+            }
+        }
+        SortInventory(itemToSort);
+    }
+
+    void SortStorage(Transform itemToSort)
+    {
+        Transform storageSlotsParent = storageView.GetChild(2);
+        for (int i = 0; i < storageSlotsParent.childCount; i++)
+        {
+            if (storageSlotsParent.GetChild(i).childCount == 0)
+            {
+                itemToSort.SetParent(storageSlotsParent.GetChild(i));
                 itemToSort.localPosition = new Vector3(0, 0, 0);
                 EventManager.ItemAdded();
                 return;
