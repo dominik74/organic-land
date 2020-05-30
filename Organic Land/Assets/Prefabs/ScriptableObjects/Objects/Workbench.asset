@@ -15,7 +15,11 @@ MonoBehaviour:
   id: workbench
   spawnChance: 0
   color: {r: 1, g: 1, b: 1, a: 1}
+  usesGUI: 1
+  guiName: pnlInventory
+  invLayout: 1
+  includeStorage: 0
   collectBehavior: 0
   collectTool: 0
-  lootDrop: 
-  lootCount: 1
+  lootTable:
+    materials: []
