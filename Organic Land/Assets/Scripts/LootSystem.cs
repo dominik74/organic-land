@@ -6,6 +6,8 @@ public class LootSystem : MonoBehaviour {
 
     public GameObject objectTemplate;
 
+    public LootTable storageLootTable;
+
     public static LootSystem instance;
     private void Awake()
     {
@@ -44,6 +46,17 @@ public class LootSystem : MonoBehaviour {
             for (int y = 0; y < lootTable.materials[i].count; y++)
             {
                 DropItem(lootTable.materials[i].name, targetPos);
+            }
+        }
+    }
+
+    public void FillStorageWithLootTable(Storage storage)
+    {
+        for (int i = 0; i < storageLootTable.materials.Length; i++)
+        {
+            for (int y = 0; y < storageLootTable.materials[i].count; y++)
+            {
+                storage.AddItem(storageLootTable.materials[i].name, Random.Range(0, 21));
             }
         }
     }
