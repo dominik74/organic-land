@@ -4110,12 +4110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectTemplate: {fileID: 1902158370817034, guid: 0833b3824375d02498a000d02e149fa9,
     type: 2}
-  storageLootTable:
-    materials:
-    - name: stick
-      count: 4
-    - name: rock
-      count: 2
 --- !u!4 &505748885
 Transform:
   m_ObjectHideFlags: 0

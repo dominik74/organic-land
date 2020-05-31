@@ -6,21 +6,6 @@ public class Storage : MonoBehaviour {
 
 	public static Storage current;
 
-	private bool generateLootTable;
-	public bool GenerateLootTable 
-	{ 
-		get { return generateLootTable; }
-		set
-		{
-			generateLootTable = value;
-
-			if (value)
-			{
-				LootSystem.instance.FillStorageWithLootTable(this);
-			}
-		}
-	}
-
 	private List<StoredItem> storedItems = new List<StoredItem>();
 	private Transform storageSlotsParent;
 
@@ -32,12 +17,6 @@ public class Storage : MonoBehaviour {
 	public void Open()
 	{
 		current = this;
-	}
-
-	public void AddItem(string itemName, int index)
-	{
-		if (storageSlotsParent.GetChild(index).childCount == 0)
-			storedItems.Add(new StoredItem(itemName, index));
 	}
 
 	public void SaveStorage()
