@@ -18,6 +18,8 @@ public class Chunk : MonoBehaviour {
 
 	public bool usePerlinNoise = true;
 
+	public GameObject structure;
+
 	[HideInInspector] public string currentBiomeName;
 
 	public bool dbg_biome1;
@@ -147,6 +149,13 @@ public class Chunk : MonoBehaviour {
 
 	void SpawnObject(Vector3 pos)
 	{
+		//if(Random.Range(0, 140) == 1)
+		//{
+		//	GameObject s = Instantiate(structure);
+		//	s.transform.localPosition = pos;
+		//	return;
+		//}	
+
 		GameObject obj = ObjectPool.GetObject(TerrainGenerator.instance.GetBiomeRandomObjectData(currentBiome).name);
 		if (obj != null)
 		{
