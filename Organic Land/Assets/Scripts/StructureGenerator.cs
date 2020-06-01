@@ -4,17 +4,32 @@ using UnityEngine;
 
 public class StructureGenerator : MonoBehaviour {
 
+	private List<GameObject> objects = new List<GameObject>();
+
 	void Start()
 	{
 		for (int i = 0; i < transform.childCount; i++)
 		{
-			GameObject obj = TerrainGenerator.instance.objectTemplate;
-			ObjectData data = TerrainGenerator.instance.GetObjectDataViaName(transform.GetChild(i).name);
+			string objName = transform.GetChild(i).name;
 
-			InitializeObject(obj, data);
+			if (objName == "Enemy")
+			{
+				MobPool.SpawnEnemy(transform.GetChild(i).position + new Vector3(0, 1, 0));
+			}
+			else
+			{
+				GameObject obj = Instantiate(TerrainGenerator.instance.objectTemplate);
+				ObjectData data = TerrainGenerator.instance.GetObjectDataViaName(objName);
 
-			//obj.transform.SetParent(transform);
+				InitializeObject(obj, data);
+
+				obj.transform.position = transform.GetChild(i).position;
+				objects.Add(obj);
+			}
 		}
+		
+		DeleteAllChildren();
+		ParentNewObjects();	
 	}
 
 	void InitializeObject(GameObject obj, ObjectData data)
@@ -32,7 +47,30 @@ public class StructureGenerator : MonoBehaviour {
 		}
 
 		if (data.includeStorage)
-			obj.AddComponent<Storage>().GenerateLootTable = true;
+		{
+			GUITrigger guiTrigger = obj.AddComponent<GUITrigger>();
+			guiTrigger.guiName = "pnlInventory";
+			guiTrigger.invLayout = InventoryLayout.storage;
+			
+			obj.AddComponent<Storage>().GenerateLootTable();
+		}
+			
+	}
+	
+	void DeleteAllChildren()
+	{
+		for (int i = 0; i < transform.childCount; i++)
+		{
+			Destroy(transform.GetChild(i).gameObject);
+		}
+	}
+	
+	void ParentNewObjects()
+	{
+		for (int i = 0; i < objects.Count; i++)
+		{
+			objects[i].transform.SetParent(transform);
+		}
 	}
 
 }

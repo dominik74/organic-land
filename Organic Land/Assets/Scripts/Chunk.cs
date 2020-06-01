@@ -149,12 +149,17 @@ public class Chunk : MonoBehaviour {
 
 	void SpawnObject(Vector3 pos)
 	{
-		//if(Random.Range(0, 140) == 1)
-		//{
-		//	GameObject s = Instantiate(structure);
-		//	s.transform.localPosition = pos;
-		//	return;
-		//}	
+		if (Settings.generateStructures)
+		{
+			// Generate structure
+			if (Random.Range(0, 150) == 1)
+			{
+				GameObject s = Instantiate(structure);
+				s.transform.position = pos + transform.position;
+				GenerationController.instance.dbg_structureCount++;
+				return;
+			}
+		}
 
 		GameObject obj = ObjectPool.GetObject(TerrainGenerator.instance.GetBiomeRandomObjectData(currentBiome).name);
 		if (obj != null)

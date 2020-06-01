@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 
 public class LootSystem : MonoBehaviour {
@@ -50,15 +51,9 @@ public class LootSystem : MonoBehaviour {
         }
     }
 
-    public void FillStorageWithLootTable(Storage storage)
+    public LootTable GetStorageLootTable()
     {
-        for (int i = 0; i < storageLootTable.materials.Length; i++)
-        {
-            for (int y = 0; y < storageLootTable.materials[i].count; y++)
-            {
-                storage.AddItem(storageLootTable.materials[i].name, Random.Range(0, 21));
-            }
-        }
+        return storageLootTable;
     }
 
 }

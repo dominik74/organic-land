@@ -21,6 +21,11 @@ public class SettingsController : MonoBehaviour {
 	{
 		Settings.smoothRotation = toggle.isOn;
 	}
+
+	public void SetGenerateStructures(Toggle toggle)
+	{
+		Settings.generateStructures = toggle.isOn;
+	}
 	
 	public void SetFullscreen(Toggle toggle)
 	{

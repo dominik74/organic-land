@@ -16,10 +16,7 @@ public class GUITrigger : MonoBehaviour, IObjectController {
 
         Storage storage = GetComponent<Storage>();
         if (storage != null)
-        {
             storage.Open();
-            storage.LoadStorage();
-        }
 
         Debug.Log("Opening GUI...");
     }

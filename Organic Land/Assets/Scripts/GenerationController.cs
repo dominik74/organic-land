@@ -16,6 +16,8 @@ public class GenerationController : MonoBehaviour {
     public bool autoRefreshTerrain;
     [Range(0.25f, 3f)]
     public float terrainRefreshRate = 0.5f;
+	
+	public int dbg_structureCount;
 
     private bool lastRefreshState;
 

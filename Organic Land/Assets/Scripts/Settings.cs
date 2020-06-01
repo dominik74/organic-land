@@ -8,5 +8,6 @@ public class Settings {
 	public static int renderDistance = renderDistanceValues[2];
 
 	public static bool smoothRotation = true;
+	public static bool generateStructures = false;
 
 }

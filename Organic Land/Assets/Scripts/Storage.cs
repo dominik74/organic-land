@@ -6,25 +6,10 @@ public class Storage : MonoBehaviour {
 
 	public static Storage current;
 
-	private bool generateLootTable;
-	public bool GenerateLootTable 
-	{ 
-		get { return generateLootTable; }
-		set
-		{
-			generateLootTable = value;
-
-			if (value)
-			{
-				LootSystem.instance.FillStorageWithLootTable(this);
-			}
-		}
-	}
-
 	private List<StoredItem> storedItems = new List<StoredItem>();
 	private Transform storageSlotsParent;
 
-	void Start()
+	void Awake()
 	{
 		storageSlotsParent = InventoryScreen.instance.storageView.GetChild(2);
 	}
@@ -32,12 +17,28 @@ public class Storage : MonoBehaviour {
 	public void Open()
 	{
 		current = this;
+		LoadStorage();
 	}
 
-	public void AddItem(string itemName, int index)
+	public void GenerateLootTable()
 	{
-		if (storageSlotsParent.GetChild(index).childCount == 0)
-			storedItems.Add(new StoredItem(itemName, index));
+		LootTable lootTable = LootSystem.instance.GetStorageLootTable();
+		List<int> rndIndexes = new List<int>();
+
+		for (int i = 0; i < lootTable.materials.Length; i++)
+		{
+			for (int y = 0; y < lootTable.materials[i].count; y++)
+			{
+				int random = Random.Range(0, 27);
+
+				if(!rndIndexes.Contains(random))
+				{
+					storedItems.Add(new StoredItem(lootTable.materials[i].name, random));
+					rndIndexes.Add(random);
+				}
+			}
+		}
+
 	}
 
 	public void SaveStorage()
@@ -52,7 +53,7 @@ public class Storage : MonoBehaviour {
 		}
 	}
 
-	public void LoadStorage()
+	void LoadStorage()
 	{
 		ClearStorage();
 		for (int i = 0; i < storedItems.Count; i++)
