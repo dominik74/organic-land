@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class HotbarSlot : MonoBehaviour,  IPointerDownHandler
+public class HotbarSlot : MonoBehaviour,  IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -16,4 +16,13 @@ public class HotbarSlot : MonoBehaviour,  IPointerDownHandler
         }
     }
 
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        InventorySystem.instance.HighlightSlot(transform, true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        InventorySystem.instance.HighlightSlot(null, false);
+    }
 }

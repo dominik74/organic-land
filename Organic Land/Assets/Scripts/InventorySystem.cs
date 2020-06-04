@@ -8,6 +8,7 @@ public class InventorySystem : MonoBehaviour {
     public GameObject itemTeplate;
     public Transform slotsParent;
     public Transform slotSelector;
+    public GameObject slotHighlighter;
     public Text selectedItemTooltipText;
     public GameObject objectTemplate;
 
@@ -28,6 +29,7 @@ public class InventorySystem : MonoBehaviour {
     private void Start()
     {
         selectedSlot = slotsParent.GetChild(0);
+        slotHighlighter.SetActive(false);
         Invoke("UpdateSlotSelectorPosition", 0.2f);      
         UpdateItemTooltip();
     }
@@ -190,6 +192,13 @@ public class InventorySystem : MonoBehaviour {
             BuildingSystem.instance.StartBuilding(false);
         }
 
+    }
+
+    public void HighlightSlot(Transform targetSlot, bool enter)
+    {
+        if(targetSlot != null)
+            slotHighlighter.transform.position = targetSlot.position;
+        slotHighlighter.SetActive(enter);
     }
 
     public void DropSelectedItem()
