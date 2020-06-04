@@ -11,10 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351edde0670475848b8f666bbfc06940, type: 3}
   m_Name: Log
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: e8466e361cca19c4da5b35a23a971c43, type: 3}
+  icon: {fileID: 21300000, guid: ca2d8a0fa9cf964428b9f1381219bf4a, type: 3}
   id: log
   isTool: 0
   toolType: 0
+  durability: 50
   isFood: 0
+  smeltable: 0
+  isBuildable: 0
   craftable: 0
   materials: []
