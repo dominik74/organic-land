@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4527125854901966}
   m_Layer: 0
-  m_Name: Birch Tree
+  m_Name: Black Stone Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,7 +66,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4930734057534266}
   m_Layer: 0
-  m_Name: Birch Tree
+  m_Name: Black Stone Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4952374334693372}
   m_Layer: 0
-  m_Name: Birch Tree
+  m_Name: Black Stone Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4815145118333472}
   m_Layer: 0
-  m_Name: Birch Tree
+  m_Name: Black Stone Pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
