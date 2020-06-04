@@ -628,6 +628,7 @@ RectTransform:
   - {fileID: 1704410265}
   - {fileID: 1888904584}
   - {fileID: 617864083}
+  - {fileID: 524805825}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4517,6 +4518,7 @@ GameObject:
   - component: {fileID: 524805827}
   - component: {fileID: 524805826}
   - component: {fileID: 524805828}
+  - component: {fileID: 524805829}
   m_Layer: 5
   m_Name: txtVersion
   m_TagString: Untagged
@@ -4530,11 +4532,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 524805824}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1824290073}
+  m_Father: {fileID: 31626252}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
@@ -4574,7 +4576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: version [current version]
+  m_Text: '[current version]'
 --- !u!222 &524805827
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4592,6 +4594,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4cb8293b96f8d54d8a36929c18b46ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &524805829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 524805824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.45490196, g: 0.45490196, b: 0.45490196, a: 1}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 0
 --- !u!1 &547102077
 GameObject:
   m_ObjectHideFlags: 0
@@ -5331,7 +5347,7 @@ MonoBehaviour:
   m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.24264705, g: 0.24264705, b: 0.24264705, a: 0.596}
+  m_EffectColor: {r: 0.45490196, g: 0.45490196, b: 0.45490196, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 0
 --- !u!1 &631697340
@@ -10546,7 +10562,7 @@ MonoBehaviour:
   m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0.24264705, g: 0.24264705, b: 0.24264705, a: 0.596}
+  m_EffectColor: {r: 0.45490196, g: 0.45490196, b: 0.45490196, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 0
 --- !u!114 &1081828268
@@ -17312,7 +17328,6 @@ RectTransform:
   - {fileID: 1347420310}
   - {fileID: 370571261}
   - {fileID: 483604145}
-  - {fileID: 524805825}
   m_Father: {fileID: 1704410265}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

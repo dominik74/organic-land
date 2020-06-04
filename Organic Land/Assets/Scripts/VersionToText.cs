@@ -8,7 +8,7 @@ public class VersionToText : MonoBehaviour {
 
     private void Start()
     {
-        GetComponent<Text>().text = string.Format("version {0}", Application.version);
+        GetComponent<Text>().text = Application.version;
     }
 
 }
