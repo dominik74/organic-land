@@ -25,6 +25,8 @@ public class Chunk : MonoBehaviour {
 	public bool dbg_biome1;
 	public bool dbg_biome2;
 
+	public string dbg_chunkSeed;
+
 	Vector3[] vertices;
 	Color[] colors;
 
@@ -34,7 +36,8 @@ public class Chunk : MonoBehaviour {
 
 	void OnEnable()
 	{
-		//GenerateObjects();
+		SetSeedForThisChunk();
+
 		dbg_biome1 = false;
 		dbg_biome2 = false;
 	}
@@ -202,6 +205,15 @@ public class Chunk : MonoBehaviour {
 		}
 
 		myObjects.Clear();
+	}
+
+	void SetSeedForThisChunk()
+	{
+		string numString = string.Format("{0}{1}", transform.position.x, transform.position.z);
+		int numInt = int.Parse(numString);
+
+		Random.InitState(numInt);
+		dbg_chunkSeed = numInt.ToString();
 	}
 
 }
