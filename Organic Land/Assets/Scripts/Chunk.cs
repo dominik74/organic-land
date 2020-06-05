@@ -209,11 +209,14 @@ public class Chunk : MonoBehaviour {
 
 	void SetSeedForThisChunk()
 	{
-		string numString = string.Format("{0}{1}", transform.position.x, transform.position.z);
-		int numInt = int.Parse(numString);
+		string seedString = string.Format("{0}{1}", transform.position.x, transform.position.z);
+		int seedInt = int.Parse(seedString);
 
-		Random.InitState(numInt);
-		dbg_chunkSeed = numInt.ToString();
+		if (Settings.useSeed)
+			seedInt += SeedGenerator.worldSeed;
+
+		Random.InitState(seedInt);
+		dbg_chunkSeed = seedInt.ToString();
 	}
 
 }

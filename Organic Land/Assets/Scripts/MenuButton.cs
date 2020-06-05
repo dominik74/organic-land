@@ -7,11 +7,48 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(Button))]
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler {
 
+    public static MenuButton current;
+
+    public bool isTab;
+    public bool selectedTab;
+
     private Color highlightColor;
     private Color defaultColor;
     private Color pressedColor;
 
     private Text myText;
+    private Image image;
+
+    private ButtonState btnState;
+    private ButtonState State 
+    { 
+        get { return btnState; }
+        set
+        {
+            btnState = value;
+
+            switch (btnState)
+            {
+                case ButtonState.none:
+                    myText.color = defaultColor;
+                    if (image != null)
+                        image.color = defaultColor;
+                    break;
+                case ButtonState.highlighted:
+                    myText.color = highlightColor;
+                    if (image != null)
+                        image.color = highlightColor;
+                    break;
+                case ButtonState.pressed:
+                    myText.color = pressedColor;
+                    if (image != null)
+                        image.color = pressedColor;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     private bool initialized;
 
@@ -21,32 +58,62 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         defaultColor = myText.color;
         highlightColor = GetComponent<Button>().colors.highlightedColor;
         pressedColor = GetComponent<Button>().colors.pressedColor;
+
+        if (transform.childCount == 2)
+            image = transform.GetChild(1).GetComponent<Image>();
+
+        if (isTab && selectedTab)
+            State = ButtonState.highlighted;
+
         initialized = true;
     }
 
     void OnEnable()
     {
-        if(initialized)
-            myText.color = defaultColor;
+        if (initialized)
+        {
+            if (!isTab)
+                State = ButtonState.none;
+            else
+                State = ButtonState.highlighted;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        myText.color = highlightColor;
+        if(!isTab)
+            State = ButtonState.highlighted;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        myText.color = defaultColor;
+        if(!isTab)
+            State = ButtonState.none;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        myText.color = pressedColor;
+        State = ButtonState.pressed;
+
+        if (isTab)
+        {
+            current.Deactivate();
+            current = this;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        myText.color = highlightColor;
+        State = ButtonState.highlighted;
+    }
+
+    public void Deactivate()
+    {
+        State = ButtonState.none;
+    }
+
+    private enum ButtonState
+    {
+        none, highlighted, pressed
     }
 }

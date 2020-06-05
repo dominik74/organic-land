@@ -8,21 +8,25 @@ public class SeedGenerator : MonoBehaviour {
 	public bool useStringSeed;
 
 	public bool useRandomSeed;
-	public static int seed;
+	public static int worldSeed;
 
 	void Awake()
 	{
 		if (useStringSeed)
 		{
-			seed = stringSeed.GetHashCode();
+			worldSeed = stringSeed.GetHashCode();
 		}
 
 		if (useRandomSeed)
 		{
-			seed = Random.Range(0, 999999);
+			worldSeed = Random.Range(0, 999999);
 		}
+	}
 
-		Random.InitState(seed);
+	public static void SetSeed(UnityEngine.UI.InputField inputField)
+	{
+		string newSeed = inputField.text;
+		worldSeed = newSeed.GetHashCode();
 	}
 
 }

@@ -9,5 +9,6 @@ public class Settings {
 
 	public static bool smoothRotation = true;
 	public static bool generateStructures = false;
+	public static bool useSeed = false;
 
 }

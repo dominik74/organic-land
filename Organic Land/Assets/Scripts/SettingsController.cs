@@ -32,4 +32,9 @@ public class SettingsController : MonoBehaviour {
 		Screen.fullScreen = toggle.isOn;
 	}
 
+	public void SetUseSeed(Toggle toggle)
+	{
+		Settings.useSeed = toggle.isOn;
+	}
+
 }
