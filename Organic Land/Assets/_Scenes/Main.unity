@@ -2225,6 +2225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 0
+  selectedTab: 0
 --- !u!1 &302568148
 GameObject:
   m_ObjectHideFlags: 0
@@ -2535,6 +2536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 0
+  selectedTab: 0
 --- !u!1 &353107362
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,6 +2724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 0
+  selectedTab: 0
 --- !u!114 &370571263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3129,6 +3132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 0
+  selectedTab: 0
 --- !u!1 &406413708
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,11 +3164,11 @@ RectTransform:
   m_Father: {fileID: 2078393188}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -60}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -55, y: -60}
   m_SizeDelta: {x: 568, y: -120}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &406413710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4050,6 +4054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 0
+  selectedTab: 0
 --- !u!114 &483604147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5861,6 +5866,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 0
+  selectedTab: 0
 --- !u!114 &665745967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10217,11 +10223,11 @@ RectTransform:
   m_Father: {fileID: 2078393188}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -160}
   m_SizeDelta: {x: 125, y: 30}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1043538196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10234,6 +10240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 1
+  selectedTab: 0
 --- !u!114 &1043538197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11324,11 +11331,11 @@ RectTransform:
   m_Father: {fileID: 2078393188}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 60}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -120}
   m_SizeDelta: {x: 125, y: 30}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1095738428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11341,6 +11348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 1
+  selectedTab: 1
 --- !u!114 &1095738429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13451,6 +13459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 0
+  selectedTab: 0
 --- !u!1 &1316883096
 GameObject:
   m_ObjectHideFlags: 0
@@ -16665,7 +16674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16720,7 +16729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -55, y: -60}
+  m_AnchoredPosition: {x: -65, y: -60}
   m_SizeDelta: {x: 568, y: -120}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1655336165
@@ -17036,6 +17045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTab: 0
+  selectedTab: 0
 --- !u!114 &1676648203
 MonoBehaviour:
   m_ObjectHideFlags: 0

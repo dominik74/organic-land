@@ -63,7 +63,10 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             image = transform.GetChild(1).GetComponent<Image>();
 
         if (isTab && selectedTab)
+        {
             State = ButtonState.highlighted;
+            current = this;
+        }
 
         initialized = true;
     }
@@ -74,8 +77,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         {
             if (!isTab)
                 State = ButtonState.none;
-            else
-                State = ButtonState.highlighted;
         }
     }
 
@@ -95,7 +96,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         State = ButtonState.pressed;
 
-        if (isTab)
+        if (isTab && current != this)
         {
             current.Deactivate();
             current = this;
