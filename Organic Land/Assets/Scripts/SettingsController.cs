@@ -25,6 +25,7 @@ public class SettingsController : MonoBehaviour {
 	public void SetGenerateStructures(Toggle toggle)
 	{
 		Settings.generateStructures = toggle.isOn;
+		InfiniteGenerator.instance.Regenerate();
 	}
 	
 	public void SetFullscreen(Toggle toggle)
@@ -35,6 +36,13 @@ public class SettingsController : MonoBehaviour {
 	public void SetUseSeed(Toggle toggle)
 	{
 		Settings.useSeed = toggle.isOn;
+		InfiniteGenerator.instance.Regenerate();
+	}
+
+	public void SetNewSeed(InputField inputField)
+	{
+		SeedGenerator.SetSeed(inputField.text);
+		InfiniteGenerator.instance.Regenerate();
 	}
 
 }

@@ -10,6 +10,9 @@ public class SeedGenerator : MonoBehaviour {
 	public bool useRandomSeed;
 	public static int worldSeed;
 
+	public static int seedX;
+	public static int seedZ;
+
 	void Awake()
 	{
 		if (useStringSeed)
@@ -19,14 +22,42 @@ public class SeedGenerator : MonoBehaviour {
 
 		if (useRandomSeed)
 		{
-			worldSeed = Random.Range(0, 999999);
+			Random.InitState(System.DateTime.Now.Millisecond);
+			worldSeed = Random.Range(-999999, 999999);
 		}
+
+		InitSeedXZ();
 	}
 
-	public static void SetSeed(UnityEngine.UI.InputField inputField)
+	public static void SetSeed(string newSeedString)
 	{
-		string newSeed = inputField.text;
-		worldSeed = newSeed.GetHashCode();
+		int newSeedInt = -1;
+
+		if (int.TryParse(newSeedString, out newSeedInt))
+			worldSeed = newSeedInt;
+		else
+			worldSeed = newSeedString.GetHashCode();
+
+		InitSeedXZ();
+	}
+
+	static void InitSeedXZ()
+	{
+		string seedString = worldSeed.ToString();
+
+		if (seedString.Length > 1)
+		{
+			int splitX = Mathf.FloorToInt(seedString.Length / 2);
+
+			seedX = int.Parse(seedString.Substring(0, splitX));
+			seedZ = int.Parse(seedString.Substring(splitX));
+		}
+		else
+		{
+			seedX = worldSeed;
+			seedZ = 0;
+		}
+		Debug.Log(string.Format("seedX: {0}, seedZ: {1}", seedX, seedZ));
 	}
 
 }

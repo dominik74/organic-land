@@ -19,6 +19,8 @@ public class Chunk : MonoBehaviour {
 	public bool usePerlinNoise = true;
 
 	public GameObject structure;
+	[Tooltip("Insert the TOTAL size of the chunk.")]
+	public const int chunkTotalSize = 40;
 
 	[HideInInspector] public string currentBiomeName;
 
@@ -73,11 +75,11 @@ public class Chunk : MonoBehaviour {
 		Color currentColor = Color.black;
 
         #region Biome Map Calculation
-        float biomeNoise1 = Mathf.PerlinNoise((vertices[v].x + (transform.position.x / transform.localScale.x) + biomeOffset) / biomeDetailScale,
-			(vertices[v].z + (transform.position.z / transform.localScale.z) + biomeOffset) / biomeDetailScale);
+        float biomeNoise1 = Mathf.PerlinNoise((vertices[v].x + (transform.position.x / transform.localScale.x) + biomeOffset + SeedGenerator.seedX) / biomeDetailScale,
+			(vertices[v].z + (transform.position.z / transform.localScale.z) + biomeOffset + SeedGenerator.seedZ) / biomeDetailScale);
 
-		float biomeNoise2 = Mathf.PerlinNoise(((vertices[v].x + (transform.position.x / transform.localScale.x) + 5.72f) / 30), 
-			((vertices[v].z + (transform.position.z / transform.localScale.z) + 5.72f) / 30));
+		float biomeNoise2 = Mathf.PerlinNoise(((vertices[v].x + (transform.position.x / transform.localScale.x) + 5.72f + SeedGenerator.seedX) / 30), 
+			((vertices[v].z + (transform.position.z / transform.localScale.z) + 5.72f + SeedGenerator.seedZ) / 30));
 
 		float biomeMap = biomeNoise1 + 0.2f * biomeNoise2;
         #endregion
@@ -209,7 +211,12 @@ public class Chunk : MonoBehaviour {
 
 	void SetSeedForThisChunk()
 	{
-		string seedString = string.Format("{0}{1}", transform.position.x, transform.position.z);
+		int x = Mathf.RoundToInt(transform.position.x / chunkTotalSize);
+		int z = Mathf.RoundToInt(transform.position.z / chunkTotalSize);
+
+		z = Mathf.Abs(z);
+
+		string seedString = string.Format("{0}{1}", x, z);
 		int seedInt = int.Parse(seedString);
 
 		if (Settings.useSeed)

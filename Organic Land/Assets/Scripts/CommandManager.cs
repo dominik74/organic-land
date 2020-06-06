@@ -34,6 +34,7 @@ public class CommandManager {
         RegisterCommand("place", Place, "Places an object at the player position [value1 = (objectName)]");
         RegisterCommand("regenerate", Regenerate, "Regenerates the terrain.");
         RegisterCommand("spawn", Spawn, "Spawns a mob at the player position.");
+        RegisterCommand("seed", PrintSeed, "Get the current world seed. [Editor only]");
     }
 
 	void RegisterCommand(string command, CommandHandler handler, string help)
@@ -142,6 +143,12 @@ public class CommandManager {
     {
         if (val == "enemy" && val2 == "")
             MobPool.SpawnEnemy(PlayerManager.playerUnit.transform.position);
+    }
+
+    void PrintSeed(string val, string val2)
+    {
+        if (val == "" && val2 == "")
+            Debug.Log(SeedGenerator.worldSeed);
     }
     #endregion
 
