@@ -9,7 +9,7 @@ public class UIAnimator : MonoBehaviour {
         if(Settings.screenAnimations)
         {
             targetScreen.transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -100);
-            CustomTween.MoveY(targetScreen.transform.GetChild(0).gameObject, 0, 1f);
+            CustomTween.MoveY(targetScreen.transform.GetChild(0).gameObject, 0, 0.5f);
         }
     }
 
