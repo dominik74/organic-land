@@ -45,4 +45,9 @@ public class SettingsController : MonoBehaviour {
 		InfiniteGenerator.instance.Regenerate();
 	}
 
+	public void SetScreenAnimations(Toggle toggle)
+	{
+		Settings.screenAnimations = toggle.isOn;
+	}
+
 }

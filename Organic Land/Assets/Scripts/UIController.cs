@@ -96,7 +96,7 @@ public class UIController : MonoBehaviour {
                     screens[i].SetActive(state);
 
                 if (state == true)
-                    UIAnimator.StartScreenIntroAnimation(screens[i]);
+                    UIAnimator.StartScreenOpenAnimation(screens[i]);
             }
         }
 

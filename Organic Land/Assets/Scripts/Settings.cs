@@ -11,4 +11,6 @@ public class Settings {
 	public static bool generateStructures = false;
 	public static bool useSeed = false;
 
+	public static bool screenAnimations = false;
+
 }
