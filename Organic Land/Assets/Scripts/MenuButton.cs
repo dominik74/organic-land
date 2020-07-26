@@ -30,17 +30,17 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             switch (btnState)
             {
                 case ButtonState.none:
-                    myText.color = defaultColor;
+                    //myText.color = defaultColor;
                     if (image != null)
                         image.color = defaultColor;
                     break;
                 case ButtonState.highlighted:
-                    myText.color = highlightColor;
+                    //myText.color = highlightColor;
                     if (image != null)
                         image.color = highlightColor;
                     break;
                 case ButtonState.pressed:
-                    myText.color = pressedColor;
+                    //myText.color = pressedColor;
                     if (image != null)
                         image.color = pressedColor;
                     break;
@@ -59,8 +59,8 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         highlightColor = GetComponent<Button>().colors.highlightedColor;
         pressedColor = GetComponent<Button>().colors.pressedColor;
 
-        if (transform.childCount == 2)
-            image = transform.GetChild(1).GetComponent<Image>();
+        //if (transform.childCount == 2)
+        //    image = transform.GetChild(1).GetComponent<Image>();
 
         if (isTab && selectedTab)
         {
